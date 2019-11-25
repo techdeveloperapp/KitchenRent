@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'CommonController@index')->name('index');
+
+Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
 
 Auth::routes();
 
