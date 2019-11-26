@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="en" >
 	<!-- begin::Head -->
 	<head>
@@ -39,6 +27,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="{{url('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{url('assets/demo/demo6/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
+		<link href="{{url('assets/custom.css')}}" rel="stylesheet" type="text/css" />
 		<link rel="shortcut icon" href="{{url('assets/demo/demo6/media/img/logo/favicon.ico')}}" />
 	</head>
 	<!-- end::Head -->
@@ -50,18 +39,34 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
 
-			@extends('layouts.admin.header')
+			@include('layouts.admin.header')
 
 			<!-- begin::Body -->
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-			@extends('layouts.admin.sidebar')
-				
-					@yield('content')
+			@include('layouts.admin.sidebar')
+			<div class="m-grid__item m-grid__item--fluid m-wrapper">
+				@include('layouts.admin.breadcrumb')
+				@yield('content')
+			</div>
 				
 			</div>
 			<!-- end:: Body -->
 
-			@extends('layouts.admin.footer')
+			@include('layouts.admin.footer')
 		</div>
-			@extends('layouts.admin.commonpopbox')
 		<!-- end:: Page -->
+			@include('layouts.admin.commonpopbox')
+		<!--begin::Base Scripts -->
+		<script src="{{url('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
+		<script src="{{url('assets/demo/demo6/base/scripts.bundle.js')}}" type="text/javascript"></script>
+		<!--end::Base Scripts -->   
+        <!--begin::Page Vendors -->
+		<script src="{{url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript"></script>
+		<!--end::Page Vendors -->  
+        <!--begin::Page Snippets -->
+		<script src="{{url('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
+		<script src="{{url('assets/custom.js')}}" type="text/javascript"></script>
+		<!--end::Page Snippets -->
+	</body>
+	<!-- end::Body -->
+</html>	
