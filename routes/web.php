@@ -16,6 +16,9 @@ Route::get('/', 'CommonController@index')->name('index');
 
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
 
+Route::get('admin/vendor/list', 'VendorController@index')->name('admin.vendor.list');
+Route::get('admin/vendor/add', 'VendorController@add')->name('admin.vendor.add');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

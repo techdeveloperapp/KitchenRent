@@ -15,7 +15,7 @@
 								<a  href="javascript:;" class="m-menu__link m-menu__toggle">
 									<i class="m-menu__link-icon flaticon-layers"></i>
 									<span class="m-menu__link-text">
-										Resources
+										Vendor
 									</span>
 									<i class="m-menu__ver-arrow la la-angle-right"></i>
 								</a>
@@ -25,37 +25,27 @@
 										<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
 											<span class="m-menu__link">
 												<span class="m-menu__link-text">
-													Resources
+													Vendor
 												</span>
 											</span>
 										</li>
 										<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
-											<a  href="inner.html" class="m-menu__link ">
+											<a  href="{{url('admin/vendor/list')}}" class="m-menu__link ">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
 												</i>
 												<span class="m-menu__link-text">
-													Timesheet
+													List
 												</span>
 											</a>
 										</li>
 										<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
-											<a  href="inner.html" class="m-menu__link ">
+											<a  href="{{url('admin/vendor/add')}}" class="m-menu__link ">
 												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 													<span></span>
 												</i>
 												<span class="m-menu__link-text">
-													Payroll
-												</span>
-											</a>
-										</li>
-										<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
-											<a  href="inner.html" class="m-menu__link ">
-												<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-													<span></span>
-												</i>
-												<span class="m-menu__link-text">
-													Contacts
+													Add
 												</span>
 											</a>
 										</li>

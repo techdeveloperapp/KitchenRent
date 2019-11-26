@@ -63,6 +63,12 @@
 		<script src="{{url('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
 		<script src="{{url('assets/custom.js')}}" type="text/javascript"></script>
 		<!--end::Page Snippets -->
+		<!--begin::Page Vendors -->
+		<script src="{{url('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
+		<!--end::Page Vendors -->  
+		<!--begin::Page Resources -->
+		<script src="{{url('assets/demo/default/custom/crud/datatables/basic/basic.js')}}" type="text/javascript"></script>
+		<!--end::Page Resources -->
 	</body>
 	<!-- end::Body -->
 </html>	

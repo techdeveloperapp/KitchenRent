@@ -21,26 +21,30 @@
 						</span>
 					</a>
 				</li>
+				@if(Request::segment(2))
 				<li class="m-nav__separator">
 					-
 				</li>
 				<li class="m-nav__item">
 					<a href="" class="m-nav__link">
 						<span class="m-nav__link-text">
-							Manage Orders
+							{{ucfirst(Request::segment(2))}}
 						</span>
 					</a>
 				</li>
+				@endif
+				@if(Request::segment(3))
 				<li class="m-nav__separator">
 					-
 				</li>
 				<li class="m-nav__item">
 					<a href="" class="m-nav__link">
 						<span class="m-nav__link-text">
-							Latest Orders
+							{{ucfirst(Request::segment(3))}}
 						</span>
 					</a>
 				</li>
+				@endif
 			</ul>
 		</div>
 		 
