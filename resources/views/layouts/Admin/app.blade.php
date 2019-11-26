@@ -38,9 +38,7 @@
 	<body  class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-light m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default"  >
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
-
 			@include('layouts.admin.header')
-
 			<!-- begin::Body -->
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 			@include('layouts.admin.sidebar')
@@ -48,10 +46,8 @@
 				@include('layouts.admin.breadcrumb')
 				@yield('content')
 			</div>
-				
 			</div>
 			<!-- end:: Body -->
-
 			@include('layouts.admin.footer')
 		</div>
 		<!-- end:: Page -->
