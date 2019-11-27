@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
+@section('title', 'Vendor List')
 <div class="m-content">
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
@@ -13,11 +14,11 @@
 			<div class="m-portlet__head-tools">
 				<ul class="m-portlet__nav">
 					<li class="m-portlet__nav-item">
-						<a href="{{url('admin/vendor/add')}}" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<a href="{{url('admin/vendor/add')}}" class="btn m-btn  m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">
 							<span>
 								<i class="la la-plus"></i>
 								<span>
-									New record
+									New Vendor
 								</span>
 							</span>
 						</a>
@@ -104,4 +105,3 @@
 	<!-- END EXAMPLE TABLE PORTLET-->
 </div>
 @endsection
-

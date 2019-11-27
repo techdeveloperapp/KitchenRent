@@ -13,7 +13,7 @@ class VendorController extends Controller
     }
 
     public function add(){
-    	Session::flash('error', 'This is Vendor List');
+    	Session::flash('error', 'This is New Vendor');
     	return view('Admin.Dashboard.vendor_add');
     }
 }

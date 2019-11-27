@@ -1,5 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
+@section('title', 'Dashboard')
 <div class="m-content">
 	<!--Begin::Section-->
 	<div class="m-portlet">

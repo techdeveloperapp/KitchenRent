@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Metronic | Dashboard
+			@yield('title','Dashboard')
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,13 +22,14 @@
 		<!--end::Web font -->
         <!--begin::Base Styles -->  
         <!--begin::Page Vendors -->
-		<link href="{{url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendors -->
 		<link href="{{url('assets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{url('assets/demo/demo6/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
 		<link href="{{url('assets/custom.css')}}" rel="stylesheet" type="text/css" />
 		<link rel="shortcut icon" href="{{url('assets/demo/demo6/media/img/logo/favicon.ico')}}" />
+		
+		<script src="{{url('assets/jquery-3.4.1.slim.min.js')}}" type="text/javascript"></script>
 	</head>
 	<!-- end::Head -->
 	<!-- CSRF Token -->
@@ -57,7 +58,6 @@
 		<script src="{{url('assets/demo/demo6/base/scripts.bundle.js')}}" type="text/javascript"></script>
 		<!--end::Base Scripts -->   
         <!--begin::Page Vendors -->
-		<script src="{{url('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js')}}" type="text/javascript"></script>
 		<!--end::Page Vendors -->  
         <!--begin::Page Snippets -->
 		<script src="{{url('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
