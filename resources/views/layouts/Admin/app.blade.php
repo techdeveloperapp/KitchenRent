@@ -55,7 +55,7 @@
 			@include('layouts.admin.commonpopbox')
 		<!--begin::Base Scripts -->
 		<script src="{{url('assets/vendors/base/vendors.bundle.js')}}" type="text/javascript"></script>
-		<script src="{{url('assets/demo/demo6/base/scripts.bundle.js')}}" type="text/javascript"></script>
+		<script src="{{url('assets/demo/default/base/scripts.bundle.js')}}" type="text/javascript"></script>
 		<!--end::Base Scripts -->   
         <!--begin::Page Vendors -->
 		<!--end::Page Vendors -->  
@@ -63,12 +63,7 @@
 		<script src="{{url('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
 		<script src="{{url('assets/custom.js')}}" type="text/javascript"></script>
 		<!--end::Page Snippets -->
-		<!--begin::Page Vendors -->
-		<script src="{{url('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-		<!--begin::Page Resources -->
-		<script src="{{url('assets/demo/default/custom/crud/datatables/basic/basic.js')}}" type="text/javascript"></script>
-		<!--end::Page Resources -->
+		@yield('script')
 	</body>
 	<!-- end::Body -->
 </html>	

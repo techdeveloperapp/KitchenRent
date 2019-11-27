@@ -17,7 +17,9 @@ Route::get('/', 'CommonController@index')->name('index');
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
 
 Route::get('admin/vendor/list', 'VendorController@index')->name('admin.vendor.list');
+Route::get('admin/vendor/getAllVendors', 'VendorController@getAllVendors')->name('admin.vendor.allVendors');
 Route::get('admin/vendor/add', 'VendorController@add')->name('admin.vendor.add');
+Route::post('admin/vendor/addVendor', 'VendorController@addUpdateVendor')->name('admin.vendor.addVendor');
 
 Auth::routes();
 
