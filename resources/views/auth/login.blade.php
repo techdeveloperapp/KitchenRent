@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="{{ app()->getLocale() }}" >
     <!-- begin::Head -->
     <head>
         <meta charset="utf-8" />
         <title>
-            Metronic | Login
+            {{ __('messages.sign_in') }}
         </title>
         <meta name="description" content="Latest updates and statistic charts">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +25,7 @@
         <link href="{{url('loginassets/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
         <!--end::Base Styles -->
         <link rel="shortcut icon" href="{{url('loginassets/demo/default/media/img/logo/favicon.ico')}}" />
+		<link href="{{url('loginassets/login.css')}}" rel="stylesheet" type="text/css" />
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
     </head>
@@ -44,13 +45,13 @@
                         <div class="m-login__signin">
                             <div class="m-login__head">
                                 <h3 class="m-login__title">
-                                    Sign In To Admin
+                                    {{ __('messages.sign_to_admin') }}
                                 </h3>
                             </div>
                             <form class="m-login__form m-form" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                                    <input class="form-control m-input" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('messages.email') }}" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -59,7 +60,7 @@
                                 </div>
 
                                 <div class="form-group m-form__group">
-                                    <input class="form-control m-input m-login__form-input--last" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
+                                    <input class="form-control m-input m-login__form-input--last" id="password" type="password" class="form-control @error('password') is-invalid @enderror" placeholder="{{ __('messages.password') }}" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -70,7 +71,7 @@
                                 </div>
 
 
-                                <div class="row m-login__form-sub">
+                                <div class="row m-login__form-sub m--hide">
                                     <div class="col m--align-left m-login__form-left">
                                         <label class="m-checkbox  m-checkbox--light">
                                             <input type="checkbox" name="remember">
@@ -86,7 +87,7 @@
                                 </div>
                                 <div class="m-login__form-action">
                                     <button type="submit" id="m_login_signin_submit1" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primary">
-                                        Sign In
+                                        {{ __('messages.sign_in') }}
                                     </button>
                                 </div>
                             </form>
@@ -189,7 +190,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="m-login__account">
+                        <div class="m-login__account m--hide">
                             <span class="m-login__account-msg">
                                 Don't have an account yet ?
                             </span>

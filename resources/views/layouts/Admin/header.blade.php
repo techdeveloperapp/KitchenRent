@@ -37,6 +37,50 @@
 							<button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-light " id="m_aside_header_menu_mobile_close_btn">
 								<i class="la la-close"></i>
 							</button>
+							<div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-light m-aside-header-menu-mobile--submenu-skin-light m--margin-left-15">
+								<ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+									<li class="m-menu__item m-menu__item--active m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" aria-haspopup="true">
+										<a href="javascript:;" class="m-menu__link m-menu__toggle">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Langauage: @if(app()->getLocale() == 'en') English @else Dutch @endif
+											</span>
+											<i class="m-menu__hor-arrow la la-angle-down"></i>
+											<i class="m-menu__ver-arrow la la-angle-right"></i>
+										</a>
+										<div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+											<span class="m-menu__arrow m-menu__arrow--adjust" style="left: 64.5px;"></span>
+											<ul class="m-menu__subnav">
+												<li class="m-menu__item  @if(app()->getLocale() == 'en')m-menu__item--active @endif  " aria-haspopup="true">
+													<a href="{{url('locale/en')}}" class="m-menu__link ">
+														<span class="m-menu__link-title">
+															<span class="m-menu__link-wrap">
+																<span class="m-menu__link-text">
+																	English
+																</span>
+															</span>
+														</span>
+													</a>
+												</li>
+												<li class="m-menu__item @if(app()->getLocale() == 'nl')m-menu__item--active @endif " aria-haspopup="true">
+													<a href="{{url('locale/nl')}}" class="m-menu__link ">
+														<!--<i class="m-menu__link-icon flaticon-diagram"></i>-->
+														<span class="m-menu__link-title">
+															<span class="m-menu__link-wrap">
+																<span class="m-menu__link-text">
+																	Dutch
+																</span>
+															</span>
+														</span>
+													</a>
+												</li>
+												
+											</ul>
+										</div>
+									</li>
+									
+								</ul>
+							</div>
 							<!-- END: Horizontal Menu -->				
 				<!-- BEGIN: Topbar -->
 							<div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
@@ -73,10 +117,10 @@
 												<div class="m-dropdown__inner">
 													<div class="m-dropdown__header m--align-center">
 														<span class="m-dropdown__header-title">
-															0 New
+															0 {{ __('messages.new') }}
 														</span>
 														<span class="m-dropdown__header-subtitle">
-															User Notifications
+															{{ __('messages.user_notifications') }}
 														</span>
 													</div>
 													<div class="m-dropdown__body">
@@ -94,7 +138,7 @@
 																	<div class="m-scrollable" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
 																		<div class="m-list-timeline m-list-timeline--skin-light">
 																			<div class="m-list-timeline__items">
-																				<div class="m-list-timeline__item">
+																				<div class="m-list-timeline__item m--hide">
 																					<span class="m-list-timeline__badge -m-list-timeline__badge--state-success"></span>
 																					<span class="m-list-timeline__text">
 																						12 new users registered
@@ -103,81 +147,7 @@
 																						Just now
 																					</span>
 																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						System shutdown
-																						<span class="m-badge m-badge--success m-badge--wide">
-																							pending
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						14 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						New invoice received
-																					</span>
-																					<span class="m-list-timeline__time">
-																						20 mins
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						DB overloaded 80%
-																						<span class="m-badge m-badge--info m-badge--wide">
-																							settled
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						1 hr
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						System error -
-																						<a href="#" class="m-link">
-																							Check
-																						</a>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						2 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span href="" class="m-list-timeline__text">
-																						New order received
-																						<span class="m-badge m-badge--danger m-badge--wide">
-																							urgent
-																						</span>
-																					</span>
-																					<span class="m-list-timeline__time">
-																						7 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item m-list-timeline__item--read">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						Production server down
-																					</span>
-																					<span class="m-list-timeline__time">
-																						3 hrs
-																					</span>
-																				</div>
-																				<div class="m-list-timeline__item">
-																					<span class="m-list-timeline__badge"></span>
-																					<span class="m-list-timeline__text">
-																						Production server up
-																					</span>
-																					<span class="m-list-timeline__time">
-																						5 hrs
-																					</span>
-																				</div>
+																				
 																			</div>
 																		</div>
 																	</div>
@@ -231,29 +201,13 @@
 																		Section
 																	</span>
 																</li>
-																<li class="m-nav__item">
-																	<a href="profile.html" class="m-nav__link">
-																		<i class="m-nav__link-icon flaticon-profile-1"></i>
-																		<span class="m-nav__link-title">
-																			<span class="m-nav__link-wrap">
-																				<span class="m-nav__link-text">
-																					My Profile
-																				</span>
-																				<span class="m-nav__link-badge">
-																					<span class="m-badge m-badge--success">
-																						2
-																					</span>
-																				</span>
-																			</span>
-																		</span>
-																	</a>
-																</li>
+																
 																<li class="m-nav__separator m-nav__separator--fit"></li>
 																<li class="m-nav__item">
 																	<a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
-																		Logout
+																		{{ __('messages.logout') }}
 																	</a>
 																	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf

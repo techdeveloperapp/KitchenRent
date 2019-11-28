@@ -1,0 +1,8 @@
+span.invalid-feedback {
+    display: block;
+    color: #ff0000;
+    font-size: 15px;
+}
+span.invalid-feedback strong {
+    font-weight: 400;
+}

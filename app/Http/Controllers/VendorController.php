@@ -9,6 +9,7 @@ use App\UserMeta;
 use App\User;
 use DB;
 use Response;
+use Illuminate\Support\Facades\Config;
 
 class VendorController extends Controller
 {
@@ -48,7 +49,7 @@ class VendorController extends Controller
             $vendor->name = $request->input('first_name');
             $vendor->email = $request->input('email');
             $vendor->password = bcrypt($request->input('password'));
-            $vendor->user_role = '2';
+            $vendor->user_role = Config::get('constants.roles.vendor'); // take value from constant file
             if($vendor->save())
             {
                 // $user_meta = new UserMeta();
@@ -75,7 +76,7 @@ class VendorController extends Controller
             $offset = ($page-1)*$perpage;
             }
             DB::statement(DB::raw('set @rownumber='.$offset.''));
-            $vendors = $vendors->where('users.user_role',2);
+            $vendors = $vendors->where('users.user_role',Config::get('constants.roles.vendor') );
 
             $total = $vendors->count();
             $vendors = $vendors->offset($offset)->limit($perpage)->get();

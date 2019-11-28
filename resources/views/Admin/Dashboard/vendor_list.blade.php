@@ -1,16 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
-@section('title', 'Vendor List')
+@section('title', __('messages.vendor_list') )
 <div class="m-content">
-	@if(Session::has('success'))
-		<p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
-	@endif
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">
-						Vendor List
+						{{ __('messages.vendor_list') }}
 					</h3>
 				</div>
 			</div>
@@ -21,16 +18,31 @@
 							<span>
 								<i class="la la-plus"></i>
 								<span>
-									New Vendor
+									{{ __('messages.new_vendor') }}
 								</span>
 							</span>
 						</a>
 					</li>
 				</ul>
+				
 			</div>
 		</div>
 		
 		<div class="m-portlet__body">
+			<div class="m-form m-form--label-align-right m--margin-top-0 m--margin-bottom-5">
+				<div class="row align-items-center">
+					<div class="col-md-3">
+						<div class="m-input-icon m-input-icon--left">
+							<input type="text" class="form-control m-input" placeholder="{{ __('messages.search') }}..." id="generalSearch">
+							<span class="m-input-icon__icon m-input-icon__icon--left">
+								<span>
+									<i class="la la-search"></i>
+								</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!--begin: Datatable -->
 			<div class="m_datatable" id="ajax_data"></div>
 			<!--end: Datatable -->
@@ -68,6 +80,7 @@
 						serverSorting: !0
 					},
 					layout: {
+						theme: "default",
 						scroll: !1,
 						footer: !1
 					},
@@ -76,13 +89,15 @@
 					toolbar: {
 						items: {
 							pagination: {
-								pageSizeSelect: [10, 20, 30, 50, 100]
+								pageSizeSelect: [5, 10, 20, 30, 50, 100]
 							}
 						}
 					},
 					search: {
 						input: $("#generalSearch")
 					},
+					
+					translate: { records: {processing: '{{ __("messages.proceesing") }}',noRecords: "{{ __('messages.no_records') }}"},toolbar: {pagination: {items: {default: {first: "{{ __('messages.first') }}",prev: "{{ __('messages.previous') }}",next: "{{ __('messages.next') }}",last: "{{ __('messages.last') }}"},info: "{{ __('messages.pagination') }}" }}}},
 					columns: [{
 		              field: "id",
 		              title: "S.No",
@@ -92,30 +107,16 @@
 					{
 						field: "name",
 						title: "Name",
-						sortable: !1,
+						sortable: !0,
 						selector: !1,
-						textAlign: "center"
+						textAlign: "left"
 					}, {
 						field: "email",
 						title: "Email",
-						sortable: !1,
+						sortable: !0,
 						selector: !1,
-						textAlign: "center"
+						textAlign: "left"
 					},
-					{
-		              field: "status",
-		              title: "Status",
-		              textAlign: 'left',
-		              template: function(row) {
-		                
-		                    return '\
-		                 <span class="m-switch m-switch--success m-switch--sm" style="width: 127px;"><label>\
-		                  <input type="checkbox" class="checkbox" checked="checked">\
-		                    <span></span>\
-		                  </label></span>\
-		                 ';	                
-		              }
-		            },
 		            {
 		              width: 190,
 		              title: 'Actions',
@@ -125,11 +126,12 @@
 		              textAlign: 'left',
 		              template: function(row) {
 		                 let html = '';
-		                 html+='<a href="javascript:void(0);" class="m-portlet__nav-link btn btn__text-danger btn__text" title="Edit Vendor"><i class="la la-edit"></i></a>';
-			            html += '<a href="javascript:void(0);" class="m-portlet__nav-link btn btn__text-danger btn__text" title="Delete"><i class="la la-trash"></i></a>';
+		                 html+='<a href="javascript:void(0);" class="btn btn-info m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.edit') }}"><i class="la la-edit"></i></a> ';
+			            html += '<a href="javascript:void(0);" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.delete') }}"><i class="la la-trash"></i></a> ';
 		                 return html;
 		              },
-		           }]
+		           }],
+				   
 				}), $("#m_form_status").on("change", function () {
 					t.search($(this).val(), "Status")
 				}), $("#m_form_type").on("change", function () {
