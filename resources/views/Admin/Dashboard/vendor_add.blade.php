@@ -1,13 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
-@section('title', 'Add Vendor')
+@section('title', isset($id) ? 'Update Vendor' : 'Add Vendor')
 <div class="m-content">
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">
-						Add New Vendor
+						{{isset($id) ? 'Update Vendor' : 'Add New Vendor'}}
 					</h3>
 				</div>
 			</div>
@@ -29,6 +29,7 @@
 	<!--begin::Form-->
 		<form class="m-form m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
 			@csrf
+			<input class="form-control m-input m--hide" id="id" type="text" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
 			<div class="m-portlet__body">
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
@@ -36,7 +37,7 @@
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="First name">
+							<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="First name" value="{{isset($first_name) ? $first_name : ''}}">
 						</div>
 					</div>
 				</div>
@@ -46,7 +47,7 @@
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="Last name">
+							<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="Last name" value="{{isset($last_name) ? $last_name : ''}}">
 						</div>
 					</div>
 				</div>
@@ -56,7 +57,7 @@
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="email" type="text" name="email" placeholder="Email">
+							<input class="form-control m-input" {{isset($email) ? 'readonly' : ''}} id="email" type="text" name="email" placeholder="Email" value="{{isset($email) ? $email : ''}}">
 						</div>
 					</div>
 				</div>
@@ -66,7 +67,7 @@
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="password" type="password" name="password" placeholder="Password">
+							<input class="form-control m-input" id="password" type="password" name="password" placeholder="*****" value="">
 						</div>
 						
 					</div>
@@ -77,7 +78,7 @@
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						 <div class="m-typeahead">
-							<input class="form-control m-input" id="phone" type="text" name="phone" placeholder="Phone">
+							<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="Phone" value="{{isset($phone) ? $phone : ''}}">
 						</div>
 					</div>
 				</div>
@@ -88,7 +89,7 @@
 					<div class="row">
 						<div class="col-lg-9 ml-lg-auto">
 							<button type="submit" class="btn btn-success">
-								Save
+								{{isset($id) ? 'Update' : 'Save'}}
 							</button>
 							<button type="reset" class="btn btn-secondary">
 								Cancel
@@ -117,10 +118,12 @@ var FormControls = {
                     required: !0,
                     email: !0,
                 },
+                @if(!isset($id))
 				password: {
                     required: !0,
                     minlength: 8,
                 },
+                @endif
 				phone: {
                     required: !0,
                     digits: !0,

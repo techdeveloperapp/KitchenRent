@@ -13,19 +13,31 @@
 
 
 Route::get('/', 'CommonController@index')->name('index');
-
+Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
 
-Route::get('admin/vendor/list', 'VendorController@index')->name('admin.vendor.list');
-Route::get('admin/vendor/getAllVendors', 'VendorController@getAllVendors')->name('admin.vendor.allVendors');
-Route::get('admin/vendor/add', 'VendorController@add')->name('admin.vendor.add');
-Route::post('admin/vendor/addVendor', 'VendorController@addUpdateVendor')->name('admin.vendor.addVendor');
+/************************************ADMIN START*****************************************/
+Route::group(['prefix'=>'admin/','as'=>'admin.','middleware' => ['auth']], function () {
+	Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
+});
+/************************************ADMIN START*****************************************/
+
+/************************************VENDOR START*****************************************/
+Route::group(['prefix'=>'admin/vendor/','as'=>'admin.vendor.','middleware' => ['auth']], function () {
+	Route::get('list', 'VendorController@index')->name('list');
+	Route::get('getAllVendors', 'VendorController@getAllVendors')->name('allVendors');
+	Route::get('add', 'VendorController@add')->name('add');
+	Route::post('addVendor', 'VendorController@addUpdateVendor')->name('addVendor');
+	Route::get('getVendorById/{id}', 'VendorController@getVendorById')->name('getVendorById');
+	Route::get('deleteVendorById/{id}', 'VendorController@deleteVendorById')->name('deleteVendorById');
+});
+/************************************VENDOR END*****************************************/
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
+
+
 
 Route::get('locale/{locale}', function ($locale){
     Session::put('locale', $locale);

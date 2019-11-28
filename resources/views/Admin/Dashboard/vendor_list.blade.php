@@ -68,8 +68,6 @@
 		                          if (typeof raw.data !== 'undefined') {
 		                           dataSet = raw.data;
 		                         }
-		                         // console.log('Result');
-		                         // console.log(dataSet);
 		                         return dataSet;
 		                       },
 							}
@@ -98,19 +96,26 @@
 					},
 					
 					translate: { records: {processing: '{{ __("messages.proceesing") }}',noRecords: "{{ __('messages.no_records') }}"},toolbar: {pagination: {items: {default: {first: "{{ __('messages.first') }}",prev: "{{ __('messages.previous') }}",next: "{{ __('messages.next') }}",last: "{{ __('messages.last') }}"},info: "{{ __('messages.pagination') }}" }}}},
-					columns: [{
-		              field: "id",
-		              title: "S.No",
-		              selector: {class:'m-checkbox--solid m-checkbox--brand deleteCheck'},
-		              width: 30
-		            },
+					columns: [
+					// {
+		   //            field: "id",
+		   //            title: "S.No",
+		   //            selector: {class:'m-checkbox--solid m-checkbox--brand deleteCheck'},
+		   //            width: 30
+		   //          },
 					{
-						field: "name",
-						title: "Name",
+						field: "first_name",
+						title: "First Name",
 						sortable: !0,
 						selector: !1,
 						textAlign: "left"
-					}, {
+					},{
+						field: "last_name",
+						title: "Last Name",
+						sortable: !0,
+						selector: !1,
+						textAlign: "left"
+					},{
 						field: "email",
 						title: "Email",
 						sortable: !0,
@@ -126,8 +131,10 @@
 		              textAlign: 'left',
 		              template: function(row) {
 		                 let html = '';
-		                 html+='<a href="javascript:void(0);" class="btn btn-info m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.edit') }}"><i class="la la-edit"></i></a> ';
-			            html += '<a href="javascript:void(0);" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.delete') }}"><i class="la la-trash"></i></a> ';
+		                 var edit_url="{{url('admin/vendor/getVendorById/')}}/"+row.id;
+		                 var delete_url="'{{url('admin/vendor/deleteVendorById/')}}/"+row.id+"'";
+		                 html+='<a href="'+edit_url+'" class="btn btn-info m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.edit') }}"><i class="la la-edit"></i></a> ';
+			            html += '<a href="javascript:void(0);" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill" title="{{ __('messages.delete') }}" onclick="deleteVendor('+delete_url+');"><i class="la la-trash"></i></a> ';
 		                 return html;
 		              },
 		           }],
@@ -142,5 +149,25 @@
 		jQuery(document).ready(function () {
 			DatatableRemoteAjaxDemo.init()
 		});
+
+		function deleteVendor(url){
+		  swal({
+		    title: "Are you sure to delete Vendor?",
+		    text: "You will not be able to recover this.",
+		    type: "warning",
+		    showCancelButton: true,
+		    confirmButtonClass: "btn btn-warning",
+		    confirmButtonColor: "#DD6B55",
+		    confirmButtonText: "Yes, proceed it!",
+		    closeOnConfirm: false
+		  }).then(result => {
+		  	if(result.value){
+		  		window.location = url;
+		  	}else{
+		  		DatatableRemoteAjaxDemo.reload();
+		  	}
+		  	
+		  });
+		}
 	</script>
 @endsection

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
-use App\UserMeta;
+use App\Model\UserMeta;
 use App\User;
 use DB;
 use Response;
@@ -25,13 +25,18 @@ class VendorController extends Controller
 
     public function addUpdateVendor(Request $request)
     {
-    	$validator = Validator::make($request->all(), [
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'email|unique:users',
-            'password' => 'required',
-            'phone' => 'required|numeric',
-        ]);
+        if(isset($request->id) && $request->id){
+            $validator = Validator::make($request->all(), [
+                'first_name' => 'required',
+                'email' => 'required'
+            ]);
+        }else{
+            $validator = Validator::make($request->all(), [
+                'first_name' => 'required',
+                'email' => 'email|unique:users',
+                'password' => 'required',
+            ]);
+        }
 
         if ($validator->fails()) {
             return redirect('admin/vendor/add')
@@ -41,22 +46,29 @@ class VendorController extends Controller
         else
         {
         	$vendor = new User();
-            if($request->input('vendor_id'))
+            if($request->input('id'))
             {
-                $vendor_id = $request->input('vendor_id');
+                $vendor_id = $request->input('id');
                 $vendor = User::find($vendor_id);
             }
-            $vendor->name = $request->input('first_name');
+            $vendor->first_name = $request->input('first_name');
+            $vendor->last_name = $request->input('last_name');
+            $vendor->name = $request->input('first_name').' '.$request->input('last_name');
             $vendor->email = $request->input('email');
             $vendor->password = bcrypt($request->input('password'));
             $vendor->user_role = Config::get('constants.roles.vendor'); // take value from constant file
             if($vendor->save())
             {
-                // $user_meta = new UserMeta();
-                // $user_meta->user_id = $vendor->id;
-                // $user_meta->meta_key = $vendor->id;
-                // $user_meta->meta_value = $vendor->id;
-                return redirect('admin/vendor/list')->with('success', 'Vendor added successfully');
+                $user_meta = new UserMeta();
+                foreach($request->input('meta') as $key=>$value){
+                    $user_meta->addUpdate($vendor->id,$key,$value);
+                }
+                if($request->input('id')){
+                    $msg = 'Vendor updated successfully';
+                }else{
+                    $msg = 'Vendor added successfully';
+                }
+                return redirect('admin/vendor/list')->with('success', $msg);
             }
         }
     }
@@ -87,5 +99,17 @@ class VendorController extends Controller
         {
         return (json_encode(array('status'=>'error','message'=>$ex->getMessage()))) ;
         }
+    }
+
+    public function getVendorById($id,Request $request){
+        $user_obj = new User();
+        $user_obj = $user_obj->getVendor($id);
+        return view('Admin.Dashboard.vendor_add',$user_obj);
+    }
+
+    public function deleteVendorById($id,Request $request){
+        $user_obj = new User();
+        $user_obj = $user_obj->deleteVendor($id);
+        return redirect('admin/vendor/list')->with('success', 'Vendor deleted successfully.');
     }
 }
