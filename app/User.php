@@ -48,7 +48,7 @@ class User extends Authenticatable
             $userArr['name'] = $user->name;
             $userArr['email'] = $user->email;
             foreach($user_meta as $key=>$value){
-               $userArr[$value->key_name] = $value->value;
+               $userArr[$value->meta_name] = $value->value;
             }
         }
         return $userArr;

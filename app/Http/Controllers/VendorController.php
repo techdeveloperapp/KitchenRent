@@ -78,7 +78,10 @@ class VendorController extends Controller
         try
         {
             $perpage = $request->pagination['perpage'];
-            $page = $request->pagination['page'];
+            $page = $request->pagination['page']; 
+
+            $query = $request->input('query');
+            $search = isset($query['global_search'])?$query['global_search']:"";
             $vendors = new User();
             if($page=='1')
             {
@@ -88,7 +91,15 @@ class VendorController extends Controller
             $offset = ($page-1)*$perpage;
             }
             DB::statement(DB::raw('set @rownumber='.$offset.''));
-            $vendors = $vendors->where('users.user_role',Config::get('constants.roles.vendor') );
+            $vendors = $vendors->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select(DB::raw('@rownumber:=@rownumber+1 as S_No'),'users.*','user_metas.*')->where('users.user_role',Config::get('constants.roles.vendor') );
+
+            if($search!=='')
+            {
+                $vendors->where('users.name','like',$search.'%');
+                $vendors->orwhere('users.first_name','like',$search.'%');
+                $vendors->orwhere('users.last_name','like',$search.'%');
+                $vendors->orwhere('users.email','like',$search.'%');
+            }
 
             $total = $vendors->count();
             $vendors = $vendors->offset($offset)->limit($perpage)->get();

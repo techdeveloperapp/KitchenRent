@@ -33,7 +33,7 @@
 				<div class="row align-items-center">
 					<div class="col-md-3">
 						<div class="m-input-icon m-input-icon--left">
-							<input type="text" class="form-control m-input" placeholder="{{ __('messages.search') }}..." id="generalSearch">
+							<input type="text" class="form-control m-input" placeholder="{{ __('messages.search') }}..." id="global_search">
 							<span class="m-input-icon__icon m-input-icon__icon--left">
 								<span>
 									<i class="la la-search"></i>
@@ -63,6 +63,13 @@
 							read: {
 								url: 'getAllVendors',
 								method: 'GET',
+								headers: { 'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
+								params: {
+									// custom query params
+									query: {
+										global_search: $('global_search').val(),
+									}
+								},
 								map: function(raw) {
 		                          var dataSet = raw;
 		                          if (typeof raw.data !== 'undefined') {
@@ -91,18 +98,19 @@
 							}
 						}
 					},
-					search: {
-						input: $("#generalSearch")
-					},
+					// search: {
+					// 	input: $("#global_search")
+					// },
 					
 					translate: { records: {processing: '{{ __("messages.proceesing") }}',noRecords: "{{ __('messages.no_records') }}"},toolbar: {pagination: {items: {default: {first: "{{ __('messages.first') }}",prev: "{{ __('messages.previous') }}",next: "{{ __('messages.next') }}",last: "{{ __('messages.last') }}"},info: "{{ __('messages.pagination') }}" }}}},
 					columns: [
-					// {
-		   //            field: "id",
-		   //            title: "S.No",
-		   //            selector: {class:'m-checkbox--solid m-checkbox--brand deleteCheck'},
-		   //            width: 30
-		   //          },
+					{
+		              	field: "S_No",
+		              	title: "S.No",
+		              	sortable: !0,
+						selector: !1,
+						textAlign: "left"
+		            },
 					{
 						field: "first_name",
 						title: "{{ __('messages.first_name') }}",
@@ -139,8 +147,10 @@
 		              },
 		           }],
 				   
-				}), $("#m_form_status").on("change", function () {
-					t.search($(this).val(), "Status")
+				}), $("#global_search").on("change", function () {
+					var value = $(this).val();
+			  		t.setDataSourceQuery({global_search:value});
+				  	t.reload();
 				}), $("#m_form_type").on("change", function () {
 					t.search($(this).val(), "Type")
 				}), $("#m_form_status, #m_form_type").selectpicker()
