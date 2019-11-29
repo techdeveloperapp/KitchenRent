@@ -1,13 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
-@section('title', isset($id) ? 'Update Vendor' : 'Add Vendor')
+@section('title', isset($id) ? __('messages.update_vendor') : __('messages.new_vendor'))
 <div class="m-content">
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">
-						{{isset($id) ? 'Update Vendor' : 'Add New Vendor'}}
+						{{isset($id) ? __('messages.update_vendor') : __('messages.new_vendor')}}
 					</h3>
 				</div>
 			</div>
@@ -18,7 +18,7 @@
 							<span>
 								<i class="la la-arrow-left"></i>
 								<span>
-									Vendor List
+									{{ __('messages.vendor_list') }}
 								</span>
 							</span>
 						</a>
@@ -33,37 +33,37 @@
 			<div class="m-portlet__body">
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
-						First Name*
+						{{ __('messages.first_name') }}*
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="First name" value="{{isset($first_name) ? $first_name : ''}}">
+							<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="{{ __('messages.first_name') }}" value="{{isset($first_name) ? $first_name : ''}}">
 						</div>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
-						Last Name*
+						{{ __('messages.last_name') }}*
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="Last name" value="{{isset($last_name) ? $last_name : ''}}">
+							<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="{{ __('messages.last_name') }}" value="{{isset($last_name) ? $last_name : ''}}">
 						</div>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
-						Email*
+						{{ __('messages.email') }}*
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
-							<input class="form-control m-input" {{isset($email) ? 'readonly' : ''}} id="email" type="text" name="email" placeholder="Email" value="{{isset($email) ? $email : ''}}">
+							<input class="form-control m-input" {{isset($email) ? 'readonly' : ''}} id="email" type="text" name="email" placeholder="{{ __('messages.email') }}" value="{{isset($email) ? $email : ''}}">
 						</div>
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
-						Password*
+						{{ __('messages.password') }}*
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						<div class="m-typeahead">
@@ -74,11 +74,11 @@
 				</div>
 				<div class="form-group m-form__group row">
 					<label class="col-form-label col-lg-3 col-sm-12">
-						Phone*
+						{{ __('messages.phone') }}*
 					</label>
 					<div class="col-lg-4 col-md-9 col-sm-12">
 						 <div class="m-typeahead">
-							<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="Phone" value="{{isset($phone) ? $phone : ''}}">
+							<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="{{ __('messages.phone') }}" value="{{isset($phone) ? $phone : ''}}" data-rule-required="true" data-rule-minlength="10" data-rule-digits="true">
 						</div>
 					</div>
 				</div>
@@ -89,10 +89,10 @@
 					<div class="row">
 						<div class="col-lg-9 ml-lg-auto">
 							<button type="submit" class="btn btn-success">
-								{{isset($id) ? 'Update' : 'Save'}}
+								{{isset($id) ? __('messages.update') : __('messages.save') }}
 							</button>
 							<button type="reset" class="btn btn-secondary">
-								Cancel
+							{{__('messages.cancel')}}
 							</button>
 						</div>
 					</div>

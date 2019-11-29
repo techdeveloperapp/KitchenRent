@@ -105,26 +105,26 @@
 		   //          },
 					{
 						field: "first_name",
-						title: "First Name",
+						title: "{{ __('messages.first_name') }}",
 						sortable: !0,
 						selector: !1,
 						textAlign: "left"
 					},{
 						field: "last_name",
-						title: "Last Name",
+						title: "{{ __('messages.last_name') }}",
 						sortable: !0,
 						selector: !1,
 						textAlign: "left"
 					},{
 						field: "email",
-						title: "Email",
+						title: "{{ __('messages.email') }}",
 						sortable: !0,
 						selector: !1,
 						textAlign: "left"
 					},
 		            {
 		              width: 190,
-		              title: 'Actions',
+		              title: "{{ __('messages.actions') }}",
 		              sortable: false,
 		              overflow: 'visible',
 		              field: 'Actions',
@@ -152,13 +152,14 @@
 
 		function deleteVendor(url){
 		  swal({
-		    title: "Are you sure to delete Vendor?",
-		    text: "You will not be able to recover this.",
+		    title: "{{ __('messages.are_you_sure_delete') }}",
+		    text: "",
 		    type: "warning",
 		    showCancelButton: true,
 		    confirmButtonClass: "btn btn-warning",
 		    confirmButtonColor: "#DD6B55",
-		    confirmButtonText: "Yes, proceed it!",
+		    confirmButtonText: "{{ __('messages.yes_proceed') }}",
+		    cancelButtonText: "{{ __('messages.cancel') }}",
 		    closeOnConfirm: false
 		  }).then(result => {
 		  	if(result.value){

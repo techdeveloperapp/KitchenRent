@@ -11,7 +11,7 @@
 				<a  href="javascript:;" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-line-graph"></i>
 					<span class="m-menu__link-text">
-						Dashboard
+						{{ __('messages.dashboard') }}
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
@@ -24,7 +24,7 @@
 									<span></span>
 								</i>
 								<span class="m-menu__link-text">
-									Dashboard
+									{{ __('messages.dashboard') }}
 								</span>
 							</a>
 						</li>
@@ -35,7 +35,7 @@
 				<a  href="javascript:;" class="m-menu__link m-menu__toggle">
 					<i class="m-menu__link-icon flaticon-layers"></i>
 					<span class="m-menu__link-text">
-						Vendor
+						{{ __('messages.vendor') }}
 					</span>
 					<i class="m-menu__ver-arrow la la-angle-right"></i>
 				</a>
@@ -45,7 +45,7 @@
 						<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
 							<span class="m-menu__link">
 								<span class="m-menu__link-text">
-									Vendor
+									{{ __('messages.vendor') }}
 								</span>
 							</span>
 						</li>
@@ -55,7 +55,7 @@
 									<span></span>
 								</i>
 								<span class="m-menu__link-text">
-									List
+									{{ __('messages.list') }}
 								</span>
 							</a>
 						</li>
@@ -65,7 +65,7 @@
 									<span></span>
 								</i>
 								<span class="m-menu__link-text">
-									Add
+									{{ __('messages.add') }}
 								</span>
 							</a>
 						</li>

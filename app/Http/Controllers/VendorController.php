@@ -64,9 +64,9 @@ class VendorController extends Controller
                     $user_meta->addUpdate($vendor->id,$key,$value);
                 }
                 if($request->input('id')){
-                    $msg = 'Vendor updated successfully';
+                    $msg = __('messages.record_updated');
                 }else{
-                    $msg = 'Vendor added successfully';
+                    $msg = __('messages.record_created');
                 }
                 return redirect('admin/vendor/list')->with('success', $msg);
             }
@@ -110,6 +110,6 @@ class VendorController extends Controller
     public function deleteVendorById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->deleteVendor($id);
-        return redirect('admin/vendor/list')->with('success', 'Vendor deleted successfully.');
+        return redirect('admin/vendor/list')->with('success', __('messages.record_deleted') );
     }
 }
