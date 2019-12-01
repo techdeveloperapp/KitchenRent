@@ -28,6 +28,7 @@ Route::group(['prefix'=>'admin/vendor/','as'=>'admin.vendor.','middleware' => ['
 	Route::get('getAllVendors', 'VendorController@getAllVendors')->name('allVendors');
 	Route::get('add', 'VendorController@add')->name('add');
 	Route::post('addVendor', 'VendorController@addUpdateVendor')->name('addVendor');
+	Route::post('uploadProfilePic', 'VendorController@uploadProfilePic')->name('uploadProfilePic');
 	Route::get('getVendorById/{id}', 'VendorController@getVendorById')->name('getVendorById');
 	Route::get('deleteVendorById/{id}', 'VendorController@deleteVendorById')->name('deleteVendorById');
 });

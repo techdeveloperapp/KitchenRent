@@ -59,4 +59,8 @@ class User extends Authenticatable
         User::where('id',$id)->delete();
         return true;
     }
+
+    public function getMeta(){
+        return $this->hasMany("App\Model\UserMeta", "user_id", "id");
+    }
 }

@@ -91,7 +91,7 @@ class VendorController extends Controller
             $offset = ($page-1)*$perpage;
             }
             DB::statement(DB::raw('set @rownumber='.$offset.''));
-            $vendors = $vendors->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select(DB::raw('@rownumber:=@rownumber+1 as S_No'),'users.*','user_metas.*')->where('users.user_role',Config::get('constants.roles.vendor') );
+            $vendors = $vendors->with('getMeta')->select(DB::raw('@rownumber:=@rownumber+1 as S_No'),'users.*')->where('users.user_role',Config::get('constants.roles.vendor') );
 
             if($search!=='')
             {
@@ -104,6 +104,15 @@ class VendorController extends Controller
             $total = $vendors->count();
             $vendors = $vendors->offset($offset)->limit($perpage)->get();
             $meta = ['perpage'=>$perpage,'total'=>$total,'page'=>$page];
+            //$totalRe = $page-1*$perpage;
+            foreach($vendors as $key => $value){
+                if($value->getMeta){
+                    foreach($value->getMeta as $k => $v){
+                        $vendors[$key][$v->meta_name] = $v->meta_value;
+                    }
+                }
+                unset($vendors[$key]->getMeta);
+            }
             return Response::json(array('data'=> $vendors,'meta'=> $meta));
         }
         catch(\Illuminate\Database\QueryException $ex)
@@ -122,5 +131,10 @@ class VendorController extends Controller
         $user_obj = new User();
         $user_obj = $user_obj->deleteVendor($id);
         return redirect('admin/vendor/list')->with('success', __('messages.record_deleted') );
+    }
+
+    public function uploadProfilePic(Request $request)
+    {
+        print_r($request->all());
     }
 }

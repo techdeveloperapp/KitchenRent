@@ -29,7 +29,8 @@ return [
     'dashboard'  		    		=> 'Dashboard',
     'list'  		    			=> 'List',
     'add'  		    				=> 'Add',
-    'vendor'  		    			=> 'vendor',
+    'vendor'                        => 'vendor',
+    'profile_pic'  		    	    => 'Profile Pic',
 	
 	//datatable
 	'proceesing'                    => 'Please wait...',

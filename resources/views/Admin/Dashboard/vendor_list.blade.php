@@ -82,7 +82,7 @@
 						pageSize: 10,
 						serverPaging: !0,
 						serverFiltering: !0,
-						serverSorting: !0
+						serverSorting: !1
 					},
 					layout: {
 						theme: "default",

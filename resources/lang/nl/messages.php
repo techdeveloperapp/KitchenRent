@@ -30,6 +30,7 @@ return [
     'list'  		    		=> 'Lijst',
     'add'  		    			=> 'Toevoegen',
     'vendor'  		    		=> 'verkoper',
+    'profile_pic'  		    	=> 'profiel foto',
 	
 	//datatable
 	'proceesing'                    => 'Bezig...',
