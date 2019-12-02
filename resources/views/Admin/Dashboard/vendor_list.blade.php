@@ -50,6 +50,23 @@
 	</div>
 	<!-- END EXAMPLE TABLE PORTLET-->
 </div>
+<!-- Modal for success response -->
+  <div class="modal fade" id="ResponseSuccessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form name="fm-student">
+          <div class="modal-body">
+            <h5 id="ResponseHeading"></h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-accent  background_gradient btn-view no_border_field" data-dismiss="modal" id="LoadVendorDatatable">
+              {{__('messages.success_response')}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('script')
 	<script type="text/javascript">
@@ -180,13 +197,36 @@
 		    closeOnConfirm: false
 		  }).then(result => {
 		  	if(result.value){
-		  		//window.location = url;
-				// fire ajax here to delete data 
-				t.reload();
+		  		 $.ajax({
+			        method: 'POST',
+			        url: url,
+			        headers: {
+			          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			        },
+			        success: function(data) {
+			          //var res = $.parseJSON(data);
+			          if(data.status == 'error'){
+			            swal('Error',res.message,'error');
+			          }else{
+			           swal.close();
+			           $("#ResponseSuccessModal").modal('show');
+			           $("#ResponseSuccessModal #ResponseHeading").text(data.message);
+			         } 
+			       },
+			       error: function(data) {
+			        swal('Error',data,'error');
+			      }
+			    });
+				
 		  	}else{
 		  	}
 		  	
 		  });
 		}
+
+		$("#LoadVendorDatatable").on('click',function(){
+		  t.reload();
+		  $('body').css('overflow', 'auto');
+		});
 	</script>
 @endsection

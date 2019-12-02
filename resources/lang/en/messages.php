@@ -50,6 +50,7 @@ return [
     'twitter_url'  					=> 'Twitter Url',
     'instagram_url'  				=> 'Instagram Url',
     'youtube_url'  					=> 'Youtube Url',
+    'success_response'              => 'Ok',
 		
 	//datatable
 	'proceesing'                    => 'Please wait...',

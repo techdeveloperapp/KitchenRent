@@ -90,8 +90,7 @@ class VendorController extends Controller
             else{
             $offset = ($page-1)*$perpage;
             }
-            DB::statement(DB::raw('set @rownumber='.$offset.''));
-            $vendors = $vendors->with('getMeta')->select(DB::raw('@rownumber:=@rownumber+1 as S_No'),'users.*')->where('users.user_role',Config::get('constants.roles.vendor') );
+            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.vendor') )->groupBy('user_metas.user_id');;
 
             if($search!=='')
             {
@@ -99,6 +98,7 @@ class VendorController extends Controller
                 $vendors->orwhere('users.first_name','like','%'.$search.'%');
                 $vendors->orwhere('users.last_name','like', '%'.$search.'%');
                 $vendors->orwhere('users.email','like','%'.$search.'%');
+                $vendors->orwhere('user_metas.meta_value','like','%'.$search.'%');
             }
 
             $total = $vendors->count();
@@ -106,6 +106,7 @@ class VendorController extends Controller
             $meta = ['perpage'=>$perpage,'total'=>$total,'page'=>$page];
             //$totalRe = $page-1*$perpage;
             foreach($vendors as $key => $value){
+                $vendors[$key]['S_No'] = ($offset++)+1;
                 if($value->getMeta){
                     foreach($value->getMeta as $k => $v){
                         $vendors[$key][$v->meta_name] = $v->meta_value;
@@ -131,11 +132,27 @@ class VendorController extends Controller
     public function deleteVendorById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->deleteVendor($id);
-        return redirect('admin/vendor/list')->with('success', __('messages.record_deleted') );
+        return Response::json(array('status'=>'success','message'=>__('messages.record_deleted')));
     }
 
     public function uploadProfilePic(Request $request)
     {
-        print_r($request->all());
+      try{
+          if ($request->hasFile('user_image'))
+          {
+             $image = $request->file('user_image');
+             $path = storage_path('app/media');
+             $filename = time() . '.' . $image->getClientOriginalExtension();
+             $image->move($path, $filename);
+             return $file_name = 'profile/'.$filename;
+          }
+          else
+          {
+            return $file_name = "";
+          }
+          //print_r($_FILES); die;  
+      }catch(Exception $ex){
+        return redirect()->back();
+      }
     }
 }

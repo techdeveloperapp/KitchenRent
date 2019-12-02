@@ -24,13 +24,13 @@ Route::group(['prefix'=>'admin/','as'=>'admin.','middleware' => ['auth']], funct
 
 /************************************VENDOR START*****************************************/
 Route::group(['prefix'=>'admin/vendor/','as'=>'admin.vendor.','middleware' => ['auth']], function () {
-	Route::get('list', 'VendorController@index')->name('list');
+	Route::get('list', 'VendorController@index')->name('vendorList');
 	Route::get('getAllVendors', 'VendorController@getAllVendors')->name('allVendors');
 	Route::get('add', 'VendorController@add')->name('add');
 	Route::post('addVendor', 'VendorController@addUpdateVendor')->name('addVendor');
 	Route::post('uploadProfilePic', 'VendorController@uploadProfilePic')->name('uploadProfilePic');
 	Route::get('getVendorById/{id}', 'VendorController@getVendorById')->name('getVendorById');
-	Route::get('deleteVendorById/{id}', 'VendorController@deleteVendorById')->name('deleteVendorById');
+	Route::post('deleteVendorById/{id}', 'VendorController@deleteVendorById')->name('deleteVendorById');
 });
 /************************************VENDOR END*****************************************/
 
