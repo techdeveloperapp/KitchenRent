@@ -95,10 +95,10 @@ class VendorController extends Controller
 
             if($search!=='')
             {
-                $vendors->where('users.name','like',$search.'%');
-                $vendors->orwhere('users.first_name','like',$search.'%');
-                $vendors->orwhere('users.last_name','like',$search.'%');
-                $vendors->orwhere('users.email','like',$search.'%');
+                $vendors->where('users.name','like', '%'.$search.'%');
+                $vendors->orwhere('users.first_name','like','%'.$search.'%');
+                $vendors->orwhere('users.last_name','like', '%'.$search.'%');
+                $vendors->orwhere('users.email','like','%'.$search.'%');
             }
 
             $total = $vendors->count();
@@ -124,6 +124,7 @@ class VendorController extends Controller
     public function getVendorById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->getVendor($id);
+		//print_r($user_obj);
         return view('Admin.Dashboard.vendor_add',$user_obj);
     }
 

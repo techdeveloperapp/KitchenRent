@@ -64,6 +64,8 @@
 		<!--end::Page Vendors -->  
         <!--begin::Page Snippets -->
 		<script src="{{url('assets/app/js/dashboard.js')}}" type="text/javascript"></script>
+		@if(app()->getLocale() == 'nl') <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/localization/messages_nl.js"></script>
+		@endif
 		<script src="{{url('assets/custom.js')}}" type="text/javascript"></script>
 		<!--end::Page Snippets -->
 		@yield('script')

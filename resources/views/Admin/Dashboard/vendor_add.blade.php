@@ -27,75 +27,226 @@
 			</div>
 		</div>
 	<!--begin::Form-->
-		<form class="m-form m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
+		<form class="m-form m-form--state m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
 			@csrf
 			<input class="form-control m-input m--hide" id="id" type="text" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
 			<div class="m-portlet__body">
-				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
-						{{ __('messages.first_name') }}*
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						<div class="m-typeahead">
-							<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="{{ __('messages.first_name') }}" value="{{isset($first_name) ? $first_name : ''}}">
-						</div>
-					</div>
+				<div class="m-form__heading">
+					<h3 class="m-form__heading-title">
+						{{ __('messages.general_information') }}
+					</h3>
 				</div>
 				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
+				   <div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.first_name') }}*
+						</label>
+				
+						<input class="form-control m-input" id="first_name" type="text" name="first_name" placeholder="{{ __('messages.first_name') }}" value="{{isset($first_name) ? $first_name : ''}}">
+					</div>
+					<div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
 						{{ __('messages.last_name') }}*
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						<div class="m-typeahead">
-							<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="{{ __('messages.last_name') }}" value="{{isset($last_name) ? $last_name : ''}}">
-						</div>
-					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
-						{{ __('messages.email') }}*
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						<div class="m-typeahead">
-							<input class="form-control m-input" {{isset($email) ? 'readonly' : ''}} id="email" type="text" name="email" placeholder="{{ __('messages.email') }}" value="{{isset($email) ? $email : ''}}">
-						</div>
-					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
-						{{ __('messages.password') }}*
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						<div class="m-typeahead">
-							<input class="form-control m-input" id="password" type="password" name="password" placeholder="*****" value="">
-						</div>
+						</label>
 						
+						<input class="form-control m-input" id="last_name" type="text" name="last_name" placeholder="{{ __('messages.last_name') }}" value="{{isset($last_name) ? $last_name : ''}}">
 					</div>
 				</div>
 				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
-						{{ __('messages.phone') }}*
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						 <div class="m-typeahead">
-							<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="{{ __('messages.phone') }}" value="{{isset($phone) ? $phone : ''}}" data-rule-required="true" data-rule-minlength="10" data-rule-digits="true">
+					<div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.email') }}*
+						</label>
+				
+						<input class="form-control m-input" {{isset($email) ? 'readonly' : ''}} id="email" type="text" name="email" placeholder="{{ __('messages.email') }}" value="{{isset($email) ? $email : ''}}">
+					</div>
+					<div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.password') }}*
+						</label>
+						
+						<input class="form-control m-input" id="password" type="password" name="password" placeholder="*****" value="">
+					</div>
+				</div>
+				<div class="form-group m-form__group row">
+					<div class="col-lg-12 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.bio') }}
+						</label>
+				
+						<textarea class="form-control m-input" id="bio" name="meta[bio]" placeholder="{{ __('messages.bio') }}" rows="3">{{isset($bio) ? $bio : ''}}</textarea>
+					</div>
+				</div>
+				<div class="form-group m-form__group row">
+					<div class="col-lg-2 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.profile_pic') }}
+						</label>
+						 <div class="m-card-profile__pic">
+							<div class="m-card-profile__pic-wrapper">
+								<img src="{{url('assets/avatar.png')}}" alt="">
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="form-group m-form__group row">
-					<label class="col-form-label col-lg-3 col-sm-12">
-						{{ __('messages.profile_pic') }}
-					</label>
-					<div class="col-lg-4 col-md-9 col-sm-12">
-						 <div class="m-dropzone dropzone" action="{{ route('admin.vendor.uploadProfilePic') }}" id="m-dropzone-one">
+					<div class="col-lg-8 m-form__group-sub">
+						<label class="form-control-label">
+						</label>
+						<div class="m-dropzone dropzone" action="{{ route('admin.vendor.uploadProfilePic') }}" id="m-dropzone-one">
 							<div class="m-dropzone__msg dz-message needsclick">
 								<h3 class="m-dropzone__msg-title">
-									Drop files here or click to upload.
+									{{ __('messages.upload_text') }}
 								</h3>
+								<span class="m-dropzone__msg-desc">
+									{{ __('messages.upload_description') }}
+								</span>
 							</div>
 						</div>
 					</div>
 				</div>
+				
+				<div class="m-separator m-separator--dashed m-separator--lg"></div>
+				
+				<div class="m-form__heading">
+					<h3 class="m-form__heading-title">
+						{{ __('messages.address') }}
+					</h3>
+				</div>
+				
+				<div class="form-group m-form__group row">
+					<div class="col-lg-8 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.address') }}
+						</label>
+				
+						<input class="form-control m-input" id="address" type="text" name="meta[address]" placeholder="{{ __('messages.address') }}" value="{{isset($address) ? $address : ''}}">
+					</div>
+					<div class="col-lg-4 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.apt_suite') }}
+						</label>
+						
+						<input class="form-control m-input" id="apt_suite" type="text" name="meta[apt_suite]" placeholder="Ex: #123" value="{{isset($apt_suite) ? $apt_suite : ''}}">
+					</div>
+				</div>
+				
+				<div class="form-group m-form__group row">
+					<div class="col-lg-4 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.city') }}
+						</label>
+				
+						<input class="form-control m-input" id="city" type="text" name="meta[city]" placeholder="{{ __('messages.city') }}" value="{{isset($city) ? $city : ''}}">
+					</div>
+					<div class="col-lg-4 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.state') }}
+						</label>
+						
+						<input class="form-control m-input" id="state" type="text" name="meta[state]" placeholder="{{ __('messages.state') }}" value="{{isset($state) ? $state : ''}}">
+					</div>
+					<div class="col-lg-4 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.zip') }}
+						</label>
+						
+						<input class="form-control m-input" id="zip" type="text" name="meta[zip]" placeholder="{{ __('messages.zip') }}" value="{{isset($zip) ? $zip : ''}}">
+					</div>
+				</div>
+				
+				<div class="form-group m-form__group row">
+					<div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.neighborhood') }}
+						</label>
+				
+						<input class="form-control m-input" id="neighborhood" type="text" name="meta[neighborhood]" placeholder="{{ __('messages.neighborhood') }}" value="{{isset($neighborhood) ? $neighborhood : ''}}">
+					</div>
+					<div class="col-lg-6 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.country') }}
+						</label>
+						
+						<input class="form-control m-input" id="country" type="text" name="meta[country]" placeholder="{{ __('messages.country') }}" value="{{isset($country) ? $country : ''}}">
+					</div>
+				</div>
+				
+				<div class="m-separator m-separator--dashed m-separator--lg"></div>
+				
+				<div class="m-form__heading">
+					<h3 class="m-form__heading-title">
+						{{ __('messages.emergency_contact') }}
+					</h3>
+				</div>
+				<div class="form-group m-form__group row">
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.contact_name') }}
+						</label>
+				
+						<input class="form-control m-input" id="contact_name" type="text" name="meta[contact_name]" placeholder="{{ __('messages.contact_name') }}" value="{{isset($contact_name) ? $contact_name : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.contact_relationship') }}
+						</label>
+						
+						<input class="form-control m-input" id="contact_relation" type="text" name="meta[contact_relation]" placeholder="{{ __('messages.contact_relationship') }}" value="{{isset($contact_relation) ? $contact_relation : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.email') }}
+						</label>
+						
+						<input class="form-control m-input" id="contact_email" type="text" name="meta[contact_email]" placeholder="{{ __('messages.contact_email') }}" value="{{isset($contact_email) ? $contact_email : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.phone') }}
+						</label>
+						
+						<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="{{ __('messages.phone') }}" value="{{isset($phone) ? $phone : ''}}">
+					</div>
+				</div>
+				
+				<div class="m-separator m-separator--dashed m-separator--lg"></div>
+				
+				<div class="m-form__heading">
+					<h3 class="m-form__heading-title">
+						{{ __('messages.social_media') }}
+					</h3>
+				</div>
+				<div class="form-group m-form__group row">
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+							{{ __('messages.facebook_url') }}
+						</label>
+				
+						<input class="form-control m-input" id="facebook_url" type="text" name="meta[facebook_url]" placeholder="{{ __('messages.facebook_url') }}" value="{{isset($facebook_url) ? $facebook_url : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.twitter_url') }}
+						</label>
+						
+						<input class="form-control m-input" id="twitter_url" type="text" name="meta[twitter_url]" placeholder="{{ __('messages.twitter_url') }}" value="{{isset($twitter_url) ? $twitter_url : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.instagram_url') }}
+						</label>
+						
+						<input class="form-control m-input" id="instagram_url" type="text" name="meta[instagram_url]" placeholder="{{ __('messages.instagram_url') }}" value="{{isset($instagram_url) ? $instagram_url : ''}}">
+					</div>
+					<div class="col-lg-3 m-form__group-sub">
+						<label class="form-control-label">
+						{{ __('messages.youtube_url') }}
+						</label>
+						
+						<input class="form-control m-input" id="youtube_url" type="text" name="meta[youtube_url]" placeholder="{{ __('messages.youtube_url') }}" value="{{isset($youtube_url) ? $youtube_url : ''}}">
+					</div>
+				</div>
+				
+				
 				
 			</div>
 			<div class="m-portlet__foot m-portlet__foot--fit">
@@ -142,7 +293,10 @@ var FormControls = {
                     required: !0,
                     digits: !0,
 					minlength: 10,
-                }
+                },
+				zip:{
+					digits: !0,
+				},
             },
             invalidHandler: function(e, r) {
                 var i = $("#m_form_1_msg");

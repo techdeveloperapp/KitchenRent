@@ -129,9 +129,15 @@
 						sortable: !0,
 						selector: !1,
 						textAlign: "left"
+					},{
+						field: "phone",
+						title: "{{ __('messages.phone') }}",
+						sortable: !0,
+						selector: !1,
+						textAlign: "left"
 					},
 		            {
-		              width: 190,
+		              //width: 190,
 		              title: "{{ __('messages.actions') }}",
 		              sortable: false,
 		              overflow: 'visible',

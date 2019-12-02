@@ -1,3 +1,6 @@
 div#m_header_topbar {
     margin-right: 7%;
 }
+.form-control, .form-control[readonly] ,.m-dropzone{
+    border-color: #34bfa3;
+}
