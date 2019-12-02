@@ -94,11 +94,12 @@ class VendorController extends Controller
 
             if($search!=='')
             {
-                $vendors->where('users.name','like', '%'.$search.'%');
-                $vendors->orwhere('users.first_name','like','%'.$search.'%');
-                $vendors->orwhere('users.last_name','like', '%'.$search.'%');
-                $vendors->orwhere('users.email','like','%'.$search.'%');
-                $vendors->orwhere('user_metas.meta_value','like','%'.$search.'%');
+                $vendors->where(function ($query) use($search) {
+                    $query->orWhere('users.first_name','like','%'.$search.'%')
+                          ->orWhere('users.last_name','like', '%'.$search.'%')
+                          ->orWhere('users.email','like','%'.$search.'%')
+                          ->orWhere('user_metas.meta_value','like','%'.$search.'%');
+                });
             }
 
             $total = $vendors->count();
