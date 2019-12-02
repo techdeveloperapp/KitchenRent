@@ -53,9 +53,10 @@
 @endsection
 @section('script')
 	<script type="text/javascript">
+		var t;
 		var DatatableRemoteAjaxDemo = {
 			init: function () {
-				var t;
+				
 				t = $(".m_datatable").mDatatable({
 					data: {
 						type: "remote",
@@ -179,9 +180,10 @@
 		    closeOnConfirm: false
 		  }).then(result => {
 		  	if(result.value){
-		  		window.location = url;
+		  		//window.location = url;
+				// fire ajax here to delete data 
+				t.reload();
 		  	}else{
-		  		DatatableRemoteAjaxDemo.reload();
 		  	}
 		  	
 		  });
