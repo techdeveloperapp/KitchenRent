@@ -91,7 +91,7 @@
 					<div class="col-lg-8 m-form__group-sub">
 						<label class="form-control-label">
 						</label>
-						<div class="m-dropzone dropzone" action="{{ route('admin.vendor.uploadProfilePic') }}" id="m-dropzone-one">
+						<div class="m-dropzone " action="{{ route('admin.vendor.uploadProfilePic') }}" id="my-awesome-dropzone">
 							<div class="m-dropzone__msg dz-message needsclick">
 								<h3 class="m-dropzone__msg-title">
 									{{ __('messages.upload_text') }}
@@ -306,10 +306,26 @@ var FormControls = {
 				form.submit();
 			}
         });
-    }
+    },
+	uploadProfile:function(){
+		Dropzone.autoDiscover = false;
+		var myDropzone = new Dropzone("#my-awesome-dropzone",{
+			paramName: "user_image", // The name that will be used to transfer the file
+			maxFilesize: 2, // MB
+			maxFiles : 1,
+			acceptedFiles: 'image/*',
+			addRemoveLinks: true,
+		});
+		myDropzone.on("addedfile", function(file) {
+			$("#my-awesome-dropzone").addClass("dropzone"); // adding class for styling purpose only.
+			  console.log(file);	  
+		}); 
+	}
 };
+
 jQuery(document).ready(function() {
     FormControls.init();
+    FormControls.uploadProfile();
 });
 </script>	
 @endsection
