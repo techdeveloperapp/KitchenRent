@@ -37,7 +37,12 @@ Route::group(['prefix'=>'admin/vendor/','as'=>'admin.vendor.','middleware' => ['
 Auth::routes();
 
 
-
+/************************************DropzoneUpload****************/
+Route::group(['prefix'=>'dropzone/upload/','as'=>'dropzone.upload.','middleware' => ['auth']], function () {
+	Route::post('uploadProfilePic', 'VendorController@uploadProfilePic')->name('uploadProfilePic');
+	Route::post('deleteProfilePic', 'VendorController@deleteProfilePic')->name('deleteProfilePic');
+});
+/************************************EndDropzone*******************/
 
 
 Route::get('locale/{locale}', function ($locale){

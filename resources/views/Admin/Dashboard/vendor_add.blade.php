@@ -30,6 +30,7 @@
 		<form class="m-form m-form--state m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
 			@csrf
 			<input class="form-control m-input m--hide" id="id" type="text" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
+			<input class="form-control m-input m--hide" id="profile_id" type="text" name="meta[profile_id]" placeholder="id" value="{{isset($profile_id) ? $profile_id : ''}}">
 			<div class="m-portlet__body">
 				<div class="m-form__heading">
 					<h3 class="m-form__heading-title">
@@ -84,14 +85,14 @@
 						</label>
 						 <div class="m-card-profile__pic">
 							<div class="m-card-profile__pic-wrapper">
-								<img src="{{url('assets/avatar.png')}}" alt="">
+								<img src="{{isset($file_name) ? storage_path('/app/media/profile/'.$file_name) : url('assets/avatar.png')}}" alt="" id="view_profile_image">
 							</div>
 						</div>
 					</div>
 					<div class="col-lg-8 m-form__group-sub">
 						<label class="form-control-label">
 						</label>
-						<div class="m-dropzone " action="{{ route('admin.vendor.uploadProfilePic') }}" id="my-awesome-dropzone">
+						<div class="m-dropzone " action="{{ route('dropzone.upload.uploadProfilePic') }}" id="my-awesome-dropzone">
 							<div class="m-dropzone__msg dz-message needsclick">
 								<h3 class="m-dropzone__msg-title">
 									{{ __('messages.upload_text') }}
@@ -318,8 +319,27 @@ var FormControls = {
 		});
 		myDropzone.on("addedfile", function(file) {
 			$("#my-awesome-dropzone").addClass("dropzone"); // adding class for styling purpose only.
-			  console.log(file);	  
+			setTimeout(function(){
+				var response = JSON.parse(file.xhr.response);
+				$('#profile_id').val(response.id);
+			},1000);
 		}); 
+		myDropzone.on('removedfile', function (file) {
+		    $.ajax({
+		        method: 'POST',
+		        url: "{{url('dropzone/upload/deleteProfilePic')}}",
+		        data: {'id':$('#profile_id').val()},
+		        headers: {
+		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		        },
+		        success: function(data) {
+		        	$('#profile_id').val('');
+		        },
+		        error: function(data) {
+		        swal('Error',data,'error');
+		        }
+		    });
+		});
 	}
 };
 

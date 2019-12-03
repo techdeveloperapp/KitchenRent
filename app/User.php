@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Model\UserMeta;
+use App\Model\Media;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -49,6 +50,12 @@ class User extends Authenticatable
             $userArr['email'] = $user->email;
             foreach($user_meta as $key=>$value){
                $userArr[$value->meta_name] = $value->meta_value;
+               if($value->meta_name=="profile_id"){
+                $media = Media::where('id',$value->meta_value)->first();
+                if($media)
+                $userArr['view_profile_image'] = $media->file_path;
+                $userArr['file_name'] = $media->file_name;
+               }
             }
         }
         return $userArr;

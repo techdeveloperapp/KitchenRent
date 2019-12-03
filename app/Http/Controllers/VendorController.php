@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\Validator;
 use App\Model\UserMeta;
+use App\Model\Media;
 use App\User;
 use DB;
 use Response;
+use Storage;
 use Illuminate\Support\Facades\Config;
+use Auth;
 
 class VendorController extends Controller
 {
@@ -142,10 +145,15 @@ class VendorController extends Controller
           if ($request->hasFile('user_image'))
           {
              $image = $request->file('user_image');
-             $path = storage_path('app/media');
+             $path = storage_path('app/media/profile');
              $filename = time() . '.' . $image->getClientOriginalExtension();
+             $filesize=$image->getClientSize() / 1024;
              $image->move($path, $filename);
-             return $file_name = 'profile/'.$filename;
+             $media_obj=new Media();
+             $data = ['file_name'=>$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
+             $insert_id = $media_obj->addMedia($data);
+             $response=['path'=>$path.'/'.$filename,'id'=>$insert_id];
+             return response()->json($response);
           }
           else
           {
@@ -155,5 +163,14 @@ class VendorController extends Controller
       }catch(Exception $ex){
         return redirect()->back();
       }
+    }
+
+    public function deleteProfilePic(Request $request)
+    {
+        if($request->id){
+            $media_obj=new Media();
+            $media_obj->deleteMedia($request->id);
+            return response()->json(['message'=>'deleted successfully']); 
+        }
     }
 }
