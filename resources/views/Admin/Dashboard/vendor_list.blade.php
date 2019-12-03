@@ -204,14 +204,10 @@
 			          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			        },
 			        success: function(data) {
+						console.log(data);
 			          //var res = $.parseJSON(data);
-			          if(data.status == 'error'){
-			            swal('Error',res.message,'error');
-			          }else{
-			           swal.close();
-			           $("#ResponseSuccessModal").modal('show');
-			           $("#ResponseSuccessModal #ResponseHeading").text(data.message);
-			         } 
+			          swal(data.message,'',data.status); 	
+					  t.reload();
 			       },
 			       error: function(data) {
 			        swal('Error',data,'error');
