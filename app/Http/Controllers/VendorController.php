@@ -13,6 +13,7 @@ use Response;
 use Storage;
 use Illuminate\Support\Facades\Config;
 use Auth;
+use Helper;
 
 class VendorController extends Controller
 {
@@ -141,28 +142,34 @@ class VendorController extends Controller
 
     public function uploadProfilePic(Request $request)
     {
-      try{
-          if ($request->hasFile('user_image'))
-          {
-             $image = $request->file('user_image');
-             $path = storage_path('app/media/profile');
-             $filename = time() . '.' . $image->getClientOriginalExtension();
-             $filesize=$image->getClientSize() / 1024;
-             $image->move($path, $filename);
-             $media_obj=new Media();
-             $data = ['file_name'=>$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
-             $insert_id = $media_obj->addMedia($data);
-             $response=['path'=>$path.'/'.$filename,'id'=>$insert_id];
-             return response()->json($response);
-          }
-          else
-          {
-            return $file_name = "";
-          }
-          //print_r($_FILES); die;  
-      }catch(Exception $ex){
-        return redirect()->back();
-      }
+        $validator = Validator::make($request->all(), [
+            'user_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+        ]);
+
+        if ($validator->fails()) 
+        {
+            return Response::json(array('status'=> 'error','message'=> $validator->errors()->getMessages()));
+        }
+        else
+        {
+            try{
+                if ($request->hasFile('user_image'))
+                {
+                    $data = Helper::fileUpload($request);
+                    $media_obj=new Media();
+                    $insert_id = $media_obj->addMedia($data);
+                    $response=['path'=>$data['file_path'].'/'.$data['file_name'],'id'=>$insert_id];
+                    return response()->json($response);
+                }
+                else
+                {
+                    return $file_name = "";
+                }
+                //print_r($_FILES); die;  
+            }catch(Exception $ex){
+                return redirect()->back();
+            }
+        }
     }
 
     public function deleteProfilePic(Request $request)
