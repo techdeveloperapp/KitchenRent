@@ -1,6 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
 @section('title', isset($id) ? __('messages.update_vendor') : __('messages.new_vendor'))
+<style>
+img#view_profile_image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+</style>
 <div class="m-content">
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
@@ -29,8 +36,8 @@
 	<!--begin::Form-->
 		<form class="m-form m-form--state m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
 			@csrf
-			<input class="form-control m-input m--hide" id="id" type="text" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
-			<input class="form-control m-input m--hide" id="profile_id" type="text" name="meta[profile_id]" placeholder="id" value="{{isset($profile_id) ? $profile_id : ''}}">
+			<input class="form-control m-input" id="id" type="hidden" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
+			<input class="form-control m-input" id="profile_id" type="hidden" name="meta[profile_photo_id]" placeholder="id" value="{{isset($profile_photo_id) ? $profile_photo_id : ''}}">
 			<div class="m-portlet__body">
 				<div class="m-form__heading">
 					<h3 class="m-form__heading-title">
@@ -86,6 +93,7 @@
 						 <div class="m-card-profile__pic">
 							<div class="m-card-profile__pic-wrapper">
 								<img src="{{isset($file_name) ? storage_path('/app/media/profile/'.$file_name) : url('assets/avatar.png')}}" alt="" id="view_profile_image">
+								<button type="button" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill m--margin-left-55 m--margin-top-10 {{ !isset($file_name) ? 'm--hide' : ''}}" id="remove_file"><i class="la la-close"></i></button>
 							</div>
 						</div>
 					</div>
@@ -316,29 +324,59 @@ var FormControls = {
 			maxFiles : 1,
 			acceptedFiles: 'image/*',
 			addRemoveLinks: true,
+			dictFileTooBig: "{{ __('messages.file_too_big') }}",
+			dictInvalidFileType: "{{ __('messages.invalid_file') }}",
 		});
 		myDropzone.on("addedfile", function(file) {
+			//console.log(file);
 			$("#my-awesome-dropzone").addClass("dropzone"); // adding class for styling purpose only.
-			setTimeout(function(){
-				var response = JSON.parse(file.xhr.response);
-				$('#profile_id').val(response.id);
-			},1000);
 		}); 
-		myDropzone.on('removedfile', function (file) {
-		    $.ajax({
-		        method: 'POST',
-		        url: "{{url('dropzone/upload/deleteProfilePic')}}",
-		        data: {'id':$('#profile_id').val()},
-		        headers: {
-		          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		        },
-		        success: function(data) {
-		        	$('#profile_id').val('');
-		        },
-		        error: function(data) {
-		        swal('Error',data,'error');
-		        }
-		    });
+		myDropzone.on("error", function(file,errorMessage,xhr) {
+			swal('Error',errorMessage,'error');
+			myDropzone.removeFile(file);
+			//console.log(xhr);
+		}); 
+		myDropzone.on("success", function(file) {
+			console.log(file);
+			var response = JSON.parse(file.xhr.response);
+			//console.log(response.id);
+			$('#profile_id').val(response.id);
+			$("#view_profile_image").attr('src',file.dataURL);
+			myDropzone.removeFile(file);
+			$("#remove_file").removeClass('m--hide');
+		}); 
+		$("#remove_file").on('click',function(){
+			swal({
+		    title: "{{ __('messages.are_you_sure_delete') }}",
+		    text: "",
+		    type: "warning",
+		    showCancelButton: true,
+		    confirmButtonClass: "btn btn-warning",
+		    confirmButtonColor: "#DD6B55",
+		    confirmButtonText: "{{ __('messages.yes_proceed') }}",
+		    cancelButtonText: "{{ __('messages.cancel') }}",
+		    closeOnConfirm: false
+		  }).then(result => {
+		  	if(result.value){
+		  		 $.ajax({
+					method: 'POST',
+					url: "{{url('dropzone/upload/deleteProfilePic')}}",
+					data: {'id':$('#profile_id').val()},
+					headers: {
+					  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					},
+					success: function(data){
+						swal(data.message,'','success');
+						$("#view_profile_image").attr('src',"{{url('assets/avatar.png')}}");
+						$("#remove_file").addClass('m--hide');
+						$('#profile_id').val('');
+					},
+					error: function(data){
+						swal('Error',data,'error');
+					}
+				});
+		  	}
+		  });
 		});
 	}
 };

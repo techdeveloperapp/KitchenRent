@@ -24,7 +24,7 @@ return [
     'record_updated'  		    	=> 'Record is updated successfully',
     'record_created'  		    	=> 'Record is created successfully',
     'record_deleted'  		    	=> 'Record is deleted successfully',
-    'are_you_sure_delete'  		    => 'Are you sure to delete this record?',
+    'are_you_sure_delete'  		    => 'Are you sure to delete this?',
     'yes_proceed'  		    		=> 'Yes, proceed it!',
     'dashboard'  		    		=> 'Dashboard',
     'list'  		    			=> 'List',
@@ -32,7 +32,7 @@ return [
     'vendor'                        => 'vendor',
     'profile_pic'  		    	    => 'Profile Pic',
     'upload_text'  		    	    => 'Drop files here or click to upload.',
-    'upload_description'  		    => 'Minimum size 100 x 100 px',
+    'upload_description'  		    => 'Max filesize 2 MB',
     'general_information'  		    => 'General Information',
     'bio'  		    				=> 'Bio',
     'address'  		    			=> 'Address',
@@ -51,6 +51,10 @@ return [
     'instagram_url'  				=> 'Instagram Url',
     'youtube_url'  					=> 'Youtube Url',
     'success_response'              => 'Ok',
+	
+	//file upload
+	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',
+	'invalid_file'					=> 'You can\'t upload files of this type.',
 		
 	//datatable
 	'proceesing'                    => 'Please wait...',

@@ -170,6 +170,7 @@ class VendorController extends Controller
         if($request->id){
             $media_obj=new Media();
             $media_obj->deleteMedia($request->id);
+			UserMeta::where('meta_name',"profile_photo_id")->delete();
             return response()->json(['message'=>'deleted successfully']); 
         }
     }

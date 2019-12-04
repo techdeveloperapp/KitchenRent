@@ -24,7 +24,7 @@ return [
 	'record_updated'  		    => 'Record is succesvol bijgewerkt',
     'record_created'  		    => 'Record is succesvol aangemaakt',
 	'record_deleted'  		    => 'Record is succesvol verwijderd',
-	'are_you_sure_delete'  		=> 'Weet u zeker dat u dit record wilt verwijderen?',
+	'are_you_sure_delete'  		=> 'Weet u zeker dat u dit wilt verwijderen?',
 	'yes_proceed'  		    	=> 'Ja, ga door!',
 	'dashboard'  		    	=> 'Dashboard',
     'list'  		    		=> 'Lijst',
@@ -32,7 +32,7 @@ return [
     'vendor'  		    		=> 'verkoper',
     'profile_pic'  		    	=> 'profiel foto',
 	'upload_text'  		    	=> 'Zet bestanden hier neer of klik om te uploaden.',
-	'upload_description'  		=> 'Minimale afmeting 100 x 100 px',
+	'upload_description'  		=> 'Max. Bestandsgrootte 2 MB',
 	'general_information'  		=> 'Algemene informatie',
 	'bio'  		    			=> 'Bio',
 	'address'  		    		=> 'Adres',
@@ -51,6 +51,10 @@ return [
     'instagram_url'  			=> 'Instagram Url',
     'youtube_url'  				=> 'Youtube Url',
     'success_response'          => 'Ok',
+	
+	//file upload
+	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',
+	'invalid_file'				=> 'U kunt dit soort bestanden niet uploaden.',
 	
 	//datatable
 	'proceesing'                    => 'Bezig...',
