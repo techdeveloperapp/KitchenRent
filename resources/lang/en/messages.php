@@ -3,7 +3,11 @@
 return [
     'email' 						=> 'Email',
     'password'  					=> 'Password',
+    'confirm_password'  			=> 'Confirm Password',
+    'lost_your_password'  			=> 'Lost Your Password?',
+    'remember_me'  					=> 'Remember Me',
     'sign_in'  						=> 'Sign In',
+    'register'  					=> 'Register',
     'logout'  						=> 'Logout',
     'sign_to_admin'  				=> 'Sign In To Admin',
     'new'  							=> 'New',
@@ -51,6 +55,10 @@ return [
     'instagram_url'  				=> 'Instagram Url',
     'youtube_url'  					=> 'Youtube Url',
     'success_response'              => 'Ok',
+    'customer'              		=> 'Customer',
+	'customer_list'  		    	=> 'Customer List',
+    'new_customer'  		    	=> 'New Customer',
+    'update_customer'  		    	=> 'Update Customer',
 	
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',

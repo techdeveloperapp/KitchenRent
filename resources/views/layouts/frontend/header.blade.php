@@ -9,7 +9,7 @@
                 
                 <!-- Logo -->
                 <div id="logo">
-                    <a href="index.html"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
+                    <a href="#"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
                 </div>
 
                 <!-- Mobile Navigation -->
@@ -33,8 +33,17 @@
             <!-- Right Side Content / End -->
             <div class="right-side">
                 <div class="header-widget">
-                    <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
-                    <a href="dashboard-add-listing.html" class="button border with-icon">Add Listing <i class="sl sl-icon-plus"></i></a>
+                    <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> {{ __('messages.sign_in') }}</a>
+					
+                     <!-- Language Menu -->
+					<div class="user-menu">
+						<div class="user-name">@if(app()->getLocale() == 'en') English @else Dutch @endif</div>
+						<ul>
+							<li><a href="{{url('locale/en')}}"><i class="sl sl-icon-flag"></i> English</a></li>
+							<li><a href="{{url('locale/nl')}}"><i class="sl sl-icon-flag"></i> Dutch</a></li>
+						</ul>
+					</div>
+					
                 </div>
             </div>
             <!-- Right Side Content / End -->
@@ -43,45 +52,58 @@
             <div id="sign-in-dialog" class="zoom-anim-dialog mfp-hide">
 
                 <div class="small-dialog-header">
-                    <h3>Sign In</h3>
+                    <h3>{{ __('messages.sign_in') }}</h3>
                 </div>
 
                 <!--Tabs -->
                 <div class="sign-in-form style-1">
 
                     <ul class="tabs-nav">
-                        <li class=""><a href="#tab1">Log In</a></li>
-                        <li><a href="#tab2">Register</a></li>
+                        <li class=""><a href="#tab1">{{ __('messages.sign_in') }}</a></li>
+                        <li><a href="#tab2">{{ __('messages.register') }}</a></li>
                     </ul>
 
                     <div class="tabs-container alt">
 
                         <!-- Login -->
                         <div class="tab-content" id="tab1" style="display: none;">
-                            <form method="post" class="login">
-
+                            <form class="m-login__form m-form" method="POST" action="{{ route('login') }}" id="login-form">
+                                @csrf
                                 <p class="form-row form-row-wide">
-                                    <label for="username">Username:
+                                    <label for="username">{{ __('messages.email') }}:
                                         <i class="im im-icon-Male"></i>
-                                        <input type="text" class="input-text" name="username" id="username" value="" />
+                                        <input class="form-control m-input" id="username" type="email" class="input-text form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </label>
                                 </p>
 
                                 <p class="form-row form-row-wide">
-                                    <label for="password">Password:
+                                    <label for="login_password">{{ __('messages.password') }}:
                                         <i class="im im-icon-Lock-2"></i>
-                                        <input class="input-text" type="password" name="password" id="password"/>
+                                        <input class="form-control m-input m-login__form-input--last" id="login_password" type="password" class="input-text form-control @error('password') is-invalid @enderror" placeholder="Password" name="password" required autocomplete="current-password">
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </label>
                                     <span class="lost_password">
-                                        <a href="#" >Lost Your Password?</a>
+                                        <a href="#" >{{ __('messages.lost_your_password') }}</a>
                                     </span>
                                 </p>
 
                                 <div class="form-row">
-                                    <input type="submit" class="button border margin-top-5" name="login" value="Login" />
+                                    <button type="submit" class="button border margin-top-5" name="login" value="Login">
+                                        {{ __('messages.sign_in') }}
+                                    </button>
                                     <div class="checkboxes margin-top-10">
                                         <input id="remember-me" type="checkbox" name="check">
-                                        <label for="remember-me">Remember Me</label>
+                                        <label for="remember-me">{{ __('messages.remember_me') }}</label>
                                     </div>
                                 </div>
                                 
@@ -91,37 +113,66 @@
                         <!-- Register -->
                         <div class="tab-content" id="tab2" style="display: none;">
 
-                            <form method="post" class="register">
-                                
+                            <form method="POST" action="{{ route('register') }}" id="register-form">
+                            @csrf
                             <p class="form-row form-row-wide">
-                                <label for="username2">Username:
+                                <label for="first_name">{{ __('messages.first_name') }}:
                                     <i class="im im-icon-Male"></i>
-                                    <input type="text" class="input-text" name="username" id="username2" value="" />
+                                    <input id="first_name" type="text" class="input-text form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autofocus>
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </label>
+                            </p>
+							<p class="form-row form-row-wide">
+                                <label for="last_name">{{ __('messages.last_name') }}:
+                                    <i class="im im-icon-Male"></i>
+                                    <input id="last_name" type="text" class="input-text form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                    @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </label>
                             </p>
                                 
                             <p class="form-row form-row-wide">
-                                <label for="email2">Email Address:
+                                <label for="email">{{ __('messages.email') }}:
                                     <i class="im im-icon-Mail"></i>
-                                    <input type="text" class="input-text" name="email" id="email2" value="" />
+                                    <input id="email" type="email" class="input-text form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </label>
                             </p>
 
                             <p class="form-row form-row-wide">
-                                <label for="password1">Password:
+                                <label for="password">{{ __('messages.password') }}:
                                     <i class="im im-icon-Lock-2"></i>
-                                    <input class="input-text" type="password" name="password1" id="password1"/>
+                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </label>
                             </p>
 
                             <p class="form-row form-row-wide">
-                                <label for="password2">Repeat Password:
+                                <label for="password-confirm">{{ __('messages.confirm_password') }}:
                                     <i class="im im-icon-Lock-2"></i>
-                                    <input class="input-text" type="password" name="password2" id="password2"/>
+                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                 </label>
                             </p>
 
-                            <input type="submit" class="button border fw margin-top-10" name="register" value="Register" />
+                            <button type="submit" class="button border fw margin-top-10">
+                                {{ __('messages.register') }}
+                            </button>
     
                             </form>
                         </div>

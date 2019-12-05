@@ -34,6 +34,18 @@ Route::group(['prefix'=>'admin/vendor/','as'=>'admin.vendor.','middleware' => ['
 });
 /************************************VENDOR END*****************************************/
 
+/************************************Customer START*****************************************/
+Route::group(['prefix'=>'admin/customer/','as'=>'admin.customer.','middleware' => ['auth']], function () {
+	Route::get('list', 'CustomerController@index')->name('customerList');
+	Route::get('getAllCustomers', 'CustomerController@getAllCustomers')->name('allCustomers');
+	Route::get('add', 'CustomerController@add')->name('add');
+	Route::post('addCustomer', 'CustomerController@addUpdateCustomer')->name('addCustomer');
+	Route::post('uploadProfilePic', 'CustomerController@uploadProfilePic')->name('uploadProfilePic');
+	Route::get('getCustomerById/{id}', 'CustomerController@getCustomerById')->name('getCustomerById');
+	Route::post('deleteCustomerById/{id}', 'CustomerController@deleteCustomerById')->name('deleteCustomerById');
+});
+/************************************Customer END*****************************************/
+
 Auth::routes();
 
 

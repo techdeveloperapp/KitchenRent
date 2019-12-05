@@ -1,6 +1,6 @@
 @extends('layouts.admin.app')
 @section('content')
-@section('title', isset($id) ? __('messages.update_vendor') : __('messages.new_vendor'))
+@section('title', isset($id) ? __('messages.update_vendor') : __('messages.new_customer'))
 <style>
 img#view_profile_image {
     width: 150px;
@@ -14,18 +14,18 @@ img#view_profile_image {
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">
-						{{isset($id) ? __('messages.update_vendor') : __('messages.new_vendor')}}
+						{{isset($id) ? __('messages.update_customer') : __('messages.new_customer')}}
 					</h3>
 				</div>
 			</div>
 			<div class="m-portlet__head-tools">
 				<ul class="m-portlet__nav">
 					<li class="m-portlet__nav-item">
-						<a href="{{url('admin/vendor/list')}}" class="btn m-btn  m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">
+						<a href="{{url('admin/customer/list')}}" class="btn m-btn  m-btn--pill m-btn--air m-btn--gradient-from-focus m-btn--gradient-to-danger">
 							<span>
 								<i class="la la-arrow-left"></i>
 								<span>
-									{{ __('messages.vendor_list') }}
+									{{ __('messages.customer_list') }}
 								</span>
 							</span>
 						</a>
@@ -34,7 +34,7 @@ img#view_profile_image {
 			</div>
 		</div>
 	<!--begin::Form-->
-		<form class="m-form m-form--state m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.vendor.addVendor') }}">
+		<form class="m-form m-form--state m-form--fit m-form--label-align-right" id="m_form_1" method="post" action="{{ route('admin.customer.addCustomer') }}">
 			@csrf
 			<input class="form-control m-input" id="id" type="hidden" name="id" placeholder="id" value="{{isset($id) ? $id : ''}}">
 			<input class="form-control m-input" id="profile_id" type="hidden" name="meta[profile_photo_id]" placeholder="id" value="{{isset($profile_photo_id) ? $profile_photo_id : ''}}">
@@ -158,7 +158,7 @@ img#view_profile_image {
 						{{ __('messages.zip') }}
 						</label>
 						
-						<input class="form-control m-input" id="zip" type="text" name="meta[zip]" placeholder="{{ __('messages.zip') }}" value="{{isset($zip) ? $zip : ''}}">
+						<input class="form-control m-input" id="zip" type="text" name="meta[zip]" placeholder="{{ __('messages.zip') }}" data-rule-digits="true" data-rule-minlength="4" value="{{isset($zip) ? $zip : ''}}">
 					</div>
 				</div>
 				
@@ -206,14 +206,14 @@ img#view_profile_image {
 						{{ __('messages.email') }}
 						</label>
 						
-						<input class="form-control m-input" id="contact_email" type="text" name="meta[contact_email]" placeholder="{{ __('messages.contact_email') }}" value="{{isset($contact_email) ? $contact_email : ''}}">
+						<input class="form-control m-input" id="contact_email" type="text" name="meta[contact_email]" placeholder="{{ __('messages.email') }}" value="{{isset($contact_email) ? $contact_email : ''}}">
 					</div>
 					<div class="col-lg-3 m-form__group-sub">
 						<label class="form-control-label">
-						{{ __('messages.phone') }}
+						{{ __('messages.phone') }}*
 						</label>
 						
-						<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="{{ __('messages.phone') }}" value="{{isset($phone) ? $phone : ''}}">
+						<input class="form-control m-input" id="phone" type="text" name="meta[phone]" placeholder="{{ __('messages.phone') }}" data-rule-digits="true" data-rule-minlength="10" value="{{isset($phone) ? $phone : ''}}">
 					</div>
 				</div>
 				
@@ -298,14 +298,7 @@ var FormControls = {
                     minlength: 8,
                 },
                 @endif
-				phone: {
-                    required: !0,
-                    digits: !0,
-					minlength: 10,
-                },
-				zip:{
-					digits: !0,
-				},
+				
             },
             invalidHandler: function(e, r) {
                 var i = $("#m_form_1_msg");

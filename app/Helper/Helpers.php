@@ -20,7 +20,7 @@ class Helpers {
 	    $filename = time() . '.' . $image->getClientOriginalExtension();
 	    $filesize=$image->getClientSize() / 1024;
 	    $image->move($path, $filename);
-	    $data = ['file_name'=>$filename,'folder_path'=>$folder_path.'/'.$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
+	    $data = ['file_name'=>$filename,'server_path'=>$folder_path.'/'.$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
 	    return $data;
     }
 }

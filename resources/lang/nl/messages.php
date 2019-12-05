@@ -3,7 +3,11 @@
 return [
     'email' 					=> 'Email',
     'password'  				=> 'Wachtwoord',
+	'confirm_password'  		=> 'bevestig wachtwoord',
+	'lost_your_password'  		=> 'Wachtwoord vergeten?',
+	'remember_me'  				=> 'Onthoud me',
     'sign_in'  					=> 'Log in',
+	'register'  				=> 'Registreren',
 	'logout'  					=> 'uitloggen',
     'sign_to_admin' 			=> 'Aanmelden bij beheerder',
 	'new'  						=> 'nieuwe',
@@ -51,6 +55,10 @@ return [
     'instagram_url'  			=> 'Instagram Url',
     'youtube_url'  				=> 'Youtube Url',
     'success_response'          => 'Ok',
+	'customer'              	=> 'Klant',
+	'customer_list'  		    => 'Klantenlijst',
+    'new_customer'  		    => 'Nieuwe klant',
+    'update_customer'  		    => 'Klant bijwerken',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',

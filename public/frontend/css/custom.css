@@ -1,0 +1,11 @@
+.form-control.error,input.error:focus {
+    border-color: #ff0000;
+	margin-bottom: 0px;
+}
+label.error {
+    color: #ff0000;
+    float: right;
+}
+.sign-in-form label input.valid {
+    border-color: #09a009;
+}

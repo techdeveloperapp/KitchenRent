@@ -81,6 +81,52 @@
 				</div>
 			</li>
 			
+			@if(\Route::currentRouteName() === "admin.customer.customerList" || \Route::currentRouteName() === "admin.customer.add")
+				<li class="m-menu__item  m-menu__item--submenu m-menu__item--active" aria-haspopup="true" m-menu-submenu-toggle="hover">
+			@else
+				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+			@endif
+				<a  href="javascript:;" class="m-menu__link m-menu__toggle">
+					<i class="m-menu__link-icon flaticon-users"></i>
+					<span class="m-menu__link-text">
+						{{ __('messages.customer') }}
+					</span>
+					<i class="m-menu__ver-arrow la la-angle-right"></i>
+				</a>
+				<div class="m-menu__submenu ">
+					<span class="m-menu__arrow"></span>
+					<ul class="m-menu__subnav">
+						<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
+							<span class="m-menu__link">
+								<span class="m-menu__link-text">
+									{{ __('messages.customer') }}
+								</span>
+							</span>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<a  href="{{url('admin/customer/list')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									{{ __('messages.list') }}
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<a  href="{{url('admin/customer/add')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									{{ __('messages.add') }}
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			
 		</ul>
 	</div>
 	<!-- END: Aside Menu -->

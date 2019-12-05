@@ -38,7 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getVendor($id=""){
+    public function getUser($id=""){
         $userArr = [];
         $user = User::select('first_name', 'last_name' ,'name','email')->where('id',$id)->first();
         if($user){
@@ -62,7 +62,7 @@ class User extends Authenticatable
         return $userArr;
     }
 
-    public function deleteVendor($id=""){
+    public function deleteUser($id=""){
         UserMeta::where('user_id',$id)->delete();
         User::where('id',$id)->delete();
         return true;

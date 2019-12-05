@@ -15,19 +15,19 @@ use Illuminate\Support\Facades\Config;
 use Auth;
 use Helper;
 
-class VendorController extends Controller
+class CustomerController extends Controller
 {
     public function index(){
     	//Session::flash('success', 'This is Vendor List');
-    	return view('Admin.Vendor.vendor_list');
+    	return view('Admin.Customer.customer_list');
     }
 
     public function add(){
     	//Session::flash('error', 'This is New Vendor');
-    	return view('Admin.Vendor.vendor_add');
+    	return view('Admin.Customer.customer_add');
     }
 
-    public function addUpdateVendor(Request $request)
+    public function addUpdateCustomer(Request $request)
     {
         if(isset($request->id) && $request->id){
             $validator = Validator::make($request->all(), [
@@ -43,7 +43,7 @@ class VendorController extends Controller
         }
 
         if ($validator->fails()) {
-            return redirect('admin/vendor/add')
+            return redirect('admin/customer/add')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -60,7 +60,7 @@ class VendorController extends Controller
             $vendor->name = $request->input('first_name').' '.$request->input('last_name');
             $vendor->email = $request->input('email');
             $vendor->password = bcrypt($request->input('password'));
-            $vendor->user_role = Config::get('constants.roles.vendor'); // take value from constant file
+            $vendor->user_role = Config::get('constants.roles.customer'); // take value from constant file
             if($vendor->save())
             {
                 $user_meta = new UserMeta();
@@ -72,12 +72,12 @@ class VendorController extends Controller
                 }else{
                     $msg = __('messages.record_created');
                 }
-                return redirect('admin/vendor/list')->with('success', $msg);
+                return redirect('admin/customer/list')->with('success', $msg);
             }
         }
     }
 
-    public function getAllVendors(Request $request)
+    public function getAllCustomers(Request $request)
     {
         try
         {
@@ -94,7 +94,7 @@ class VendorController extends Controller
             else{
             $offset = ($page-1)*$perpage;
             }
-            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.vendor') )->groupBy('user_metas.user_id');;
+            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.customer') )->groupBy('user_metas.user_id');;
 
             if($search!=='')
             {
@@ -127,14 +127,14 @@ class VendorController extends Controller
         }
     }
 
-    public function getVendorById($id,Request $request){
+    public function getCustomerById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->getUser($id);
 		//print_r($user_obj);
-        return view('Admin.Vendor.vendor_add',$user_obj);
+        return view('Admin.Customer.customer_add',$user_obj);
     }
 
-    public function deleteVendorById($id,Request $request){
+    public function deleteCustomerById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->deleteUser($id);
         return Response::json(array('status'=>'success','message'=>__('messages.record_deleted')));
