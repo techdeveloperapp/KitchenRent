@@ -33,8 +33,11 @@
             <!-- Right Side Content / End -->
             <div class="right-side">
                 <div class="header-widget">
+                    @if(Auth::user())
+                    <a href="javascript:void(0)" id="f_logout" class="sign-in"><i class="sl sl-icon-login"></i> {{ __('messages.logout') }}</a>
+                    @else
                     <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> {{ __('messages.sign_in') }}</a>
-					
+					@endif
                      <!-- Language Menu -->
 					<div class="user-menu">
 						<div class="user-name">@if(app()->getLocale() == 'en') English @else Dutch @endif</div>
@@ -67,7 +70,7 @@
 
                         <!-- Login -->
                         <div class="tab-content" id="tab1" style="display: none;">
-                            <form class="m-login__form m-form" method="POST" action="{{ route('login') }}" id="login-form">
+                            <form class="m-login__form m-form" id="login-form">
                                 @csrf
                                 <p class="form-row form-row-wide">
                                     <label for="username">{{ __('messages.email') }}:

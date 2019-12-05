@@ -92,7 +92,7 @@ img#view_profile_image {
 						</label>
 						 <div class="m-card-profile__pic">
 							<div class="m-card-profile__pic-wrapper">
-								<img src="{{isset($file_name) ? url('../storage/'.$server_path) : url('assets/avatar.png')}}" alt="" id="view_profile_image">
+								<img src="{{isset($file_name) ? $server_path : url('assets/avatar.png')}}" alt="" id="view_profile_image">
 								<button type="button" class="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only  m-btn--pill m--margin-left-55 m--margin-top-10 {{ !isset($file_name) ? 'm--hide' : ''}}" id="remove_file"><i class="la la-close"></i></button>
 							</div>
 						</div>

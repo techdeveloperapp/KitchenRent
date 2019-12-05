@@ -15,11 +15,11 @@ class Helpers {
     */
     public static function fileUpload($request) {
         $image = $request->file('user_image');
-        $folder_path = 'app/media/profile';
-	    $path = storage_path($folder_path);
+        $folder_path = 'upload/media/profile';
+	    $path = url($folder_path);
 	    $filename = time() . '.' . $image->getClientOriginalExtension();
 	    $filesize=$image->getClientSize() / 1024;
-	    $image->move($path, $filename);
+	    $image->move($folder_path, $filename);
 	    $data = ['file_name'=>$filename,'server_path'=>$folder_path.'/'.$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
 	    return $data;
     }

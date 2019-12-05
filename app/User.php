@@ -55,7 +55,7 @@ class User extends Authenticatable
                 if($media)
                 $userArr['view_profile_image'] = $media->file_path;
                 $userArr['file_name'] = $media->file_name;
-                $userArr['server_path'] = $media->server_path;
+                $userArr['server_path'] = $media->file_path;
                }
             }
         }

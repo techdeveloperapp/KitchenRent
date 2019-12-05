@@ -48,7 +48,30 @@ var FormControls = {
               
             },
             submitHandler: function(form) {
-				form.submit();
+				// form.submit();
+                
+                var url = base_url+"/user/login";
+                console.log(url);
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {username:$('#username').val(),password:$('#login_password').val()},
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                       if(data.status=="error"){
+                          swal('Incorrect Credintials',data.message,'error');
+                       }else{
+                          window.location = base_url;
+                       }
+                   },
+                   error: function(data) {
+                    swal('Error',data,'error');
+                  }
+                });
+                //e.preventDefault();
+                return false;
 			}
         });
 		
@@ -58,4 +81,20 @@ var FormControls = {
 jQuery(document).ready(function() {
     FormControls.registerInit();
     FormControls.loginInit();
+    var url = base_url+"/logout";
+    $('#f_logout').click(function(){
+        $.ajax({
+            method: 'POST',
+            url: url,
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(data) {
+               window.location = base_url;
+            },
+           error: function(data) {
+            //swal('Error',data,'error');
+          }
+        });
+    });
 });

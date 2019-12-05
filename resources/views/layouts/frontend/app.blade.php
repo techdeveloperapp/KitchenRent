@@ -18,12 +18,14 @@
 <link href="{{url('frontend/css/style.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('frontend/css/main-color.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('frontend/css/custom.css')}}" rel="stylesheet" type="text/css" />
-
+<!-- CSRF Token -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
 <script>
 var active_lang = "{{ app()->getLocale() }}";
+var base_url = "{{url('/')}}";
 </script>
 <!-- Wrapper -->
 <div id="wrapper">
@@ -37,3 +39,4 @@ var active_lang = "{{ app()->getLocale() }}";
 @yield('content')
 
 @extends('layouts.frontend.footer')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

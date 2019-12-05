@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Admin\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
@@ -15,19 +15,19 @@ use Illuminate\Support\Facades\Config;
 use Auth;
 use Helper;
 
-class CustomerController extends Controller
+class VendorController extends Controller
 {
     public function index(){
     	//Session::flash('success', 'This is Vendor List');
-    	return view('Admin.Customer.customer_list');
+    	return view('Admin.Vendor.vendor_list');
     }
 
     public function add(){
     	//Session::flash('error', 'This is New Vendor');
-    	return view('Admin.Customer.customer_add');
+    	return view('Admin.Vendor.vendor_add');
     }
 
-    public function addUpdateCustomer(Request $request)
+    public function addUpdateVendor(Request $request)
     {
         if(isset($request->id) && $request->id){
             $validator = Validator::make($request->all(), [
@@ -43,7 +43,7 @@ class CustomerController extends Controller
         }
 
         if ($validator->fails()) {
-            return redirect('admin/customer/add')
+            return redirect('admin/vendor/add')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -60,7 +60,7 @@ class CustomerController extends Controller
             $vendor->name = $request->input('first_name').' '.$request->input('last_name');
             $vendor->email = $request->input('email');
             $vendor->password = bcrypt($request->input('password'));
-            $vendor->user_role = Config::get('constants.roles.customer'); // take value from constant file
+            $vendor->user_role = Config::get('constants.roles.vendor'); // take value from constant file
             if($vendor->save())
             {
                 $user_meta = new UserMeta();
@@ -72,12 +72,12 @@ class CustomerController extends Controller
                 }else{
                     $msg = __('messages.record_created');
                 }
-                return redirect('admin/customer/list')->with('success', $msg);
+                return redirect('admin/vendor/list')->with('success', $msg);
             }
         }
     }
 
-    public function getAllCustomers(Request $request)
+    public function getAllVendors(Request $request)
     {
         try
         {
@@ -94,7 +94,7 @@ class CustomerController extends Controller
             else{
             $offset = ($page-1)*$perpage;
             }
-            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.customer') )->groupBy('user_metas.user_id');;
+            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.vendor') )->groupBy('user_metas.user_id');;
 
             if($search!=='')
             {
@@ -127,14 +127,14 @@ class CustomerController extends Controller
         }
     }
 
-    public function getCustomerById($id,Request $request){
+    public function getVendorById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->getUser($id);
 		//print_r($user_obj);
-        return view('Admin.Customer.customer_add',$user_obj);
+        return view('Admin.Vendor.vendor_add',$user_obj);
     }
 
-    public function deleteCustomerById($id,Request $request){
+    public function deleteVendorById($id,Request $request){
         $user_obj = new User();
         $user_obj = $user_obj->deleteUser($id);
         return Response::json(array('status'=>'success','message'=>__('messages.record_deleted')));
@@ -158,7 +158,7 @@ class CustomerController extends Controller
                     $data = Helper::fileUpload($request);
                     $media_obj=new Media();
                     $insert_id = $media_obj->addMedia($data);
-                    $response=['path'=>$data['file_path'].'/'.$data['file_name'],'id'=>$insert_id];
+                    $response=['path'=>$data['file_path'],'id'=>$insert_id];
                     return response()->json($response);
                 }
                 else
