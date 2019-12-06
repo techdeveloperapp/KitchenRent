@@ -47,8 +47,11 @@ class CommonController extends Controller
             if(Auth::attempt(['email'=>$request->username,'password'=>$request->password])){
                 return response()->json(['status'=>'success','message'=>'Login Successful.']);
             }else{
-                return response()->json(['status'=>'error','message'=>'Username or Password is not correct.']);
+                return response()->json(['status'=>'error','message'=> __('auth.failed' ) ]);
             }
         }
     }
+	public function dashboard(){
+		return view('Frontadmin.dashboard');
+	}
 }

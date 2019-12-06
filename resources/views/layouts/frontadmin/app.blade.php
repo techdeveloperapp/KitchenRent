@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+
 <!-- Basic Page Needs
 ================================================== -->
 @include('layouts.common.header-assets')
@@ -15,18 +16,24 @@ var base_url = "{{url('/')}}";
 
 <!-- Header Container
 ================================================== -->
-@include('layouts.frontend.header')
+@include('layouts.frontadmin.header')
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 
-@yield('content')
-
-<!-- Back To Top Button -->
-<div id="backtotop"><a href="#"></a></div>
+<!-- Dashboard -->
+<div id="dashboard">
+	@include('layouts.frontadmin.sidebar')
+	<!-- Content ================================================== -->
+		<div class="dashboard-content">
+			@yield('content')
+		</div>
+	<!-- Content / End -->	
+</div>
+<!-- Dashboard / End -->
 
 </div>
 <!-- Wrapper / End -->
-@include('layouts.frontend.footer')
+@include('layouts.frontadmin.footer')
 
 </body>
 </html>

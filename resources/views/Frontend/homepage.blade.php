@@ -1,4 +1,5 @@
 @extends('layouts.frontend.app')
+@section('title', 'Homepage')
 @section('content')
 <!-- Banner
 ================================================== -->

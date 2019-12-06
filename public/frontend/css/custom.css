@@ -9,3 +9,8 @@ label.error {
 .sign-in-form label input.valid {
     border-color: #09a009;
 }
+@media (min-width: 1025px) and (max-width: 1239px)  {
+	.right-side {
+		margin-top: -50px !important;
+	}
+}	

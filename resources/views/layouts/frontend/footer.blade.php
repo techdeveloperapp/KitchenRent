@@ -62,33 +62,9 @@
 </div>
 <!-- Footer / End -->
 
-
-<!-- Back To Top Button -->
-<div id="backtotop"><a href="#"></a></div>
-
-
-</div>
-<!-- Wrapper / End -->
-
-
-
 <!-- Scripts
 ================================================== -->
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-migrate-3.1.0.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/mmenu.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/chosen.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/slick.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/rangeslider.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/magnific-popup.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/waypoints.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/counterup.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-ui.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/tooltips.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery.validate.min.js"></script>
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/custom.js"></script>
-@if(app()->getLocale() == 'nl') <script type="text/javascript" src="{{url('frontend/')}}/scripts/localization/messages_nl.min.js"></script>
-@endif
+@include('layouts.common.footer-assets')
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/login.js"></script>
 <!-- Google Autocomplete -->
 <script>
@@ -111,10 +87,3 @@
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>
-
-<!-- Style Switcher
-================================================== -->
-<!-- Style Switcher / End -->
-
-</body>
-</html>

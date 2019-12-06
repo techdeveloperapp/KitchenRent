@@ -59,6 +59,7 @@ return [
 	'customer_list'  		    => 'Klantenlijst',
     'new_customer'  		    => 'Nieuwe klant',
     'update_customer'  		    => 'Klant bijwerken',
+	'my_account'				=> 'Mijn rekening',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',

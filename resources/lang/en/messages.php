@@ -59,6 +59,7 @@ return [
 	'customer_list'  		    	=> 'Customer List',
     'new_customer'  		    	=> 'New Customer',
     'update_customer'  		    	=> 'Update Customer',
+	'my_account'					=> 'My Account',
 	
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',

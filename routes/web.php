@@ -47,6 +47,13 @@ Route::group(['prefix'=>'admin/customer/','as'=>'admin.customer.','middleware' =
 });
 /************************************Customer END*****************************************/
 
+
+/************************************FrontAdmin Start*****************************************/
+Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']], function () {
+	Route::get('/dashboard', 'CommonController@dashboard')->name('userDashboard');
+});
+/************************************FrontAdmin End*****************************************/
+
 Auth::routes();
 
 

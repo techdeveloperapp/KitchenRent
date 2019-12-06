@@ -38,7 +38,7 @@ var FormControls = {
                     required: !0,
                     email: !0,
                 },
-				login_password:{
+				password:{
 					required: !0,
 					minlength: 8,
 				},
@@ -49,7 +49,8 @@ var FormControls = {
             },
             submitHandler: function(form) {
 				// form.submit();
-                
+                $("#login_button").attr('disabled','disabled');
+                $("#login_button").text('Please wait...');
                 var url = base_url+"/user/login";
                 console.log(url);
                 $.ajax({
@@ -61,13 +62,17 @@ var FormControls = {
                     },
                     success: function(data) {
                        if(data.status=="error"){
-                          swal('Incorrect Credintials',data.message,'error');
+                          swal( data.message , '','error');
+						  $("#login_button").removeAttr('disabled');
+						  $("#login_button").text('Sign In');
                        }else{
                           window.location = base_url;
                        }
                    },
                    error: function(data) {
                     swal('Error',data,'error');
+					$("#login_button").removeAttr('disabled');
+				    $("#login_button").text('Sign In');
                   }
                 });
                 //e.preventDefault();

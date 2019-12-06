@@ -22,7 +22,7 @@
                 </div>
 
                 <!-- Main Navigation -->
-                @extends('layouts.frontend.navigation')
+                @include('layouts.common.top-navigation')
                 <div class="clearfix"></div>
                 <!-- Main Navigation / End -->
                 
@@ -34,18 +34,12 @@
             <div class="right-side">
                 <div class="header-widget">
                     @if(Auth::user())
-                    <a href="javascript:void(0)" id="f_logout" class="sign-in"><i class="sl sl-icon-login"></i> {{ __('messages.logout') }}</a>
+						@include('layouts.common.myaccount-menu')	
                     @else
                     <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> {{ __('messages.sign_in') }}</a>
 					@endif
                      <!-- Language Menu -->
-					<div class="user-menu">
-						<div class="user-name">@if(app()->getLocale() == 'en') English @else Dutch @endif</div>
-						<ul>
-							<li><a href="{{url('locale/en')}}"><i class="sl sl-icon-flag"></i> English</a></li>
-							<li><a href="{{url('locale/nl')}}"><i class="sl sl-icon-flag"></i> Dutch</a></li>
-						</ul>
-					</div>
+					@include('layouts.common.language-menu')
 					
                 </div>
             </div>
@@ -101,7 +95,7 @@
                                 </p>
 
                                 <div class="form-row">
-                                    <button type="submit" class="button border margin-top-5" name="login" value="Login">
+                                    <button type="submit" class="button border margin-top-5" name="login" id="login_button">
                                         {{ __('messages.sign_in') }}
                                     </button>
                                     <div class="checkboxes margin-top-10">
@@ -173,7 +167,7 @@
                                 </label>
                             </p>
 
-                            <button type="submit" class="button border fw margin-top-10">
+                            <button type="submit" class="button border fw margin-top-10" id="register_button">
                                 {{ __('messages.register') }}
                             </button>
     
