@@ -26,7 +26,34 @@ var FormControls = {
               
             },
             submitHandler: function(form) {
-				form.submit();
+				$("#register_button").attr('disabled','disabled');
+                $("#register_button").text('Please wait...');
+                var url = base_url+"/user/register";
+                var first_name = $('#first_name').val();
+                var last_name = $('#last_name').val();
+                var last_name = $('#last_name').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {first_name,last_name,email,password},
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                       if(data.status=="error"){
+                            swal('Error',data.message ,'error');
+                            $("#register_button").removeAttr('disabled');
+                       }else{
+                            swal('Success',data.message ,'success');
+                       }
+                   },
+                   error: function(data) {
+                    swal('Error',data,'error');
+                    $("#register_button").removeAttr('disabled');
+                  }
+                });
 			}
         });
 		
@@ -62,7 +89,7 @@ var FormControls = {
                     },
                     success: function(data) {
                        if(data.status=="error"){
-                          swal( data.message , '','error');
+                          swal('Error',data.message ,'error');
 						  $("#login_button").removeAttr('disabled');
 						  $("#login_button").text('Sign In');
                        }else{

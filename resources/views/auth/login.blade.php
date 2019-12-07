@@ -48,6 +48,14 @@
                                     {{ __('messages.sign_to_admin') }}
                                 </h3>
                             </div>
+                            @if (Session::has('login_error'))
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                  <strong>Warning!</strong> {{ Session::get('login_error') }}
+                                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                            @endif
                             <form class="m-login__form m-form" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="form-group m-form__group">

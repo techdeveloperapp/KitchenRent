@@ -14,8 +14,10 @@
 
 Route::get('/', 'CommonController@index')->name('index');
 Route::post('user/login', 'CommonController@login')->name('user.login');
+Route::post('user/register', 'CommonController@register')->name('user.register');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
+Route::post('admin/logout', 'CommonController@adminLogOut')->name('admin.logout');
 
 /************************************ADMIN START*****************************************/
 Route::group(['prefix'=>'admin/','as'=>'admin.','middleware' => ['auth']], function () {
