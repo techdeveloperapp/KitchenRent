@@ -47,7 +47,11 @@ var FormControls = {
                             $("#register_button").removeAttr('disabled');
                        }else{
                             swal('Success',data.message ,'success');
+							$("#register_button").removeAttr('disabled');
+							document.getElementById("register-form").reset();
+							jQuery('#sign-in-dialog').magnificPopup('close');
                        }
+					   $("#register_button").text('Register');
                    },
                    error: function(data) {
                     swal('Error',data,'error');
@@ -106,13 +110,54 @@ var FormControls = {
                 return false;
 			}
         });
-		
     },
+	forgotPasswordInit:function(){
+		$("#forgot_pass-form").validate({
+            rules: {
+                forgot_email: {
+                    required: !0,
+                    email: !0,
+                },
+            },
+            invalidHandler: function(e, r) {
+              
+            },
+            submitHandler: function(form) {
+				// form.submit();
+                $("#forgot_button").attr('disabled','disabled');
+                var url = base_url+"/user/forgot_password";
+                //console.log(url);
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {email:$('#forgot_email').val()},
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(data) {
+                       if(data.status=="error"){
+                          swal('Error',data.message ,'error');
+						  $("#forgot_button").removeAttr('disabled');
+                       }else{
+                          //window.location = base_url;
+                       }
+                   },
+                   error: function(data) {
+                    swal('Error',data,'error');
+					$("#forgot_button").removeAttr('disabled');
+                  }
+                });
+                //e.preventDefault();
+                return false;
+			}
+        });
+	}
 };
 
 jQuery(document).ready(function() {
     FormControls.registerInit();
     FormControls.loginInit();
+    FormControls.forgotPasswordInit();
     var url = base_url+"/logout";
     $('#f_logout').click(function(){
         $.ajax({

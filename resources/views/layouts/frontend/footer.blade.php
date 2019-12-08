@@ -65,7 +65,6 @@
 <!-- Scripts
 ================================================== -->
 @include('layouts.common.footer-assets')
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/login.js"></script>
 <!-- Google Autocomplete -->
 <script>
   function initAutocomplete() {

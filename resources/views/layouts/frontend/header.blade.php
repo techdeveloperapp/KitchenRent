@@ -58,6 +58,8 @@
                     <ul class="tabs-nav">
                         <li class=""><a href="#tab1">{{ __('messages.sign_in') }}</a></li>
                         <li><a href="#tab2">{{ __('messages.register') }}</a></li>
+                        <li><a href="#tab3" class="hide" id="forgot_tab"></a></li>
+                        
                     </ul>
 
                     <div class="tabs-container alt">
@@ -90,27 +92,29 @@
                                         @enderror
                                     </label>
                                     <span class="lost_password">
-                                        <a href="#" >{{ __('messages.lost_your_password') }}</a>
+                                        <a href="javascipt:void(0)" onclick='$( "#forgot_tab" ).click();'>{{ __('messages.lost_your_password') }}</a>
                                     </span>
                                 </p>
 
                                 <div class="form-row">
-                                    <button type="submit" class="button border margin-top-5" name="login" id="login_button">
-                                        {{ __('messages.sign_in') }}
-                                    </button>
-                                    <div class="checkboxes margin-top-10">
+								    <div class="checkboxes margin-top-10 margin-bottom-10">
                                         <input id="remember-me" type="checkbox" name="check">
                                         <label for="remember-me">{{ __('messages.remember_me') }}</label>
                                     </div>
+                                    <button type="submit" class="button border margin-top-5" name="login" id="login_button">
+                                        {{ __('messages.sign_in') }}
+                                    </button>
+                                    
                                 </div>
                                 
                             </form>
                         </div>
+						
 
                         <!-- Register -->
                         <div class="tab-content" id="tab2" style="display: none;">
 
-                            <form method="POST" action="{{ route('register') }}" id="register-form">
+                            <form method="POST" action="#" id="register-form">
                             @csrf
                             <p class="form-row form-row-wide">
                                 <label for="first_name">{{ __('messages.first_name') }}:
@@ -171,6 +175,27 @@
                                 {{ __('messages.register') }}
                             </button>
     
+                            </form>
+                        </div>
+						
+						<!-- Forgot Password -->
+                        <div class="tab-content" id="tab3" style="display: none;">
+                            <form class="m-login__form m-form" id="forgot_pass-form">
+                                @csrf
+                                <p class="form-row form-row-wide">
+                                    <label for="forgot_email">{{ __('messages.email') }}:
+                                        <i class="im im-icon-Male"></i>
+                                        <input class="form-control m-input" id="forgot_email" type="email" class="input-text form-control" name="forgot_email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email" autofocus>
+                                    </label>
+                                </p>
+
+                                <div class="form-row">
+                                    <button type="submit" class="button border margin-top-5" name="login" id="forgot_button">
+                                        {{ __('messages.submit') }}
+                                    </button>
+                                    
+                                </div>
+                                
                             </form>
                         </div>
 

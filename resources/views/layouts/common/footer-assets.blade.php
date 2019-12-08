@@ -11,6 +11,7 @@
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/tooltips.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery.validate.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/sweetalert.min.js"></script>
+<script type="text/javascript" src="{{url('frontend/')}}/scripts/login.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/custom.js"></script>
 @if(app()->getLocale() == 'nl') <script type="text/javascript" src="{{url('frontend/')}}/scripts/localization/messages_nl.min.js"></script>
 @endif

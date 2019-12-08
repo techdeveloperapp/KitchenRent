@@ -60,6 +60,8 @@ return [
     'new_customer'  		    => 'Nieuwe klant',
     'update_customer'  		    => 'Klant bijwerken',
 	'my_account'				=> 'Mijn rekening',
+	'submit'					=> 'voorleggen',
+	'my_profile'				=> 'Mijn profiel',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',

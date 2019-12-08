@@ -14,6 +14,7 @@
 
 Route::get('/', 'CommonController@index')->name('index');
 Route::post('user/login', 'CommonController@login')->name('user.login');
+Route::post('user/forgot_password', 'CommonController@forgot_password')->name('user.forgot');
 Route::post('user/register', 'CommonController@register')->name('user.register');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');
@@ -53,6 +54,7 @@ Route::group(['prefix'=>'admin/customer/','as'=>'admin.customer.','middleware' =
 /************************************FrontAdmin Start*****************************************/
 Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']], function () {
 	Route::get('/dashboard', 'CommonController@dashboard')->name('userDashboard');
+	Route::get('/profile', 'CommonController@myprofile')->name('userProfile');
 });
 /************************************FrontAdmin End*****************************************/
 

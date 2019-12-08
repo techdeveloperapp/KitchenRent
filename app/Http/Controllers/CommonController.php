@@ -61,6 +61,18 @@ class CommonController extends Controller
             }
         }
     }
+	public function forgot_password(Request $request){
+		$validator = Validator::make($request->all(), [
+            'email' => 'email|unique:users',
+        ]);
+		if ($validator->fails()) {
+            return response()->json(['status'=>'error','message'=> $validator->errors()->first('email') ]);
+        }
+        else
+        {
+			
+		}
+	}
 
     public function register(Request $request)
     {
@@ -72,7 +84,7 @@ class CommonController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['status'=>'fail','error'=>$validator,'message'=>'Please check all fields something is wrong']);
+            return response()->json(['status'=>'error','message'=> $validator->errors()->first('email') ]);
         }
         else
         {
@@ -87,12 +99,18 @@ class CommonController extends Controller
             {
                 $data = array('user_id'=>$user->id);
                 //Notification::send(User::find($user->id), new userRegister($data));
-                return response()->json(['status'=>'success','message'=>'Registered Successful Please check your email for verification.']);
-            }
+                return response()->json(['status'=>'success','message'=> __('auth.reg_success' ) ] );
+            }else{
+				return response()->json(['status'=>'error','message'=> __('auth.reg_failed' ) ] );
+			}
         }
     }
 
 	public function dashboard(){
 		return view('Frontadmin.dashboard');
 	}
+	public function myprofile(){
+		return view('Frontadmin.profile');
+	}
+	
 }
