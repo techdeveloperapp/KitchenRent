@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Support\Facades\Config;
 use Notification;
 use App\Notifications\userRegister;
+use Mail;
 
 class CommonController extends Controller
 {
@@ -29,6 +30,14 @@ class CommonController extends Controller
      */
     public function index()
     {
+        $to_name = 'Admin';
+        $to_email = 'test@yopmail.com';
+        $data = array('name'=>'Info-INFO', 'body' => 'Info-12345678');
+        Mail::send('mail.user.test', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)->subject('Laravel Test Mail');
+            $message->from('Test@gmail.com','Test Mail');
+        });
+
         return view('Frontend.homepage');
     }
 
@@ -54,7 +63,8 @@ class CommonController extends Controller
         }
         else
         {
-            if(Auth::attempt(['email'=>$request->username,'password'=>$request->password,'user_role'=>'2']) || Auth::attempt(['email'=>$request->username,'password'=>$request->password,'user_role'=>'3'])){
+            if(Auth::attempt(['email'=>$request->username,'password'=>$request->password,'user_role'=>'2','status'=>'1']) || Auth::attempt(['email'=>$request->username,'password'=>$request->password,'user_role'=>'3','status'=>'1'])){
+
                 return response()->json(['status'=>'success','message'=>'Login Successful.']);
             }else{
                 return response()->json(['status'=>'error','message'=> __('auth.failed' ) ]);
@@ -98,10 +108,10 @@ class CommonController extends Controller
             if($user->save())
             {
                 $data = array('user_id'=>$user->id);
-                //Notification::send(User::find($user->id), new userRegister($data));
-                return response()->json(['status'=>'success','message'=> __('auth.reg_success' ) ] );
+                // Notification::send(User::find($user->id), new userRegister($data));
+                return response()->json(['status'=>'success','message'=> __('auth.reg_success' ) ]);
             }else{
-				return response()->json(['status'=>'error','message'=> __('auth.reg_failed' ) ] );
+				return response()->json(['status'=>'error','message'=> __('auth.reg_failed' )]);
 			}
         }
     }

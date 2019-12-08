@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('user_role',['1','2','3'])->default('3')->comment("1=>'Admin','2'=>'Vendor','3'=>Customer");
+            $table->enum('status',['1','2'])->default('2')->comment("1=>'Active','2'=>'Deactive'");
+            $table->text('forget_token')->nullable();
             $table->rememberToken();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
