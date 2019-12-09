@@ -9,7 +9,9 @@ use App\User;
 use Illuminate\Support\Facades\Config;
 use Notification;
 use App\Notifications\userRegister;
+use App\Notifications\forgetPassword;
 use Mail;
+use Session;
 
 class CommonController extends Controller
 {
@@ -110,7 +112,7 @@ class CommonController extends Controller
             if($user->save())
             {
                 $data = array('user_id'=>$user->id);
-                // Notification::send(User::find($user->id), new userRegister($data));
+                Notification::send(User::find($user->id), new userRegister($data));
                 return response()->json(['status'=>'success','message'=> __('auth.reg_success' ) ]);
             }else{
 				return response()->json(['status'=>'error','message'=> __('auth.reg_failed' )]);
@@ -124,5 +126,51 @@ class CommonController extends Controller
 	public function myprofile(){
 		return view('Frontadmin.profile');
 	}
+
+    public function active_account($token){
+        $check=User::where('forget_token',$token)->where('status','2')->first();
+        if($check){
+            User::where('id',$check->id)->update(['status'=>'1']);
+            Session::flash('success', "Your account has been activeted successfully. Please Login");
+        }else{
+            Session::flash('error', "Token mismatch please try again");
+        }
+        return view('frontend.homepage');
+    }
+
+    public function forget_password(Request $request){
+        $check=User::where('email',$request->email)->where('status','1')->first();
+        if($check){
+            User::where('id',$check->id)->update(['status'=>'1']);
+            Notification::send(User::find($check->id), new forgetPassword($data));
+            Session::flash('success', "Password reset link has been send to your mail please check.");
+        }else{
+            Session::flash('error', "This email does not exist. Please try again");
+        }
+        return view('frontend.homepage');
+    }
+
+    public function getResetPasswordForm($token){
+        $check=User::where('forget_token',$token)->where('status','2')->first();
+        if($check){
+            return view('frontend.forgotpassword', ['token' => $token]);
+        }else{
+            Session::flash('error', "Token mismatch please try again");
+            return view('frontend.homepage');
+        }
+    }
+
+    public function resetUserPassword(Request $request){
+        $check=User::where('email',$request->email)->where('forget_token',$request->token)->where('status','2')->first();
+        if($check){
+            $user = User::find($check->id);
+            $user->status = 1;
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+            return response()->json(['status'=>'success','message'=>'Password reset successfully please try with new credentials']);
+        }else{
+            return response()->json(['status'=>'error','message'=>"We can't find a user with this token please check email id and token"]);
+        }
+    }
 	
 }

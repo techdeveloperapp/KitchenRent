@@ -13,9 +13,15 @@
 
 
 Route::get('/', 'CommonController@index')->name('index');
+Route::get('/active/{token}','CommonController@active_account')->name('active.account');
+Route::get('/forgot/{token}','CommonController@getResetPasswordForm')->name('active.forgot_password');
+
+Route::get('/forget_password','CommonController@forget_password')->name('active.forget_password');
+
 Route::get('/test_email', 'CommonController@test_email')->name('test_email');
 Route::post('user/login', 'CommonController@login')->name('user.login');
 Route::post('user/forgot_password', 'CommonController@forgot_password')->name('user.forgot');
+Route::post('user/reset_password', 'CommonController@resetUserPassword')->name('user.reset_password');
 Route::post('user/register', 'CommonController@register')->name('user.register');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'CommonController@adminLogin')->name('admin.login');

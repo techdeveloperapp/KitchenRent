@@ -22,8 +22,8 @@
 					
                     <tr>
                         <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;padding-top: 10px;">
-                            <p style="margin: 0;"><b>Please click on link to verify your email id .</p>
-                            <a href="{{url('active/')}}/{{$token}}">Active</a>
+                            <p style="margin: 0;"><b>Please click on link to reset your password .</p>
+                            <a href="{{url('forgot/')}}/{{$token}}">Active</a>
                         </td>
                     </tr> 
                     

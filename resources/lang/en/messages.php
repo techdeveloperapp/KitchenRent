@@ -61,7 +61,11 @@ return [
     'update_customer'  		    	=> 'Update Customer',
 	'my_account'					=> 'My Account',
 	'submit'						=> 'Submit',
-	'my_profile'					=> 'My Profile',
+    'my_profile'                    => 'My Profile',
+	'new_password'					=> 'New Password',
+    'reset_password_btn'            => 'Reset Password',
+    'token_mismatch'                => "We can't find a user with this token please check email id and token",
+    'reset_success'                 => 'Password reset successfully please try with new credentials',
 	
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',

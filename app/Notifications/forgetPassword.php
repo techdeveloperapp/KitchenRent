@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use App\User;
 
-class userRegister extends Notification
+class forgetPassword extends Notification
 {
     use Queueable;
 
@@ -18,7 +18,7 @@ class userRegister extends Notification
      * @return void
      */
     protected $mail_data;
-    public function __construct($data)
+    public function __construct()
     {
         $user_data = User::where('id',$data['user_id'])->first();
         $this->mail_data = $user_data;
@@ -55,7 +55,7 @@ class userRegister extends Notification
             return (new MailMessage)
                 ->from('admin@listeo.com', 'Admin')
                 ->subject('New  User Created')
-                ->markdown('mail.user.register', ['mail_data' => $this->mail_data,'token' => $token]);
+                ->markdown('mail.user.forgetpassword', ['mail_data' => $this->mail_data,'token' => $token]);
         }
     }
 
