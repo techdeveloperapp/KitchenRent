@@ -13,6 +13,7 @@
 
 
 Route::get('/', 'CommonController@index')->name('index');
+Route::get('/test_email', 'CommonController@test_email')->name('test_email');
 Route::post('user/login', 'CommonController@login')->name('user.login');
 Route::post('user/forgot_password', 'CommonController@forgot_password')->name('user.forgot');
 Route::post('user/register', 'CommonController@register')->name('user.register');

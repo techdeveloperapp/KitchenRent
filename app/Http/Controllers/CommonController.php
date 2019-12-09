@@ -30,15 +30,17 @@ class CommonController extends Controller
      */
     public function index()
     {
+        return view('Frontend.homepage');
+    }
+	public function test_email()
+    {
         $to_name = 'Admin';
-        $to_email = 'test@yopmail.com';
+        $to_email = 'jmodanwal789@gmail.com';
         $data = array('name'=>'Info-INFO', 'body' => 'Info-12345678');
         Mail::send('mail.user.test', $data, function($message) use ($to_name, $to_email) {
             $message->to($to_email, $to_name)->subject('Laravel Test Mail');
-            $message->from('Test@gmail.com','Test Mail');
+            $message->from('info@gigworks.me','Test Mail');
         });
-
-        return view('Frontend.homepage');
     }
 
     public function adminLogin()

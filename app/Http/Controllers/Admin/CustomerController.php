@@ -94,7 +94,7 @@ class CustomerController extends Controller
             else{
             $offset = ($page-1)*$perpage;
             }
-            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.customer') )->groupBy('user_metas.user_id');;
+            $vendors = $vendors->with('getMeta')->leftjoin('user_metas', 'users.id', '=', 'user_metas.user_id')->select('users.*')->where('users.user_role',Config::get('constants.roles.customer') )->groupBy('user_metas.user_id');
 
             if($search!=='')
             {
