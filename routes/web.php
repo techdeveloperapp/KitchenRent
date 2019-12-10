@@ -62,6 +62,9 @@ Route::group(['prefix'=>'admin/customer/','as'=>'admin.customer.','middleware' =
 Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']], function () {
 	Route::get('/dashboard', 'CommonController@dashboard')->name('userDashboard');
 	Route::get('/profile', 'CommonController@myprofile')->name('userProfile');
+	Route::post('/profile/update', 'CommonController@myprofile_update')->name('userProfileUpdate');
+	Route::get('/profile/update/password', 'CommonController@myprofile_password_update')->name('userProfileUpdatePassword');
+	
 });
 /************************************FrontAdmin End*****************************************/
 

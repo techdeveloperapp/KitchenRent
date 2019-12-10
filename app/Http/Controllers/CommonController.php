@@ -12,6 +12,10 @@ use App\Notifications\userRegister;
 use App\Notifications\forgetPassword;
 use Mail;
 use Session;
+use App\Model\UserMeta;
+use App\Model\Media;
+use Helper;
+use Hash;
 
 class CommonController extends Controller
 {
@@ -112,7 +116,9 @@ class CommonController extends Controller
 		return view('Frontadmin.dashboard');
 	}
 	public function myprofile(){
-		return view('Frontadmin.profile');
+        $user_obj = new User();
+        $user_detail = $user_obj->getUser(Auth::id());
+		return view('Frontadmin.profile',compact('user_detail'));
 	}
 
     public function active_account($token){
@@ -163,5 +169,81 @@ class CommonController extends Controller
             return response()->json(['status'=>'error','message'=> __('messages.token_mismatch') ]);
         }
     }
+
+    public function myprofile_update(Request $request){
+        $validator = Validator::make($request->all(), [
+            'first_name' => 'required',
+            'email' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('user/profile')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        { 
+            $meta = $request->input('meta');
+            $vendor_id = $request->input('id');
+            $vendor = User::find($vendor_id);   
+            $vendor->first_name = $request->input('first_name');
+            $vendor->last_name = $request->input('last_name');
+            $vendor->name = $request->input('first_name').' '.$request->input('last_name');
+            $vendor->email = $request->input('email');
+            $vendor->password = bcrypt($request->input('password'));
+            if($vendor->save())
+            {
+                if ($request->hasFile('user_image'))
+                {
+                    $data = Helper::fileUpload($request);
+                    $media_obj=new Media();
+                    $insert_id = $media_obj->addMedia($data);
+                    if($insert_id)
+                    $meta['profile_photo_id'] = $insert_id;
+                }
+                $user_meta = new UserMeta();
+                foreach($meta as $key=>$value){
+                    $user_meta->addUpdate($vendor->id,$key,$value);
+                }
+                if($request->input('id')){
+                    $msg = __('messages.record_updated');
+                }else{
+                    $msg = __('messages.record_created');
+                }
+                return redirect('user/profile')->with('success', $msg);
+            }else{
+                return redirect('user/profile')->with('error', 'Error Please try again.');
+            }
+        }
+    }
 	
+    public function myprofile_password_update(Request $request){
+        $validator = Validator::make($request->all(), [
+            'old' => 'required',
+            'new1' => 'required',
+            'new2' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('user/profile')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        { 
+            $user_obj = User::find($request->id);
+            if(Hash::check($request->old, $user_obj->password)){
+                if($request->new1 == $request->new2){
+                    $user_obj->password = Hash::make($request->new1);
+                    $user_obj->save();
+                    return redirect('user/profile')->with('success', 'Password has been changed successfully.');
+                }else{
+                    return redirect('user/profile')->with('error', 'Error Please enter same as confirm password.');
+                }
+            }else{
+                return redirect('user/profile')->with('error', 'Current Password is Incorrect!');
+            }
+        }
+
+    }
 }
