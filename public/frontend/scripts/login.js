@@ -27,6 +27,7 @@ var FormControls = {
             },
             submitHandler: function(form) {
 				$("#register_button").attr('disabled','disabled');
+				var btn_name = $.trim($("#register_button").text());
                 $("#register_button").text('Please wait...');
                 var url = base_url+"/user/register";
                 var first_name = $('#first_name').val();
@@ -51,11 +52,12 @@ var FormControls = {
 							document.getElementById("register-form").reset();
 							jQuery('#sign-in-dialog').magnificPopup('close');
                        }
-					   $("#register_button").text('Register');
+					   $("#register_button").text(btn_name);
                    },
                    error: function(data) {
                     swal('Error',data,'error');
                     $("#register_button").removeAttr('disabled');
+					$("#register_button").text(btn_name);
                   }
                 });
 			}
@@ -81,6 +83,7 @@ var FormControls = {
             submitHandler: function(form) {
 				// form.submit();
                 $("#login_button").attr('disabled','disabled');
+				var btn_name = $.trim($("#login_button").text());
                 $("#login_button").text('Please wait...');
                 var url = base_url+"/user/login";
                 console.log(url);
@@ -95,7 +98,7 @@ var FormControls = {
                        if(data.status=="error"){
                           swal('Error',data.message ,'error');
 						  $("#login_button").removeAttr('disabled');
-						  $("#login_button").text('Sign In');
+						  $("#login_button").text(btn_name);
                        }else{
                           window.location = base_url;
                        }
@@ -103,7 +106,7 @@ var FormControls = {
                    error: function(data) {
                     swal('Error',data,'error');
 					$("#login_button").removeAttr('disabled');
-				    $("#login_button").text('Sign In');
+				    $("#login_button").text(btn_name);
                   }
                 });
                 //e.preventDefault();
@@ -125,6 +128,8 @@ var FormControls = {
             submitHandler: function(form) {
 				// form.submit();
                 $("#forgot_button").attr('disabled','disabled');
+				var btn_name = $.trim($("#forgot_button").text());
+				$("#forgot_button").text('Please wait...');
                 var url = base_url+"/user/forgot_password";
                 //console.log(url);
                 $.ajax({
@@ -135,15 +140,19 @@ var FormControls = {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(data) {
+						$("#forgot_button").text(btn_name);
+						$("#forgot_button").removeAttr('disabled');
                        if(data.status=="error"){
                           swal('Error',data.message ,'error');
-						  $("#forgot_button").removeAttr('disabled');
                        }else{
-                          //window.location = base_url;
+						   swal('Success',data.message ,'success');
+                           document.getElementById("forgot_pass-form").reset();
+						   jQuery('#sign-in-dialog').magnificPopup('close');
                        }
                    },
                    error: function(data) {
                     swal('Error',data,'error');
+					$("#forgot_button").text(btn_name);
 					$("#forgot_button").removeAttr('disabled');
                   }
                 });
@@ -159,11 +168,10 @@ var FormControls = {
                     required: !0,
                     email: !0,
                 },
-        password:{
-          required: !0,
-          minlength: 8,
-        },
-        
+				password:{
+				  required: !0,
+				  minlength: 8,
+				},
             },
             invalidHandler: function(e, r) {
               
@@ -171,6 +179,7 @@ var FormControls = {
             submitHandler: function(form) {
         // form.submit();
                 $("#reset_password_btn").attr('disabled','disabled');
+				var btn_name = $.trim($("#reset_password_btn").text());
                 $("#reset_password_btn").text('Please wait...');
                 var url = base_url+"/user/reset_password";
                 console.log(url);
@@ -185,7 +194,7 @@ var FormControls = {
                        if(data.status=="error"){
                           swal('Error',data.message ,'error');
                           $("#reset_password_btn").removeAttr('disabled');
-                          $("#reset_password_btn").text('Sign In');
+                          $("#reset_password_btn").text(btn_name);
                        }else{
                           swal('Success',data.message,'success');
                           setTimeout(function(){ 
@@ -196,7 +205,7 @@ var FormControls = {
                    error: function(data) {
                     swal('Error',data,'error');
                     $("#reset_password_btn").removeAttr('disabled');
-                    $("#reset_password_btn").text('Sign In');
+                    $("#reset_password_btn").text(btn_name);
                   }
                 });
                 //e.preventDefault();

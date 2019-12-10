@@ -18,7 +18,7 @@ var base_url = "{{url('/')}}";
 @include('layouts.frontend.header')
 <div class="clearfix"></div>
 
-@include('layouts.Admin.notification')
+@include('layouts.frontend.notification')
 <!-- Header Container / End -->
 
 @yield('content')

@@ -62,6 +62,13 @@ return [
 	'my_account'				=> 'Mijn rekening',
 	'submit'					=> 'voorleggen',
 	'my_profile'				=> 'Mijn profiel',
+	'new_password'					=> 'nieuw paswoord',
+    'reset_password'            => 'Reset wachtwoord',
+	'reset_password_link'           => 'We hebben uw wachtwoordresetlink gemaild!',
+    'email_not_exist'		        => 'We kunnen geen gebruiker vinden met dat e-mailadres.!',
+    'token_mismatch'                => "We kunnen geen gebruiker met dit token vinden. Controleer e-mail-id en token",
+    'reset_success'                 => 'Wachtwoord is succesvol gereset. Probeer het met nieuwe inloggegevens',
+	'account_activate'   			=> 'Uw account is succesvol geactiveerd. Log alstublieft in.',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',

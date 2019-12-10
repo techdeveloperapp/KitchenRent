@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Str;
 use App\User;
 
 class userRegister extends Notification
@@ -47,7 +48,7 @@ class userRegister extends Notification
         if(!$user)
           return false;
         
-        $token = $user->id.time();
+        $token = Str::random(32);
         $user->forget_token = $token; 
         $user->save();
         //$user->remember_token = $tokens;

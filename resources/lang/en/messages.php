@@ -63,9 +63,12 @@ return [
 	'submit'						=> 'Submit',
     'my_profile'                    => 'My Profile',
 	'new_password'					=> 'New Password',
-    'reset_password_btn'            => 'Reset Password',
+    'reset_password'            	=> 'Reset Password',
+    'reset_password_link'           => 'We have e-mailed your password reset link!',
+    'email_not_exist'		        => 'We can\'t find a user with that e-mail address.!',
     'token_mismatch'                => "We can't find a user with this token please check email id and token",
-    'reset_success'                 => 'Password reset successfully please try with new credentials',
+    'reset_success'                 => 'Password has been reset successfully. Please try with new credentials',
+	'account_activate'   			=> 'Your account has been activated successfully. Please Login.',
 	
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',

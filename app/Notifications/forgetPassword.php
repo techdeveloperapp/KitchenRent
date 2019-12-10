@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Str;
 use App\User;
 
 class forgetPassword extends Notification
@@ -18,7 +19,7 @@ class forgetPassword extends Notification
      * @return void
      */
     protected $mail_data;
-    public function __construct()
+    public function __construct($data)
     {
         $user_data = User::where('id',$data['user_id'])->first();
         $this->mail_data = $user_data;
@@ -47,14 +48,14 @@ class forgetPassword extends Notification
         if(!$user)
           return false;
         
-        $token = $user->id.time();
+        $token = Str::random(32);
         $user->forget_token = $token; 
         $user->save();
         //$user->remember_token = $tokens;
         if($notifiable->email != ""){
             return (new MailMessage)
                 ->from('admin@listeo.com', 'Admin')
-                ->subject('New  User Created')
+                ->subject('Reset Password')
                 ->markdown('mail.user.forgetpassword', ['mail_data' => $this->mail_data,'token' => $token]);
         }
     }

@@ -43,7 +43,7 @@
 							<label>Email</label>
 							<input value="tom@example.com" type="text">
 
-							<label>Notes</label>
+							<label>Bio</label>
 							<textarea name="notes" id="notes" cols="30" rows="10">Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</textarea>
 
 							<label><i class="fa fa-twitter"></i> Twitter</label>
