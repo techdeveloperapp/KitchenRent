@@ -16,6 +16,7 @@ use App\Model\UserMeta;
 use App\Model\Media;
 use Helper;
 use Hash;
+use File;
 
 class CommonController extends Controller
 {
@@ -199,8 +200,20 @@ class CommonController extends Controller
                     $data = Helper::fileUpload($request);
                     $media_obj=new Media();
                     $insert_id = $media_obj->addMedia($data);
-                    if($insert_id)
-                    $meta['profile_photo_id'] = $insert_id;
+                    if($insert_id){
+                        // Delete Old Profile Image
+                        $media_id = Helper::get_user_meta($vendor_id,'profile_photo_id');
+                        if($media_id){
+                            $media_file_obj = $media_obj->getMedia($media_id);
+                            if($media_file_obj){
+                                $profile_path = 'upload/media/profile/'.$media_file_obj->file_name;
+                                if(File::exists($profile_path)) {
+                                    File::delete($profile_path);
+                                }
+                            }
+                        }
+                        $meta['profile_photo_id'] = $insert_id;
+                    }
                 }
                 $user_meta = new UserMeta();
                 foreach($meta as $key=>$value){

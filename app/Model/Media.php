@@ -11,6 +11,11 @@ class Media extends Model
     	return $id;
     }
 
+    public function getMedia($id){
+        $media = Media::where('id',$id)->first();
+        return $media;
+    }
+
     public function deleteMedia($id){
     	$check = Media::where('id',$id)->first();
     	if($check){
