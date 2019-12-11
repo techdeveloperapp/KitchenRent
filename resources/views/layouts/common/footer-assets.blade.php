@@ -1,4 +1,3 @@
-<script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-migrate-3.1.0.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/mmenu.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/chosen.min.js"></script>

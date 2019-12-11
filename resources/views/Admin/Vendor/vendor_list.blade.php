@@ -154,6 +154,22 @@
 						selector: !1,
 						textAlign: "left"
 					},
+					{
+						field: "status",
+						title: "{{ __('messages.status') }}",
+						sortable: !0,
+						selector: !1,
+						textAlign: "left",
+						template: function(row) {
+							let html = '';
+							if(row.status == '1'){
+								html += '<span class="m-badge m-badge--info m-badge--wide">{{ __("messages.active") }}</span>';
+							}else{
+								html += '<span class="m-badge m-badge--warning m-badge--wide">{{ __("messages.in_active") }}</span>';
+							}
+							return html;
+						}
+					},
 		            {
 		              //width: 190,
 		              title: "{{ __('messages.actions') }}",

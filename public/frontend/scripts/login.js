@@ -221,7 +221,7 @@ jQuery(document).ready(function() {
     FormControls.forgotPasswordInit();
     FormControls.resetPasswordInit();
     var url = base_url+"/logout";
-    $('#f_logout').click(function(){
+    $('.f_logout').click(function(){
         $.ajax({
             method: 'POST',
             url: url,

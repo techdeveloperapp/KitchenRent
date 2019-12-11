@@ -143,7 +143,7 @@ class CustomerController extends Controller
     public function uploadProfilePic(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'user_image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'user_image' => 'mimes:jpeg,jpg,png,gif|required|max:2048',
         ]);
 
         if ($validator->fails()) 

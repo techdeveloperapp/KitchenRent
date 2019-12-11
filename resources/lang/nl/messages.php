@@ -64,15 +64,24 @@ return [
 	'my_profile'				=> 'Mijn profiel',
 	'new_password'					=> 'nieuw paswoord',
     'reset_password'            => 'Reset wachtwoord',
+	'current_password'				=> 'huidig wachtwoord',
+	'change_password'				=> 'Wijzig wachtwoord',
 	'reset_password_link'           => 'We hebben uw wachtwoordresetlink gemaild!',
     'email_not_exist'		        => 'We kunnen geen gebruiker vinden met dat e-mailadres.!',
     'token_mismatch'                => "We kunnen geen gebruiker met dit token vinden. Controleer e-mail-id en token",
     'reset_success'                 => 'Wachtwoord is succesvol gereset. Probeer het met nieuwe inloggegevens',
 	'account_activate'   			=> 'Uw account is succesvol geactiveerd. Log alstublieft in.',
+	'status'						=> 'staat',
+	'active'						=> 'actief',
+	'in_active'						=> 'Inactief',
+	'profile_details'				=> 'profiel details',
+	'upload_photo'					=> 'Upload foto',
+	'current_pass_wrong'			=> 'Huidige wachtwoord is onjuist! Voer alstublieft het juiste wachtwoord in.',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',
 	'invalid_file'				=> 'U kunt dit soort bestanden niet uploaden.',
+	
 	
 	//datatable
 	'proceesing'                    => 'Bezig...',

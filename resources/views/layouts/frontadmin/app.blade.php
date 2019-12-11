@@ -25,7 +25,7 @@ var base_url = "{{url('/')}}";
 	@include('layouts.frontadmin.sidebar')
 	<!-- Content ================================================== -->
 		<div class="dashboard-content">
-			@include('layouts.frontend.notification')
+			@include('layouts.frontadmin.notification')
 			@yield('content')
 		</div>
 	<!-- Content / End -->	

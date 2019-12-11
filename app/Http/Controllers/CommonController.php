@@ -173,7 +173,9 @@ class CommonController extends Controller
     public function myprofile_update(Request $request){
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
-            'email' => 'required'
+            'last_name' => 'required',
+            //'email' => 'required',
+			'user_image' => 'mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -189,8 +191,7 @@ class CommonController extends Controller
             $vendor->first_name = $request->input('first_name');
             $vendor->last_name = $request->input('last_name');
             $vendor->name = $request->input('first_name').' '.$request->input('last_name');
-            $vendor->email = $request->input('email');
-            $vendor->password = bcrypt($request->input('password'));
+            //$vendor->email = $request->input('email');
             if($vendor->save())
             {
                 if ($request->hasFile('user_image'))
@@ -236,12 +237,12 @@ class CommonController extends Controller
                 if($request->new1 == $request->new2){
                     $user_obj->password = Hash::make($request->new1);
                     $user_obj->save();
-                    return redirect('user/profile')->with('success', 'Password has been changed successfully.');
+                    return redirect('user/profile')->with('success', __('messages.reset_success'));
                 }else{
                     return redirect('user/profile')->with('error', 'Error Please enter same as confirm password.');
                 }
             }else{
-                return redirect('user/profile')->with('error', 'Current Password is Incorrect!');
+                return redirect('user/profile')->with('error', __('messages.current_pass_wrong'));
             }
         }
 
