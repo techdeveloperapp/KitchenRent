@@ -9,8 +9,8 @@
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
-					<a href="index.html" class="dashboard-logo"><img src="{{url('frontend/')}}/images/logo2.png" alt=""></a>
+					<a href="{{url('/')}}"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
+					<a href="{{url('/')}}" class="dashboard-logo"><img src="{{url('frontend/')}}/images/logo2.png" alt=""></a>
 				</div>
 				<!-- Mobile Navigation -->
 				<div class="mmenu-trigger">

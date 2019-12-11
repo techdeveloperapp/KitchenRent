@@ -9,7 +9,7 @@
                 
                 <!-- Logo -->
                 <div id="logo">
-                    <a href="#"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
+                    <a href="{{url('/')}}"><img src="{{url('frontend/')}}/images/logo.png" alt=""></a>
                 </div>
 
                 <!-- Mobile Navigation -->

@@ -52,10 +52,11 @@ class User extends Authenticatable
                $userArr[$value->meta_name] = $value->meta_value;
                if($value->meta_name=="profile_photo_id"){
                 $media = Media::where('id',$value->meta_value)->first();
-                if($media)
-                $userArr['view_profile_image'] = $media->file_path;
-                $userArr['file_name'] = $media->file_name;
-                $userArr['server_path'] = $media->file_path;
+                if( !is_null( $media ) ){
+					$userArr['view_profile_image'] = $media->file_path;
+					$userArr['file_name'] = $media->file_name;
+					$userArr['server_path'] = $media->file_path;
+				}
                }
             }
         }
