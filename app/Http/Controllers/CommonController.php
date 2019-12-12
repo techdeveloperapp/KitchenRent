@@ -209,6 +209,7 @@ class CommonController extends Controller
                                 $profile_path = 'upload/media/profile/'.$media_file_obj->file_name;
                                 if(File::exists($profile_path)) {
                                     File::delete($profile_path);
+									Media::where('id',$media_id)->delete();//delete from table also
                                 }
                             }
                         }

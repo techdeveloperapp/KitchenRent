@@ -12,6 +12,9 @@ label.error {
 #myprofileForm input,#myprofileForm textarea,#myprofileForm select{
 	margin-bottom: 0;
 }
+.apply-text{
+	vertical-align: top;
+}
 </style>
 <!-- Titlebar -->
 		<div id="titlebar">
@@ -131,6 +134,26 @@ label.error {
 								<input type="password" name="new2"  />
 
 								<button type="submit" class="button margin-top-15">{{ __('messages.change_password') }}</button>
+							</div>
+						</form>
+
+					</div>
+				</div>
+			</div>
+			<!-- profile settings -->
+			<div class="col-lg-6 col-md-12">
+				<div class="dashboard-list-box margin-top-0">
+					<h4 class="gray">{{ __('messages.profile_settings') }}</h4>
+					<div class="dashboard-list-box-static">
+						<form action="{{url('user/profile/update/password')}}" method="get" id="profileSettingsForm">
+							<input type="hidden" name="id" value="{{$user_detail['id']}}" />
+							<!-- Change Password -->
+							<div class="my-profile">
+								 
+								<label class="switch"><input type="checkbox" checked=""><span class="slider round"></span></label>
+								<span class="margin-left-25 apply-text">{{ __('messages.apply_for_vendor') }}</span>
+								<br>	
+								<button type="submit" class="button margin-top-25">{{ __('messages.save') }}</button>
 							</div>
 						</form>
 

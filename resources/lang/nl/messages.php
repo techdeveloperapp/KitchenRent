@@ -77,6 +77,8 @@ return [
 	'profile_details'				=> 'profiel details',
 	'upload_photo'					=> 'Upload foto',
 	'current_pass_wrong'			=> 'Huidige wachtwoord is onjuist! Voer alstublieft het juiste wachtwoord in.',
+	'profile_settings'				=> 'Profielinstellingen',
+	'apply_for_vendor'				=> 'Vraag een leveranciersaccount aan',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',
@@ -91,4 +93,31 @@ return [
 	'previous'                    	=> 'Vorige',
 	'next'                    		=> 'Volgende',
 	'pagination'                    => 'Viendo {{start}} - {{end}} de {{total}} registros',
+	
+	//listing-kitchen
+	'add_kitchen'					=> 'Nieuwe keuken toevoegen',
+	'information'					=> 'Information',
+	'prices'						=> 'Prijzen',
+	'services'						=> 'Algemene Diensten',
+	'pictures'						=> 'Afbeeldingen',
+	'features'						=> 'Kenmerken',
+	'location'						=> 'Locatie',
+	'terms_rules'					=> 'Algemene voorwaarden',
+	'kitchen_title'					=> 'Titel van de keuken',
+	'description'					=> 'Omschrijving',
+	'category'						=> 'Soort keuken',
+	'select_category'				=> 'Selecteer het soort keuken',
+	'keywords'						=> 'trefwoorden',
+	'choose_timings'				=> 'Kies timing',
+	'business_hours'				=> 'Kantooruren',
+	'timeslots'						=> 'Timeslots',
+	
+	
+	
+	
+	
+	
+	
+	
+	
 ];

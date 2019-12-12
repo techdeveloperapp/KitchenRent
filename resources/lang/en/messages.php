@@ -77,6 +77,8 @@ return [
 	'profile_details'				=> 'Profile Details',
 	'upload_photo'					=> 'Upload photo',
 	'current_pass_wrong'			=> 'Current Password is Incorrect! Please enter correct password.',
+	'profile_settings'				=> 'Profile Settings',
+	'apply_for_vendor'				=> 'Apply for vendor account',
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',
 	'invalid_file'					=> 'You can\'t upload files of this type.',
@@ -89,4 +91,37 @@ return [
 	'previous'                    	=> 'Previous',
 	'next'                    		=> 'Next',
 	'pagination'                    => 'Displaying {{start}} - {{end}} of {{total}} records',
+	//listing-kitchen
+	'add_kitchen'					=> 'Add New Kitchen',
+	'information'					=> 'Information',
+	'prices'						=> 'Prices',
+	'services'						=> 'General Services',
+	'pictures'						=> 'Pictures',
+	'features'						=> 'Features',
+	'location'						=> 'Location',
+	'terms_rules'					=> 'Terms & rules',
+	'kitchen_title'					=> 'Title of kitchen',
+	'description'					=> 'Description',
+	'category'						=> 'Type of kitchen',
+	'select_category'				=> 'Select type of kitchen',
+	'keywords'						=> 'Keywords',
+	'choose_timings'				=> 'Choose Timings',
+	'business_hours'				=> 'Business hours',
+	'timeslots'						=> 'Timeslots',
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 ];
