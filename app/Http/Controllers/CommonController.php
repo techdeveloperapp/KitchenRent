@@ -130,7 +130,7 @@ class CommonController extends Controller
         }else{
             Session::flash('error', __('messages.token_mismatch' ));
         }
-        return view('frontend.homepage');
+        return view('Frontend.homepage');
     }
 
     public function forgot_password(Request $request){
@@ -144,16 +144,16 @@ class CommonController extends Controller
             //Session::flash('error', "This email does not exist. Please try again");
 			return response()->json(['status'=>'error','message'=> __('messages.email_not_exist' ) ]);
         }
-        //return view('frontend.homepage');
+        //return view('Frontend.homepage');
     }
 
     public function getResetPasswordForm($token){
         $check=User::where('forget_token','=',$token)->where('status','1')->first();
         if($check){
-            return view('frontend.forgotpassword', ['token' => $token,'user_email'=>$check->email]);
+            return view('Frontend.forgotpassword', ['token' => $token,'user_email'=>$check->email]);
         }else{
             Session::flash('error', "Token mismatch please try again");
-            return view('frontend.homepage');
+            return view('Frontend.homepage');
         }
     }
 

@@ -1,5 +1,5 @@
 @extends('layouts.frontadmin.app')
-@section('title', __('messages.add_kitchen') )
+@section('title', __('messages.add_listing') )
 @section('content')
 <style>
 </style>
@@ -7,7 +7,7 @@
 		<div id="titlebar">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>{{ __('messages.add_kitchen') }}</h2>
+					<h2>{{ __('messages.add_listing') }}</h2>
 				</div>
 			</div>
 		</div>
@@ -16,7 +16,10 @@
 			<div class="col-lg-12">
 
 				<div id="add-listing">
-					
+					<div class="listing-submit-wrap clearfix">
+						<a href="#" class="button col-md-5">View</a>
+						<button class="button col-md-5">Update</button>
+                    </div>
 					<div class="style-1">
 						<!-- Tabs Navigation -->
 							<ul class="tabs-nav">
@@ -36,7 +39,9 @@
 									</div>
 								</div>
 								<div class="tab-content" id="price-tab">
-									
+									<div class="add-listing-section margin-bottom-00"> 
+										@include('Frontadmin.listing.parts.price')
+									</div>
 								</div>
 								<div class="tab-content" id="services-tab">
 									

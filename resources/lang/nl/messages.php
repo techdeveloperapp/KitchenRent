@@ -79,7 +79,7 @@ return [
 	'current_pass_wrong'			=> 'Huidige wachtwoord is onjuist! Voer alstublieft het juiste wachtwoord in.',
 	'profile_settings'				=> 'Profielinstellingen',
 	'apply_for_vendor'				=> 'Vraag een leveranciersaccount aan',
-	'add_more'						=> 'Voeg meer toe',
+	
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',
@@ -95,8 +95,8 @@ return [
 	'next'                    		=> 'Volgende',
 	'pagination'                    => 'Viendo {{start}} - {{end}} de {{total}} registros',
 	
-	//listing-kitchen
-	'add_kitchen'					=> 'Nieuwe keuken toevoegen',
+	//listing
+	'add_listing'					=> 'lijst toevoegen',
 	'information'					=> 'Information',
 	'prices'						=> 'Prijzen',
 	'services'						=> 'Algemene Diensten',
@@ -104,14 +104,38 @@ return [
 	'features'						=> 'Kenmerken',
 	'location'						=> 'Locatie',
 	'terms_rules'					=> 'Algemene voorwaarden',
-	'kitchen_title'					=> 'Titel van de keuken',
+	'title'							=> 'Titel',
+	'enter_listing_title'			=> 'Voer de titel van de vermelding in',
 	'description'					=> 'Omschrijving',
-	'category'						=> 'Soort keuken',
-	'select_category'				=> 'Selecteer het soort keuken',
+	'listing_type'					=> 'Soort vermelding',
 	'keywords'						=> 'trefwoorden',
 	'choose_timings'				=> 'Kies timing',
 	'business_hours'				=> 'Kantooruren',
 	'timeslots'						=> 'Timeslots',
+	'add_more'						=> 'Voeg meer toe',
+	'save_draft'					=> 'Opslaan als concept',
+	'direct_booking'				=> 'Direct boeken',
+	'do_you_direct_booking_possible'=> 'Wilt u direct boeken mogelijk maken?',
+	'price_per_hour'				=> 'Prijs per uur',
+	'enter_price_per_hour'				=> 'Voer prijs in voor 1 uur',
+	'weekends'						=> 'Weekends',
+	'enter_weekend_price'			=> 'Voer per uur prijs in voor weekends',
+	'select_days_of_weekend'		=> 'Selecteer de dagen om weekendprijzen toe te passen',
+	'extra_costs'					=> 'Extra kosten',
+	'allow_extra_guests'			=> 'Toestaan van extra gasten',
+	'no'							=> 'Nee',
+	'yes'							=> 'Ja',
+	'extra_guest_price'				=> 'Extra gasten prijs',
+	'enter_extra_guest_price'		=> 'Voer de prijs in voor 1 extra gast',
+	'no_of_guests'					=> 'Aantal gasten',
+	'enter_no_of_guests'			=> 'Aantal extra gasten toegestaan',
+	'cleaning_fees'					=> 'Schoonmaakkosten',
+	'enter_cleaning_fees_price'		=> 'Voer een bedrag in voor schoonmaakkosten',
+	'cleaning_fee_type'				=> 'Type schoonmaakkosten',
+	'daily'							=> 'Dagelijks',
+	'per_stay'						=> 'Per verblijf',
+	'security_deposit'				=> 'Borgstelling',
+	'enter_security_deposit'		=> 'Voer het borgbedrag in',
 	
 	
 	

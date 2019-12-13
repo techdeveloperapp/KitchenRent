@@ -14,3 +14,23 @@ label.error {
 		margin-top: -50px !important;
 	}
 }	
+.button-defualt {
+    background-color: #c0c0c0 !important;
+    border-color: #c0c0c0 !important;
+}
+.listing-submit-wrap a {
+    width: calc(100% / 2);
+    text-align: center;
+    color: #fff;
+    background-color: #949ca5;
+    border-color: #949ca5;
+    border-right: 1px solid #fff;
+}
+@media (max-width: 768px)  {
+	.listing-submit-wrap a,.listing-submit-wrap button{
+		width:100% !important;
+	}
+}
+.dashboard #logo{
+	background-color: #ffffff;
+}

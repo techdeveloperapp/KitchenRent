@@ -34,8 +34,8 @@ if(!function_exists('gig_time_format')) {
 </div>
 <div class="row with-forms">
 	<div class="col-md-12">
-		<h5>{{ __('messages.kitchen_title') }} </h5>
-		<input class="" type="text" name="title" value="" />
+		<h5>{{ __('messages.title') }} </h5>
+		<input class="" type="text" name="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="" />
 	</div>
 </div>
 <div class="row with-forms">
@@ -46,12 +46,12 @@ if(!function_exists('gig_time_format')) {
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
-		<h5>{{ __('messages.category') }}</h5>
-		<select class="chosen-select-no-single" name="category">
-			<option label="blank">{{ __('messages.select_category') }}</option>	
-			<option>Productiekeuken</option>
-			<option>Professionele Keuken</option>
-			<option>Restaurant</option>
+		<h5>{{ __('messages.listing_type') }}</h5>
+		<select class="chosen-select-no-single" name="listing_type">
+			<option value="-1">None</option>	
+			<option value="1">Cofee Shop</option>
+			<option value="2">Hotel</option>
+			<option value="3">Restaurant</option>
 		</select>
 	</div>
 	<div class="col-md-6">
@@ -294,9 +294,9 @@ if(!function_exists('gig_time_format')) {
 	<!-- Switcher ON-OFF Content / End -->
 
 </div>
-<button type="button"  class="button preview">{{ __('messages.save_draft') }} <i class="fa fa-arrow-circle-right"></i></button>
+<button  type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
 
-<button type="submit" class="button preview pull-right">{{ __('messages.save') }} <i class="fa fa-arrow-circle-right"></i></button>
+<button type="submit" class="button pull-right">{{ __('messages.save') }} <i class="fa fa-save"></i></button>
 <!-- Section / End -->
 
 <script>
