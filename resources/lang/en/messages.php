@@ -79,6 +79,7 @@ return [
 	'current_pass_wrong'			=> 'Current Password is Incorrect! Please enter correct password.',
 	'profile_settings'				=> 'Profile Settings',
 	'apply_for_vendor'				=> 'Apply for vendor account',
+	'add_more'						=> 'Add More',
 	//file upload
 	'file_too_big'					=> 'File is too big ({{filesize}}). Max filesize: {{maxFilesize}}MiB',
 	'invalid_file'					=> 'You can\'t upload files of this type.',

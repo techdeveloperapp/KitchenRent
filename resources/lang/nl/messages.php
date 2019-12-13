@@ -79,6 +79,7 @@ return [
 	'current_pass_wrong'			=> 'Huidige wachtwoord is onjuist! Voer alstublieft het juiste wachtwoord in.',
 	'profile_settings'				=> 'Profielinstellingen',
 	'apply_for_vendor'				=> 'Vraag een leveranciersaccount aan',
+	'add_more'						=> 'Voeg meer toe',
 	
 	//file upload
 	'file_too_big'				=> 'Bestand is te groot ({{filesize}}). Maximale bestandsgrootte: {{maxFilesize}}MiB',

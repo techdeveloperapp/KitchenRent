@@ -31,7 +31,7 @@
 							<!-- Tabs Content -->
 							<div class="tabs-container">
 								<div class="tab-content " id="information-tab">
-								   <div class="add-listing-section"> 
+								   <div class="add-listing-section margin-bottom-80"> 
 										@include('Frontadmin.listing.parts.information')
 									</div>
 								</div>
@@ -56,9 +56,7 @@
 
 							</div>
 					</div>
-					
-
-					<a href="#" class="button preview">{{ __('messages.save') }} <i class="fa fa-arrow-circle-right"></i></a>
+			
 
 				</div>
 			</div>
