@@ -57,6 +57,15 @@ Route::group(['prefix'=>'admin/customer/','as'=>'admin.customer.','middleware' =
 });
 /************************************Customer END*****************************************/
 
+/************************************ADMIN Listing START*****************************************/
+Route::group(['prefix'=>'admin/listing/','as'=>'admin.listing.','middleware' => ['auth']], function () {
+	Route::get('type', 'Admin\AdminListingController@listing_type')->name('allListingType');
+	Route::get('getAllTypes', 'Admin\AdminListingController@getAllTypes')->name('allTypes');
+	Route::post('add_type', 'Admin\AdminListingController@add_listing_type')->name('saveListingType');
+	Route::post('deleteListingTypeById/{id}', 'Admin\AdminListingController@deleteListingTypeById')->name('deleteListingTypeById');
+});
+/************************************ADMIN Listing END*****************************************/
+
 
 /************************************FrontAdmin Start*****************************************/
 Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']], function () {

@@ -136,6 +136,9 @@ return [
 	'per_stay'						=> 'Per verblijf',
 	'security_deposit'				=> 'Borgstelling',
 	'enter_security_deposit'		=> 'Voer het borgbedrag in',
+	'listing'						=> 'vermelding',
+	'add_listing_type'				=> 'Type vermelding toevoegen',
+	'name'							=> 'naam',
 	
 	
 	

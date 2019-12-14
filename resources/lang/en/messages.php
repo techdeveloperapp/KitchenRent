@@ -104,7 +104,7 @@ return [
 	'title'							=> 'Title',
 	'enter_listing_title'			=> 'Enter the Listing title',
 	'description'					=> 'Description',
-	'listing_type'					=> 'Type of Listing',
+	'listing_type'					=> 'Listing Type',
 	'keywords'						=> 'Keywords',
 	'choose_timings'				=> 'Choose Timings',
 	'business_hours'				=> 'Business hours',
@@ -133,6 +133,9 @@ return [
 	'per_stay'						=> 'Per Stay',
 	'security_deposit'				=> 'Security deposit',
 	'enter_security_deposit'		=> 'Enter the deposit amount',
+	'listing'						=> 'Listing',
+	'add_listing_type'				=> 'Add Listing type',
+	'name'							=> 'Name',
 	
 	
 	
