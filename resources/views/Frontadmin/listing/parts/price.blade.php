@@ -6,14 +6,14 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.direct_booking') }} </h5>
 		<div class="checkboxes">
-			<input id="check-a" type="checkbox" name="direct_booking" value="yes">
+			<input id="check-a" type="checkbox" name="instant_booking" value="{{(isset($instant_booking) ? $instant_booking : '')}}">
 			<label for="check-a">{{ __('messages.do_you_direct_booking_possible') }}</label>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<h5>{{ __('messages.price_per_hour') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" name="price_per_hour" value="" data-unit="EUR" />
+		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" name="price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
 		</div>
 	</div>
 </div>
@@ -21,15 +21,15 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.weekends') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_weekend_price') }} " type="text" name="weekends_price" value="" data-unit="EUR" />
+		<input class="" placeholder="{{ __('messages.enter_weekend_price') }} " type="text" name="meta[weekends_price]" value="{{(isset($weekends_price) ? $weekends_price : '')}}" data-unit="EUR" />
 		</div>
 	</div>
 	<div class="col-md-6">
 		<h5>{{ __('messages.select_days_of_weekend') }} </h5>
-		 <select class="chosen-select" name="weekends_days" data-placeholder="{{ __('messages.select_days_of_weekend') }}">
-			<option selected="selected" value="sat_sun">Saturday and Sunday</option>
-			<option value="fri_sat">Friday and Saturday</option>
-			<option value="fri_sat_sun">Friday, Saturday and Sunday</option>
+		 <select class="chosen-select" name="meta[weekends_days]" data-placeholder="{{ __('messages.select_days_of_weekend') }}">
+			<option selected="selected" value="sat_sun" "{{(isset($weekends_days) ? ($weekends_days == 'sat_sun' ? 'selected' : '') : '')}}">Saturday and Sunday</option>
+			<option value="fri_sat" "{{(isset($weekends_days) ? ($weekends_days == 'fri_sat' ? 'selected' : '') : '')}}">Friday and Saturday</option>
+			<option value="fri_sat_sun" "{{(isset($weekends_days) ? ($weekends_days == 'fri_sat_sun' ? 'selected' : '') : '')}}">Friday, Saturday and Sunday</option>
 		 </select>
 	</div>
 </div>
@@ -45,21 +45,21 @@
 		<div class="col-md-4">
 			<h5>{{ __('messages.allow_extra_guests') }} </h5>
 			<div class="payment-tab-trigger">
-				<input id="yes_guest" name="allow_additional_guests" type="radio" value="yes">
+				<input id="yes_guest" name="meta[allow_additional_guests]" type="radio" value="yes" "{{(isset($allow_additional_guests) ? ($allow_additional_guests == 'yes' ? 'selected' : '') : '')}}">
 				<label for="yes_guest">{{ __('messages.yes') }}</label>
 			</div>
 			 <div class="payment-tab-trigger">
-				<input checked="" id="no_guest" name="allow_additional_guests" type="radio" value="no">
+				<input checked="" id="no_guest" name="allow_additional_guests" type="radio" value="no" "{{(isset($allow_additional_guests) ? ($allow_additional_guests == 'no' ? 'selected' : '') : '')}}">
 				<label for="no_guest">{{ __('messages.no') }} </label>
 			</div>
 		</div>
 		<div class="col-md-4">
 			<h5>{{ __('messages.extra_guest_price') }} </h5>
-			 <input class="" placeholder="{{ __('messages.enter_extra_guest_price') }} " type="text" name="additional_guests_price" value="" data-unit="EUR" />
+			 <input class="" placeholder="{{ __('messages.enter_extra_guest_price') }} " type="text" name="meta[additional_guests_price]" value="{{(isset($additional_guests_price) ? $additional_guests_price : '')}}" data-unit="EUR" />
 		</div>
 		<div class="col-md-4">
 			<h5>{{ __('messages.no_of_guests') }} </h5>
-			 <input class="" placeholder="{{ __('messages.enter_no_of_guests') }} " type="text" name="num_additional_guests" value="" />
+			 <input class="" placeholder="{{ __('messages.enter_no_of_guests') }} " type="text" name="meta[num_additional_guests]" value="{{(isset($num_additional_guests) ? $num_additional_guests : '')}}" />
 		</div>
 	</div>
 	
@@ -67,17 +67,17 @@
 		<div class="col-md-7">
 			<h5>{{ __('messages.cleaning_fees') }} </h5>
 			<div class="fm-input pricing-price">
-				<input class="" placeholder="{{ __('messages.enter_cleaning_fees_price') }} " type="text" name="cleaning_fee" value="" data-unit="EUR" />
+				<input class="" placeholder="{{ __('messages.enter_cleaning_fees_price') }} " type="text" name="meta[cleaning_fee]" value="{{(isset($cleaning_fee) ? $cleaning_fee : '')}}" data-unit="EUR" />
 			</div>
 		</div>
 		<div class="col-md-5">
 			<h5>{{ __('messages.cleaning_fee_type') }}</h5>
 			 <div class="payment-tab-trigger">
-				<input id="daily" name="cleaning_fee_type" type="radio" value="daily">
+				<input id="daily" name="meta[cleaning_fee_type]" type="radio" value="daily" "{{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'daily' ? 'selected' : '') : '')}}">
 				<label for="daily">{{ __('messages.daily') }}</label>
 			</div>
 			 <div class="payment-tab-trigger">
-				<input checked="" id="per_stay" name="cleaning_fee_type" type="radio" value="per_stay">
+				<input checked="" id="per_stay" name="meta[cleaning_fee_type]" type="radio" value="per_stay" "{{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'per_stay' ? 'selected' : '') : '')}}">
 				<label for="per_stay">{{ __('messages.per_stay') }} </label>
 			</div>
 		</div>
@@ -87,7 +87,7 @@
 		<div class="col-md-6">
 			<h5>{{ __('messages.security_deposit') }} </h5>
 			<div class="fm-input pricing-price">
-			 <input class="" placeholder="{{ __('messages.enter_security_deposit') }} " type="text" name="security_deposit" value="" />
+			 <input class="" placeholder="{{ __('messages.enter_security_deposit') }} " type="text" name="meta[security_deposit]" value="{{(isset($security_deposit) ? $security_deposit : '')}}" />
 			</div>
 		</div>
 	</div>

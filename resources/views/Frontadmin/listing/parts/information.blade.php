@@ -35,28 +35,29 @@ if(!function_exists('gig_time_format')) {
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.title') }} </h5>
-		<input class="" type="text" name="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="" />
+		<input class="" type="text" name="title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" />
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.description') }} </h5>
-		<div id="description"></div>
+		<!-- <div id="description"></div> -->
+		<textarea id="description">{{isset($description) ? $description : ''}}</textarea>
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5>{{ __('messages.listing_type') }}</h5>
 		<select class="chosen-select-no-single" name="listing_type">
-			<option value="-1">None</option>	
-			<option value="1">Cofee Shop</option>
-			<option value="2">Hotel</option>
-			<option value="3">Restaurant</option>
+			<option value="-1" "{{(isset($listing_type) ? ($listing_type == '-1' ? 'selected' : '') : '')}}">None</option>	
+			<option value="1" "{{(isset($listing_type) ? ($listing_type == '1' ? 'selected' : '') : '')}}">Cofee Shop</option>
+			<option value="2" "{{(isset($listing_type) ? ($listing_type == '2' ? 'selected' : '') : '')}}">Hotel</option>
+			<option value="3" "{{(isset($listing_type) ? ($listing_type == '3' ? 'selected' : '') : '')}}">Restaurant</option>
 		</select>
 	</div>
 	<div class="col-md-6">
 		<h5>{{ __('messages.keywords') }} <i class="tip" data-tip-content="Maximum of 15 keywords related with your business"></i></h5>
-		<input type="text" name="keywords" placeholder="Keywords should be separated by commas">
+		<input type="text" name="meta[keywords]" placeholder="Keywords should be separated by commas" value="{{(isset($keywords) ? $keywords : '')}}">
 	</div>
 </div>
 
