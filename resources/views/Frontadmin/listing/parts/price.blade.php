@@ -13,7 +13,7 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.price_per_hour') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" name="price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
+		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
 		</div>
 	</div>
 </div>
@@ -92,4 +92,7 @@
 		</div>
 	</div>
 	
+	<button onclick="save_draft();" type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
+	<button type="button" onclick="Next_Tab(3);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
+	<button type="button" onclick="Previous_Tab(1);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>
 </div>	

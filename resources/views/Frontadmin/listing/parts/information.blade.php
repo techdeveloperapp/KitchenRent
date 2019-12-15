@@ -35,7 +35,7 @@ if(!function_exists('gig_time_format')) {
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.title') }} </h5>
-		<input class="" type="text" name="title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" />
+		<input class="" type="text" name="title" id="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" />
 	</div>
 </div>
 <div class="row with-forms">
@@ -295,9 +295,9 @@ if(!function_exists('gig_time_format')) {
 	<!-- Switcher ON-OFF Content / End -->
 
 </div>
-<button  type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
+<button type="button" onclick="save_draft();" class="button button-defualt">{{ __('messages.save_draft') }}</button>
 
-<button type="submit" class="button pull-right">{{ __('messages.save') }} <i class="fa fa-save"></i></button>
+<button type="button" onclick="Next_Tab(2);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
 <!-- Section / End -->
 
 <script>
