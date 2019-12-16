@@ -3,13 +3,14 @@
 @section('content')
 <style>
 .error {
-  color: red;
+  color: #c31b1b;
   margin-left: 5px;
 }
-.error_element {
-	border-color: red;
+input.error_element {
+    margin-bottom: 0 !important;
+    border-color: #c31b1b;
+    background-color: #f6c8c8;
 }
-
 label.error {
   display: inline;
 }
@@ -27,10 +28,13 @@ label.error {
 			<div class="col-lg-12">
 
 				<div id="add-listing">
-					<div class="listing-submit-wrap clearfix">
+					<!-- This button will show on edit mode only -->
+					<div class="listing-submit-wrap clearfix" style="display:none">
 						<a href="#" class="button col-md-5">View</a>
 						<button class="button col-md-5">Update</button>
                     </div>
+					
+					<!--form -->
                     <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
                     	@csrf
                     	<input type="hidden" value="" name="save_as_draft" id="input_save_as_draft">
@@ -39,10 +43,10 @@ label.error {
 								<ul class="tabs-nav" id="listing_tabs" style="display:none">
 									<li class="active"><a href="#information-tab">{{ __('messages.information') }}</a></li>
 									<li><a href="#price-tab">{{ __('messages.prices') }}</a></li>
-									<li><a href="#services-tab">{{ __('messages.services') }}</a></li>
 									<li><a href="#pictures-tab">{{ __('messages.pictures') }}</a></li>
 									<li><a href="#features-tab">{{ __('messages.features') }}</a></li>
 									<li><a href="#location-tab">{{ __('messages.location') }}</a></li>
+									<li><a href="#services-tab">{{ __('messages.services') }}</a></li>
 									<li><a href="#rules-tab">{{ __('messages.terms_rules') }}</a></li>
 								</ul>
 								<!-- Tabs Content -->
@@ -53,24 +57,36 @@ label.error {
 										</div>
 									</div>
 									<div class="tab-content" id="price-tab">
-										<div class="add-listing-section margin-bottom-00"> 
+										<div class="add-listing-section margin-bottom-20"> 
 											@include('Frontadmin.listing.parts.price')
 										</div>
 									</div>
-									<div class="tab-content" id="services-tab">
-										
-									</div>
+									
 									<div class="tab-content" id="pictures-tab">
-										
+										<div class="add-listing-section margin-bottom-20"> 
+											@include('Frontadmin.listing.parts.pictures')
+										</div>
 									</div>
 									<div class="tab-content" id="features-tab">
-										
+										<div class="add-listing-section margin-bottom-30"> 
+											@include('Frontadmin.listing.parts.features')
+										</div>
 									</div>
 									<div class="tab-content" id="location-tab">
-										
+										<div class="add-listing-section margin-bottom-30"> 
+											@include('Frontadmin.listing.parts.location')
+										</div>
 									</div>
+									<div class="tab-content" id="services-tab">
+										<div class="add-listing-section margin-bottom-30"> 
+											@include('Frontadmin.listing.parts.services')
+										</div>
+									</div>
+									
 									<div class="tab-content" id="rules-tab">
-										
+										<div class="add-listing-section margin-bottom-30"> 
+											@include('Frontadmin.listing.parts.rules')
+										</div>
 									</div>
 								</div>
 						</div>
@@ -81,7 +97,7 @@ label.error {
 		</div>
 	
 <script>
-var tabs = {'1':'Information','2':'Prices','3':'General Service','4':'Picture','5':'Feature','6':'Location','7':'Terma & Rules'};
+var tabs = {'1':'Information','2':'Prices','3':'Picture','4':'Feature','5':'Location','6':'General Service','7':'Terma & Rules'};
 
 function Next_Tab(tabId=1){
 	$('.error').remove();
@@ -106,7 +122,7 @@ function Previous_Tab(tabId=1){
 }
 
 function TabOneValidation(){
-	var listing_title = $('#listing_title').val();
+	var listing_title = $.trim($('#listing_title').val());
 	if (listing_title.length < 1) {
       $('#listing_title').after('<span class="error">This field is required</span>');
       $('#listing_title').focus();

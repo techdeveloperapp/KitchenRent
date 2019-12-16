@@ -18,7 +18,7 @@ class CreateListingsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('listing_type')->comment('category')->nullable();
-            $table->string('place_type')->nullable();
+            $table->string('room_type')->nullable();
             $table->string('instant_booking')->nullable();
             $table->string('price')->nullable();
             $table->string('amenities')->nullable();

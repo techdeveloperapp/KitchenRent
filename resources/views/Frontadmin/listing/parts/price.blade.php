@@ -13,7 +13,7 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.price_per_hour') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
+		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="number" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
 		</div>
 	</div>
 </div>

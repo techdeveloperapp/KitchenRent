@@ -99,6 +99,7 @@ return [
 	'add_listing'					=> 'lijst toevoegen',
 	'information'					=> 'Information',
 	'prices'						=> 'Prijzen',
+	'price'							=> 'prijs',
 	'services'						=> 'Algemene Diensten',
 	'pictures'						=> 'Afbeeldingen',
 	'features'						=> 'Kenmerken',
@@ -139,6 +140,8 @@ return [
 	'listing'						=> 'vermelding',
 	'add_listing_type'				=> 'Type vermelding toevoegen',
 	'name'							=> 'naam',
+	'amenities'						=> 'voorzieningen',
+	'facilities'					=> 'uitrusting',
 	
 	
 	

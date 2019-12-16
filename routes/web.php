@@ -85,6 +85,8 @@ Auth::routes();
 Route::group(['prefix'=>'dropzone/upload/','as'=>'dropzone.upload.','middleware' => ['auth']], function () {
 	Route::post('uploadProfilePic', 'Admin\VendorController@uploadProfilePic')->name('uploadProfilePic');
 	Route::post('deleteProfilePic', 'Admin\VendorController@deleteProfilePic')->name('deleteProfilePic');
+	
+	Route::post('uploadListingImage', 'ListingController@uploadListingImage')->name('uploadListingImage');
 });
 /************************************EndDropzone*******************/
 

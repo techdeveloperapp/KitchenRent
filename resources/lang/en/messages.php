@@ -96,6 +96,7 @@ return [
 	'add_listing'					=> 'Add Listing',
 	'information'					=> 'Information',
 	'prices'						=> 'Prices',
+	'price'							=> 'Price',
 	'services'						=> 'General Services',
 	'pictures'						=> 'Pictures',
 	'features'						=> 'Features',
@@ -136,6 +137,9 @@ return [
 	'listing'						=> 'Listing',
 	'add_listing_type'				=> 'Add Listing type',
 	'name'							=> 'Name',
+	'room_type'						=> 'What kind of place do you want to list?',
+	'amenities'						=> 'Amenities',
+	'facilities'					=> 'Facilities',
 	
 	
 	
