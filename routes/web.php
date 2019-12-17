@@ -63,6 +63,15 @@ Route::group(['prefix'=>'admin/listing/','as'=>'admin.listing.','middleware' => 
 	Route::get('getAllTypes', 'Admin\AdminListingController@getAllTypes')->name('allTypes');
 	Route::post('add_type', 'Admin\AdminListingController@add_listing_type')->name('saveListingType');
 	Route::post('deleteListingTypeById/{id}', 'Admin\AdminListingController@deleteListingTypeById')->name('deleteListingTypeById');
+	
+	Route::get('room_type', 'Admin\AdminListingController@room_type')->name('allRoomListingType');
+	Route::get('getAllRoomTypes', 'Admin\AdminListingController@getAllRoomTypes')->name('allRoomTypes');
+	
+	Route::get('amenities', 'Admin\AdminListingController@amenities')->name('allAmenities');
+	Route::get('getAllAmenities', 'Admin\AdminListingController@getAllAmenities')->name('getAllAmenities');
+	
+	Route::get('facilities', 'Admin\AdminListingController@facilities')->name('allFacilities');
+	Route::get('getAllFacilities', 'Admin\AdminListingController@getAllFacilities')->name('getAllFacilities');
 });
 /************************************ADMIN Listing END*****************************************/
 

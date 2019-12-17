@@ -138,6 +138,7 @@ return [
 	'add_listing_type'				=> 'Add Listing type',
 	'name'							=> 'Name',
 	'room_type'						=> 'What kind of place do you want to list?',
+	'room_type_listing'				=> 'Room Type',
 	'amenities'						=> 'Amenities',
 	'facilities'					=> 'Facilities',
 	

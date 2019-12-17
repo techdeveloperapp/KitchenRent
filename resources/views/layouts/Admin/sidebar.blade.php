@@ -127,7 +127,7 @@
 				</div>
 			</li>
 			
-			@if(\Route::currentRouteName() === "admin.listing.allListingType")
+			@if(\Route::currentRouteName() === "admin.listing.allListingType" || \Route::currentRouteName() === "admin.listing.allRoomListingType" || \Route::currentRouteName() === "admin.listing.amenities" ||  \Route::currentRouteName() === "admin.listing.facilities")
 				<li class="m-menu__item  m-menu__item--submenu m-menu__item--active" aria-haspopup="true" m-menu-submenu-toggle="hover">
 			@else
 				<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
@@ -156,6 +156,36 @@
 								</i>
 								<span class="m-menu__link-text">
 									{{ __('messages.listing_type') }}
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<a href="{{url('admin/listing/room_type')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									{{ __('messages.room_type_listing') }}
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<a href="{{url('admin/listing/amenities')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									{{ __('messages.amenities') }}
+								</span>
+							</a>
+						</li>
+						<li class="m-menu__item " aria-haspopup="true"  m-menu-link-redirect="1">
+							<a href="{{url('admin/listing/facilities')}}" class="m-menu__link ">
+								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+									<span></span>
+								</i>
+								<span class="m-menu__link-text">
+									{{ __('messages.facilities') }}
 								</span>
 							</a>
 						</li>

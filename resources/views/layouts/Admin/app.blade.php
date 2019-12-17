@@ -27,7 +27,7 @@
 		<link href="{{url('assets/demo/demo6/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
 		<link href="{{url('assets/custom.css')}}" rel="stylesheet" type="text/css" />
-		<link rel="shortcut icon" href="{{url('assets/demo/demo6/media/img/logo/favicon.ico')}}" />
+		<link rel="shortcut icon" href="{{url('frontend/images/icon.png')}}" />
 		
 		<script src="{{url('assets/jquery-3.4.1.slim.min.js')}}" type="text/javascript"></script>
 	</head>

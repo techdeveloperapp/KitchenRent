@@ -24,7 +24,7 @@
         <link href="{{url('loginassets/vendors/base/vendors.bundle.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{url('loginassets/demo/default/base/style.bundle.css')}}" rel="stylesheet" type="text/css" />
         <!--end::Base Styles -->
-        <link rel="shortcut icon" href="{{url('loginassets/demo/default/media/img/logo/favicon.ico')}}" />
+        <link rel="shortcut icon" href="{{url('frontend/images/icon.png')}}" />
 		<link href="{{url('loginassets/login.css')}}" rel="stylesheet" type="text/css" />
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -38,8 +38,8 @@
                 <div class="m-grid__item m-grid__item--fluid m-login__wrapper">
                     <div class="m-login__container">
                         <div class="m-login__logo">
-                            <a href="#">
-                                <img src="{{url('loginassets/app/media/img//logos/logo-1.png')}}">
+                            <a href="{{url('/admin')}}">
+                                <img src="{{url('frontend/')}}/images/logo.png">
                             </a>
                         </div>
                         <div class="m-login__signin">

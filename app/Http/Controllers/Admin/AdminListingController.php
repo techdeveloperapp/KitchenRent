@@ -45,6 +45,7 @@ class AdminListingController extends Controller
         {
 			$ListingType->name = $request->input('name');
 			$ListingType->status = $request->input('status');
+			$ListingType->type = $request->input('type_listing');
 			$ListingType->added_by = Auth::id();
 			if($ListingType->save()){
 				if($request->input('id')){
@@ -66,6 +67,121 @@ class AdminListingController extends Controller
             $query = $request->input('query');
             $search = isset($query['global_search'])?$query['global_search']:"";
             $ListingType = new ListingType();
+			$ListingType =  $ListingType->where(array('type' => 'listing' ));
+            if($page=='1')
+            {
+            $offset = 0;
+            }
+            else{
+            $offset = ($page-1)*$perpage;
+            }
+
+            if($search!=='')
+            {
+                $ListingType->where(function ($query) use($search) {
+                    $query->orWhere('listing_types.name','like','%'.$search.'%');
+                });
+            }
+
+            $total = $ListingType->count();
+            $ListingType = $ListingType->offset($offset)->limit($perpage)->get();
+            $meta = ['perpage'=>$perpage,'total'=>$total,'page'=>$page];
+            //$totalRe = $page-1*$perpage;
+            
+            return Response::json(array('data'=> $ListingType,'meta'=> $meta));
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+        return (json_encode(array('status'=>'error','message'=>$ex->getMessage()))) ;
+        }
+    }
+	public function getAllRoomTypes(Request $request)
+    {
+        try
+        {
+            $perpage = $request->pagination['perpage'];
+            $page = $request->pagination['page']; 
+
+            $query = $request->input('query');
+            $search = isset($query['global_search'])?$query['global_search']:"";
+            $ListingType = new ListingType();
+			$ListingType =  $ListingType->where(array('type' => 'room' ));
+            if($page=='1')
+            {
+            $offset = 0;
+            }
+            else{
+            $offset = ($page-1)*$perpage;
+            }
+
+            if($search!=='')
+            {
+                $ListingType->where(function ($query) use($search) {
+                    $query->orWhere('listing_types.name','like','%'.$search.'%');
+                });
+            }
+
+            $total = $ListingType->count();
+            $ListingType = $ListingType->offset($offset)->limit($perpage)->get();
+            $meta = ['perpage'=>$perpage,'total'=>$total,'page'=>$page];
+            //$totalRe = $page-1*$perpage;
+            
+            return Response::json(array('data'=> $ListingType,'meta'=> $meta));
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+        return (json_encode(array('status'=>'error','message'=>$ex->getMessage()))) ;
+        }
+    }
+	public function getAllAmenities(Request $request)
+    {
+        try
+        {
+            $perpage = $request->pagination['perpage'];
+            $page = $request->pagination['page']; 
+
+            $query = $request->input('query');
+            $search = isset($query['global_search'])?$query['global_search']:"";
+            $ListingType = new ListingType();
+			$ListingType =  $ListingType->where(array('type' => 'amenities' ));
+            if($page=='1')
+            {
+            $offset = 0;
+            }
+            else{
+            $offset = ($page-1)*$perpage;
+            }
+
+            if($search!=='')
+            {
+                $ListingType->where(function ($query) use($search) {
+                    $query->orWhere('listing_types.name','like','%'.$search.'%');
+                });
+            }
+
+            $total = $ListingType->count();
+            $ListingType = $ListingType->offset($offset)->limit($perpage)->get();
+            $meta = ['perpage'=>$perpage,'total'=>$total,'page'=>$page];
+            //$totalRe = $page-1*$perpage;
+            
+            return Response::json(array('data'=> $ListingType,'meta'=> $meta));
+        }
+        catch(\Illuminate\Database\QueryException $ex)
+        {
+        return (json_encode(array('status'=>'error','message'=>$ex->getMessage()))) ;
+        }
+    }
+	public function getAllFacilities(Request $request)
+    {
+        try
+        {
+            $perpage = $request->pagination['perpage'];
+            $page = $request->pagination['page']; 
+
+            $query = $request->input('query');
+            $search = isset($query['global_search'])?$query['global_search']:"";
+            $ListingType = new ListingType();
+			$ListingType =  $ListingType->where(array('type' => 'facilities' ));
             if($page=='1')
             {
             $offset = 0;
@@ -98,5 +214,14 @@ class AdminListingController extends Controller
         $ListingType = $ListingType->deleteType($id);
         return Response::json(array('status'=>'success','message'=>__('messages.record_deleted')));
 	}
+	public function room_type(){
+    	return view('Admin.Listing.room_type');
+    }
+	public function amenities(){
+    	return view('Admin.Listing.amenities');
+    }
+	public function facilities(){
+    	return view('Admin.Listing.facilities');
+    }
 	
 }

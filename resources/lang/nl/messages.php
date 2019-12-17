@@ -140,6 +140,8 @@ return [
 	'listing'						=> 'vermelding',
 	'add_listing_type'				=> 'Type vermelding toevoegen',
 	'name'							=> 'naam',
+	'room_type'						=> 'Wat voor soort plaats wilt u vermelden?',
+	'room_type_listing'				=> 'Kamertype',
 	'amenities'						=> 'voorzieningen',
 	'facilities'					=> 'uitrusting',
 	

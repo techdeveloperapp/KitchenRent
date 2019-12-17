@@ -6,3 +6,6 @@ span.invalid-feedback {
 span.invalid-feedback strong {
     font-weight: 400;
 }
+.m-login__logo img{
+	max-width: 200px;
+}

@@ -1,13 +1,13 @@
 @extends('layouts.admin.app')
 @section('content')
-@section('title', __('messages.listing_type') )
+@section('title', __('messages.room_type_listing') )
 <div class="m-content">
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__head">
 			<div class="m-portlet__head-caption">
 				<div class="m-portlet__head-title">
 					<h3 class="m-portlet__head-text">
-						{{ __('messages.listing_type') }}
+						{{ __('messages.room_type_listing') }}
 					</h3>
 				</div>
 			</div>
@@ -74,8 +74,7 @@
 						</label>
 				
 						<input class="form-control m-input" id="type_name" type="text" name="name" placeholder="{{ __('messages.name') }}" value="">
-						
-						<input id="type_listing" type="hidden" name="type_listing" value="listing">
+						<input id="type_listing" type="hidden" name="type_listing" value="room">
 					</div>
 					<div class="col-lg-6 m-form__group-sub">
 						<label class="form-control-label">
@@ -112,7 +111,7 @@
 						type: "remote",
 						source: {
 							read: {
-								url: 'getAllTypes',
+								url: 'getAllRoomTypes',
 								method: 'GET',
 								headers: { 'x-my-custom-header': 'some value', 'x-test-header': 'the value'},
 								params: {
@@ -240,7 +239,7 @@
 					$.ajax({
 						method: 'POST',
 						url: "{{url('admin/listing/add_type')}}",
-						data: {'name':$('#type_name').val(),'status': $('#type_status').val(),'id':$("#type_id").val() ,'type_listing':$("#type_listing").val() },
+						data: {'name':$('#type_name').val(),'status': $('#type_status').val(),'id':$("#type_id").val(),'type_listing':$("#type_listing").val() },
 						headers: {
 						  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 						},
