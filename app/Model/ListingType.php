@@ -15,4 +15,16 @@ class ListingType extends Model
         ListingType::where('id',$id)->delete();
         return true;
     }
+
+    public static function getAmenitiesTypes($type)
+    {
+    	$type = ListingType::select('id','name')->where(['type'=>$type,'status'=>'1'])->get();
+        return $type;
+    }
+
+    public static function getFacilitiesTypes($type)
+    {
+    	$type = ListingType::select('id','name')->where(['type'=>$type,'status'=>'1'])->get();
+        return $type;
+    }
 }

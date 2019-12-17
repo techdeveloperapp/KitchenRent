@@ -96,6 +96,7 @@ Route::group(['prefix'=>'dropzone/upload/','as'=>'dropzone.upload.','middleware'
 	Route::post('deleteProfilePic', 'Admin\VendorController@deleteProfilePic')->name('deleteProfilePic');
 	
 	Route::post('uploadListingImage', 'ListingController@uploadListingImage')->name('uploadListingImage');
+	Route::post('deleteListingImage', 'ListingController@deleteListingImage')->name('deleteListingImage');
 });
 /************************************EndDropzone*******************/
 

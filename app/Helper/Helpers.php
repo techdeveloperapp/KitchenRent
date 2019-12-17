@@ -25,6 +25,24 @@ class Helpers {
 	    $data = ['file_name'=>$filename,'server_path'=>$folder_path.'/'.$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
 	    return $data;
     }
+
+    /*
+    * @created : Dec 17, 2019
+    * @access  : public
+    * @Purpose : This function is used to upload image and files of listing types
+    * @params  : file and path
+    * @return  : upload image and return file data.
+    */
+    public static function ListingfileUpload($request) {
+        $image = $request->file('image');
+        $folder_path = 'upload/media/listing';
+	    $path = url($folder_path);
+	    $filename = time() . '.' . $image->getClientOriginalExtension();
+	    $filesize=$image->getClientSize() / 1024;
+	    $image->move($folder_path, $filename);
+	    $data = ['file_name'=>$filename,'server_path'=>$folder_path.'/'.$filename,'mime_type'=>$image->getClientMimeType(),'file_path'=>$path.'/'.$filename,'file_size'=>$filesize,'added_by'=>Auth::id()];
+	    return $data;
+    }
 	/*
     * @created : Dec 11, 2019
     * @access  : public

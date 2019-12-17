@@ -8,18 +8,12 @@
 	
 	<h3 class=="margin-bottom-20">{{ __('messages.amenities') }}</h3>
 	<div class="checkboxes in-row margin-bottom-20">
+		@foreach ($amenities_type as $amenities_type)
 		<div class="col-md-4">
-			<input id="a1" value="1" type="checkbox" name="meta[amenities]">
-			<label for="a1">Air Condition</label>
+			<input id="a{{ $amenities_type->id }}" value="{{ $amenities_type->id }}" type="checkbox" name="meta[amenities]">
+			<label for="a{{ $amenities_type->id }}">{{ $amenities_type->name }}</label>
 		</div>
-		<div class="col-md-4">
-			<input id="a2" value="2" type="checkbox" name="meta[amenities]">
-			<label for="a2">Breakfast Menu</label>
-		</div>
-		<div class="col-md-4">
-			<input id="a3" value="3" type="checkbox" name="meta[amenities]">
-			<label for="a3">Coffee Beer</label>
-		</div>
+		@endforeach
 	</div>
 	
 </div>
@@ -28,18 +22,12 @@
 	
 	<h3 class=="margin-bottom-20">{{ __('messages.facilities') }}</h3>
 	<div class="checkboxes in-row margin-bottom-20">
+		@foreach ($facilities_type as $facilities_type)
 		<div class="col-md-4">
-			<input id="f1" value="1" type="checkbox" name="meta[facilities]">
-			<label for="f1">City Center</label>
+			<input id="f{{ $facilities_type->id }}" value="{{ $facilities_type->id }}" type="checkbox" name="meta[facilities]">
+			<label for="fa{{ $facilities_type->id }}">{{ $facilities_type->name }}</label>
 		</div>
-		<div class="col-md-4">
-			<input id="f2" value="2" type="checkbox" name="meta[facilities]">
-			<label for="f2">Free Parking</label>
-		</div>
-		<div class="col-md-4">
-			<input id="f3" value="3" type="checkbox" name="meta[facilities]">
-			<label for="f3">Natural Light</label>
-		</div>
+		@endforeach
 	</div>
 	
 </div>
