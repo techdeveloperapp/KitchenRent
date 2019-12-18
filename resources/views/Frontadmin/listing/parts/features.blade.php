@@ -8,10 +8,10 @@
 	
 	<h3 class=="margin-bottom-20">{{ __('messages.amenities') }}</h3>
 	<div class="checkboxes in-row margin-bottom-20">
-		@foreach ($amenities_type as $amenities_type)
+		@foreach ($amenities_type_arr as $amenities_type_list)
 		<div class="col-md-4">
-			<input id="a{{ $amenities_type->id }}" value="{{ $amenities_type->id }}" type="checkbox" name="meta[amenities]">
-			<label for="a{{ $amenities_type->id }}">{{ $amenities_type->name }}</label>
+			<input id="a{{ $amenities_type_list->id }}" value="{{ $amenities_type_list->id }}" type="checkbox" name="meta[amenities]" {{(isset($amenities) && $amenities == $amenities_type_list->id) ? 'checked':''}}>
+			<label for="a{{ $amenities_type_list->id }}">{{ $amenities_type_list->name }}</label>
 		</div>
 		@endforeach
 	</div>
@@ -22,10 +22,10 @@
 	
 	<h3 class=="margin-bottom-20">{{ __('messages.facilities') }}</h3>
 	<div class="checkboxes in-row margin-bottom-20">
-		@foreach ($facilities_type as $facilities_type)
+		@foreach ($facilities_type_arr as $facilities_type_list)
 		<div class="col-md-4">
-			<input id="f{{ $facilities_type->id }}" value="{{ $facilities_type->id }}" type="checkbox" name="meta[facilities]">
-			<label for="f{{ $facilities_type->id }}">{{ $facilities_type->name }}</label>
+			<input id="f{{ $facilities_type_list->id }}" value="{{ $facilities_type_list->id }}" type="checkbox" name="meta[facilities]" {{(isset($amenities) && $amenities == $amenities_type_list->id) ? 'checked':''}}>
+			<label for="f{{ $facilities_type_list->id }}">{{ $facilities_type_list->name }}</label>
 		</div>
 		@endforeach
 	</div>

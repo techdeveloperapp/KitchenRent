@@ -33,22 +33,23 @@ class ListingController extends Controller
     }
     public function add()
     {
-        $amenities_type = ListingType::getAllTypes('amenities');
-        $facilities_type = ListingType::getAllTypes('facilities');
-        $room_type = ListingType::getAllTypes('room');
-        $list_type = ListingType::getAllTypes('listing');
-        return view('Frontadmin.listing.add',compact('list_type','room_type','amenities_type','facilities_type'));
+        $amenities_type_arr = ListingType::getAllTypes('amenities');
+        $facilities_type_arr = ListingType::getAllTypes('facilities');
+        $room_type_arr = ListingType::getAllTypes('room');
+        $list_type_arr = ListingType::getAllTypes('listing');
+        return view('Frontadmin.listing.add',compact('list_type_arr','room_type_arr','amenities_type_arr','facilities_type_arr'));
     }
 
     public function addListing(Request $request)
     {
+        //dd($request->all());
         if($request->save_as_draft){
             // save as draft
             $listing = new Listing();
             if($request->input('id'))
             {
                 $listing_id = $request->input('id');
-                $listing = User::find($listing_id);
+                $listing = Listing::find($listing_id);
             }
             $listing->title = $request->input('title');
             $listing->description = $request->input('description');
@@ -63,6 +64,12 @@ class ListingController extends Controller
             if($listing->save()){
                 $listing_meta = new ListingMeta();
                 foreach($request->input('meta') as $key=>$value){
+                    if($key == "timeslot"){
+                        $value = json_encode($value);
+                    }
+                    if($key == "gig_accomodation"){
+                        $value = json_encode($value);
+                    }
                     $listing_meta->addUpdate($listing->id,$key,$value);
                 }
             }
@@ -129,5 +136,31 @@ class ListingController extends Controller
             }
             return response()->json(['message'=>'deleted successfully']); 
         }
+    }
+
+    public function editListing(Request $request,$id)
+    {
+        $listing = new Listing();
+        $listing = $listing->with('getMeta')->where('id',$id)->first()->toArray();
+        $amenities_type = ListingType::getAllTypes('amenities');
+        $facilities_type = ListingType::getAllTypes('facilities');
+        $room_type = ListingType::getAllTypes('room');
+        $list_type = ListingType::getAllTypes('listing');
+        foreach ($listing['get_meta'] as $key => $value) {
+            if($value['meta_name'] == "timeslot"){
+               // $value['meta_value'] = json_decode($value['meta_value']);
+            }
+            if($value['meta_name'] == "gig_accomodation"){
+                //$value['meta_value'] = json_decode($value['meta_value']);
+            }
+            $listing[$value['meta_name']] = $value['meta_value'];
+        }
+        unset($listing['get_meta']);
+        $listing['list_type_arr'] = $list_type;
+        $listing['room_type_arr'] = $room_type;
+        $listing['amenities_type_arr'] = $amenities_type;
+        $listing['facilities_type_arr'] = $facilities_type;
+        //dd($listing);
+        return view('Frontadmin.listing.add',$listing);
     }
 }	

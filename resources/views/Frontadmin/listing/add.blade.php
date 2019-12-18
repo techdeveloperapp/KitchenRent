@@ -58,6 +58,7 @@ if(!function_exists('gig_time_format')) {
                     <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
                     	@csrf
                     	<input type="hidden" value="" name="save_as_draft" id="input_save_as_draft">
+                    	<input type="hidden" value="{{isset($id) ? $id : ''}}" name="id" id="input_save_as_draft">
 						<div class="style-1">
 							<!-- Tabs Navigation -->
 								<ul class="tabs-nav" id="listing_tabs" style="display:none">
@@ -125,6 +126,18 @@ if(!function_exists('gig_time_format')) {
 <script>
 var tabs = {'1':'Information','2':'Prices','3':'Picture','4':'Feature','5':'Location','6':'Bedrooms','7':'General Service','8':'Terma & Rules'};
 
+$(document).ready(function(){
+	<?php 
+	if(isset($id)){
+		?>
+		var $repeater = $('#timeslot-repeater').repeater();
+    	$repeater.setList(<?php echo isset($timeslot) ? $timeslot : []; ?>);
+		<?php
+	}
+	?>
+    
+});
+
 function Next_Tab(tabId=1){
 	$('.error').remove();
 	$('.error_element').removeClass('error_element');
@@ -135,6 +148,11 @@ function Next_Tab(tabId=1){
 	}
 	if(tabId==3){
 		if(!TabTwoValidation()){
+			return false;
+		}
+	}
+	if(tabId==6){
+		if(!TabFiveValidation()){
 			return false;
 		}
 	}
@@ -166,6 +184,19 @@ function TabTwoValidation(){
       $('#listing_price').after('<span class="error">This field is required</span>');
       $('#listing_price').focus();
       $('#listing_price').addClass('error_element');
+    }
+    if($('.error').length){
+    	return false;
+    }
+    return true;
+}
+
+function TabFiveValidation(){
+    var location = $('#listing_address').val();
+	if (location.length < 1) {
+      $('#listing_address').after('<span class="error">This field is required</span>');
+      $('#listing_address').focus();
+      $('#listing_address').addClass('error_element');
     }
     if($('.error').length){
     	return false;

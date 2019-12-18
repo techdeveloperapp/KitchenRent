@@ -19,10 +19,10 @@
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.room_type') }} </h5>
-		@foreach ($room_type as $room_type)
+		@foreach ($room_type_arr as $room_type_list)
 		<div class="payment-tab-trigger">
-			<input id="room{{ $room_type->id }}" value="{{ $room_type->id }}" type="radio" name="place_type">
-			<label for="room{{ $room_type->id }}">{{ $room_type->name }}</label>
+			<input id="room{{ $room_type_list->id }}" {{(isset($room_type) && ($room_type_list->id == $room_type)) ? 'checked' : ''}} value="{{ $room_type_list->id }}" type="radio" name="place_type">
+			<label for="room{{ $room_type_list->id }}">{{ $room_type_list->name }}</label>
 		</div>
 		@endforeach
 	</div>
@@ -37,7 +37,7 @@
 	<div class="col-md-12">
 		<h5>{{ __('messages.description') }} </h5>
 		<!-- <div id="description"></div> -->
-		<textarea id="description">{{isset($description) ? $description : ''}}</textarea>
+		<textarea id="description" name="description">{{isset($description) ? $description : ''}}</textarea>
 	</div>
 </div>
 <div class="row with-forms">
@@ -45,34 +45,34 @@
 		<h5>{{ __('messages.listing_type') }}</h5>
 		<select class="chosen-select-no-single" name="listing_type">
 			<option value="-1" "{{(isset($listing_type) ? ($listing_type == '-1' ? 'selected' : '') : '')}}">None</option>	
-	        @foreach ($list_type as $list_type)
-			<option value="{{ $list_type->id }}" "{{(isset($listing_type) ? ($listing_type == '1' ? 'selected' : '') : '')}}">{{ $list_type->name }}</option>
+	        @foreach ($list_type_arr as $list_type_list)
+			<option value="{{ $list_type_list->id }}" "{{(isset($listing_type) ? ($listing_type == $list_type_list->id ? 'selected' : '') : '')}}">{{ $list_type_list->name }}</option>
 			@endforeach
 		</select>
 	</div>
 	<div class="col-md-6">
 		<h5>Number of individual tables </h5>
-		<input type="number" min="0" name="meta[listing_bedrooms]" placeholder="Enter number of bedrooms" value="">
+		<input type="number" min="0" name="meta[listing_bedrooms]" placeholder="Enter number of bedrooms" value="{{isset($listing_bedrooms) ? $listing_bedrooms : ''}}">
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5>Number of persons </h5>
-		<input type="number" min="0" name="meta[guests]" placeholder="Enter number of persons" value="">
+		<input type="number" min="0" name="meta[guests]" placeholder="Enter number of persons" value="{{isset($guests) ? $guests : ''}}">
 	</div>
 	<div class="col-md-6">
 		<h5>  Number of Room  </h5>
-		<input type="number" min="0" name="meta[listing_rooms]" placeholder="Enter number of rooms" value="">
+		<input type="number" min="0" name="meta[listing_rooms]" placeholder="Enter number of rooms" value="{{isset($listing_rooms) ? $listing_rooms : ''}}">
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5> Size </h5>
-		<input type="number" min="0" name="meta[listing_size]" placeholder="Enter the size" value="">
+		<input type="number" min="0" name="meta[listing_size]" placeholder="Enter the size" value="{{isset($listing_size) ? $listing_size : ''}}">
 	</div>
 	<div class="col-md-6">
 		<h5>  Unit of measure  </h5>
-		<input type="text" min="0" name="meta[listing_size_unit]" placeholder="Enter the unit of measure. Ex. SqFt" value="">
+		<input type="text" min="0" name="meta[listing_size_unit]" placeholder="Enter the unit of measure. Ex. SqFt" value="{{isset($listing_size_unit) ? $listing_size_unit : ''}}">
 	</div>
 </div>
 
@@ -84,7 +84,7 @@
 	<div class="add-listing-headline">
 		<h3><i class="sl sl-icon-layers"></i> {{ __('messages.timeslots')}}</h3>
 		<!-- Switcher -->
-		<label class="switch"><input value="1" name="meta[timeslot_enable]" type="checkbox" checked id="timeslot_switch"><span class="slider round"></span></label>
+		<label class="switch"><input value="1" name="meta[timeslot_enable]" type="checkbox" checked id="timeslot_switch" {{(isset($timeslot_enable) && $timeslot_enable == 1) ? 'checked' : ''}}><span class="slider round"></span></label>
 	</div>
 
 	<!-- Switcher ON-OFF Content -->
@@ -97,7 +97,7 @@
 								<i class="fa fa-plus"></i> Add TimeSlot
 							</button>
 						</div>
-						<div data-repeater-list="timeslot" id="timeslot-repeater" class="custom-extra-prices">
+						<div data-repeater-list="meta[timeslot]" id="timeslot-repeater" class="custom-extra-prices">
 
 						<div data-repeater-item class="more_extra_services_wrap clearfix">
 						  <div class="row with-forms">
@@ -169,7 +169,7 @@
 					<option label="Opening Time"></option>
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($mon_fri_open_time) && $mon_fri_open_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
@@ -179,13 +179,13 @@
 					<option label="Closing Time"></option>
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($mon_fri_close_time) && $mon_fri_close_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
 			</div>
 			<div class="col-md-4 checkboxes ">
-				<input id="mon_fri_closed" value="1" type="checkbox" name="meta[mon_fri_closed]">
+				<input id="mon_fri_closed" value="1" type="checkbox" name="meta[mon_fri_closed]" {{(isset($mon_fri_closed) && $mon_fri_closed == 1) ? 'checked' : ''}}>
 				<label for="mon_fri_closed">Closed</label>
 			</div>
 		</div>
@@ -200,7 +200,7 @@
 					<!-- Hours added via JS (this is only for demo purpose) -->
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sat_open_time) && $sat_open_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
@@ -211,13 +211,13 @@
 					<!-- Hours added via JS (this is only for demo purpose) -->
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sat_close_time) && $sat_close_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
 			</div>
 			<div class="col-md-4 checkboxes ">
-				<input id="sat_closed" value="1" type="checkbox" name="meta[sat_closed]">
+				<input id="sat_closed" value="1" type="checkbox" name="meta[sat_closed]" {{(isset($sat_closed) && $sat_closed == 1) ? 'checked' : ''}}>
 				<label for="sat_closed">Closed</label>
 			</div>
 		</div>
@@ -232,7 +232,7 @@
 					<!-- Hours added via JS (this is only for demo purpose) -->
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sun_open_time) && $sun_open_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
@@ -243,13 +243,13 @@
 					<!-- Hours added via JS (this is only for demo purpose) -->
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sat_close_time) && $sat_close_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>
 			</div>
 			<div class="col-md-4 checkboxes ">
-				<input id="sun_closed" value="1" type="checkbox" name="meta[sun_closed]">
+				<input id="sun_closed" value="1" type="checkbox" name="meta[sun_closed]" {{(isset($sun_closed) && $sun_closed == 1) ? 'checked' : ''}}>
 				<label for="sun_closed">Closed</label>
 			</div>
 		</div>

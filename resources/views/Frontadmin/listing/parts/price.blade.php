@@ -6,7 +6,7 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.direct_booking') }} </h5>
 		<div class="checkboxes">
-			<input id="check-a" type="checkbox" name="instant_booking" value="{{(isset($instant_booking) ? $instant_booking : '')}}">
+			<input id="check-a" type="checkbox" name="instant_booking" value="1" {{(isset($instant_booking) && $instant_booking == 1) ? 'checked' : ''}}>
 			<label for="check-a">{{ __('messages.do_you_direct_booking_possible') }}</label>
 		</div>
 	</div>
@@ -27,9 +27,9 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.select_days_of_weekend') }} </h5>
 		 <select class="chosen-select" name="meta[weekends_days]" data-placeholder="{{ __('messages.select_days_of_weekend') }}">
-			<option selected="selected" value="sat_sun" "{{(isset($weekends_days) ? ($weekends_days == 'sat_sun' ? 'selected' : '') : '')}}">Saturday and Sunday</option>
-			<option value="fri_sat" "{{(isset($weekends_days) ? ($weekends_days == 'fri_sat' ? 'selected' : '') : '')}}">Friday and Saturday</option>
-			<option value="fri_sat_sun" "{{(isset($weekends_days) ? ($weekends_days == 'fri_sat_sun' ? 'selected' : '') : '')}}">Friday, Saturday and Sunday</option>
+			<option selected="selected" value="sat_sun" {{(isset($weekends_days) ? ($weekends_days == 'sat_sun' ? 'selected' : '') : '')}}>Saturday and Sunday</option>
+			<option value="fri_sat" {{(isset($weekends_days) ? ($weekends_days == 'fri_sat' ? 'selected' : '') : '')}}>Friday and Saturday</option>
+			<option value="fri_sat_sun" {{(isset($weekends_days) ? ($weekends_days == 'fri_sat_sun' ? 'selected' : '') : '')}}>Friday, Saturday and Sunday</option>
 		 </select>
 	</div>
 </div>
@@ -45,11 +45,11 @@
 		<div class="col-md-4">
 			<h5>{{ __('messages.allow_extra_guests') }} </h5>
 			<div class="payment-tab-trigger">
-				<input id="yes_guest" name="meta[allow_additional_guests]" type="radio" value="yes" "{{(isset($allow_additional_guests) ? ($allow_additional_guests == 'yes' ? 'selected' : '') : '')}}">
+				<input id="yes_guest" name="meta[allow_additional_guests]" type="radio" value="yes" {{(isset($allow_additional_guests) && $allow_additional_guests == 'yes') ? 'checked' : ''}}>
 				<label for="yes_guest">{{ __('messages.yes') }}</label>
 			</div>
 			 <div class="payment-tab-trigger">
-				<input checked="" id="no_guest" name="allow_additional_guests" type="radio" value="no" "{{(isset($allow_additional_guests) ? ($allow_additional_guests == 'no' ? 'selected' : '') : '')}}">
+				<input id="no_guest" name="meta[allow_additional_guests]" type="radio" value="no" {{(isset($allow_additional_guests) && $allow_additional_guests == 'no') ? 'checked' : ''}}>
 				<label for="no_guest">{{ __('messages.no') }} </label>
 			</div>
 		</div>
@@ -73,11 +73,11 @@
 		<div class="col-md-5">
 			<h5>{{ __('messages.cleaning_fee_type') }}</h5>
 			 <div class="payment-tab-trigger">
-				<input id="daily" name="meta[cleaning_fee_type]" type="radio" value="daily" "{{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'daily' ? 'selected' : '') : '')}}">
+				<input id="daily" name="meta[cleaning_fee_type]" type="radio" value="daily" {{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'daily' ? 'checked' : '') : '')}}>
 				<label for="daily">{{ __('messages.daily') }}</label>
 			</div>
 			 <div class="payment-tab-trigger">
-				<input checked="" id="per_stay" name="meta[cleaning_fee_type]" type="radio" value="per_stay" "{{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'per_stay' ? 'selected' : '') : '')}}">
+				<input id="per_stay" name="meta[cleaning_fee_type]" type="radio" value="per_stay" {{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'per_stay' ? 'checked' : '') : '')}}>
 				<label for="per_stay">{{ __('messages.per_stay') }} </label>
 			</div>
 		</div>
