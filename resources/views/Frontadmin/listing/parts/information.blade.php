@@ -11,23 +11,7 @@
     flex: auto;
 }
 </style>
-<?php 
-$start_hour = strtotime('1:00');
-$end_hour = strtotime('24:00');
-if(!function_exists('gig_time_format')) {
-    function gig_time_format($time_format=null) {
-        //$time_format = homey_option('gig_time_format');
-        if($time_format == 12) {
-            $format = "g:i a";
-        } elseif($time_format == 24) {
-            $format = "H:i";
-        } else {
-            $format = "g:i a";
-        }
-        return $format;
-    }
-}
-?>
+
 <!-- Headline -->
 <div class="add-listing-headline">
 	<h3><i class="sl sl-icon-doc"></i> {{ __('messages.information') }}</h3>
@@ -35,14 +19,12 @@ if(!function_exists('gig_time_format')) {
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.room_type') }} </h5>
+		@foreach ($room_type as $room_type)
 		<div class="payment-tab-trigger">
-			<input id="room1" name="room_type" type="radio" value="1" "{{(isset($room_type) ? ($room_type == '2' ? 'selected' : '') : '')}}" checked>
-			<label for="room1">	Reserved Space</label>
+			<input id="room{{ $room_type->id }}" value="{{ $room_type->id }}" type="radio" name="place_type">
+			<label for="room{{ $room_type->id }}">{{ $room_type->name }}</label>
 		</div>
-		 <div class="payment-tab-trigger">
-			<input id="room2" name="room_type" type="radio" value="2" "{{(isset($room_type) ? ($room_type == '2' ? 'selected' : '') : '')}}">
-			<label for="room2">Separate Room </label>
-		</div>
+		@endforeach
 	</div>
 </div>
 <div class="row with-forms">
@@ -63,9 +45,9 @@ if(!function_exists('gig_time_format')) {
 		<h5>{{ __('messages.listing_type') }}</h5>
 		<select class="chosen-select-no-single" name="listing_type">
 			<option value="-1" "{{(isset($listing_type) ? ($listing_type == '-1' ? 'selected' : '') : '')}}">None</option>	
-			<option value="1" "{{(isset($listing_type) ? ($listing_type == '1' ? 'selected' : '') : '')}}">Cofee Shop</option>
-			<option value="2" "{{(isset($listing_type) ? ($listing_type == '2' ? 'selected' : '') : '')}}">Hotel</option>
-			<option value="3" "{{(isset($listing_type) ? ($listing_type == '3' ? 'selected' : '') : '')}}">Restaurant</option>
+	        @foreach ($list_type as $list_type)
+			<option value="{{ $list_type->id }}" "{{(isset($listing_type) ? ($listing_type == '1' ? 'selected' : '') : '')}}">{{ $list_type->name }}</option>
+			@endforeach
 		</select>
 	</div>
 	<div class="col-md-6">
@@ -287,12 +269,6 @@ $(document).ready(function(){
 	jQuery("#timeslot_block").repeater({
 			initEmpty:false,
 			show:function(){
-				//jQuery(".chosen-select").chosen();
-				/*
-				if( ! jQuery("#submit_listing_form").valid() ){
-					jQuery("#timeslot_block").find('input,select').attr("required","required");
-				}
-				*/
 				jQuery(this).slideDown();
 				jQuery(".chosen-select").chosen();
 			},

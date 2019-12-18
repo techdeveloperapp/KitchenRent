@@ -144,6 +144,7 @@ return [
 	'room_type_listing'				=> 'Kamertype',
 	'amenities'						=> 'voorzieningen',
 	'facilities'					=> 'uitrusting',
+	'bedrooms'						=> 'slaapkamers',
 	
 	
 	

@@ -26,17 +26,6 @@
 	</div>
 </div>
 <div class="row with-forms upload-media-gallery margin-bottom-50" id="view_listing_image">
-	<!-- <div class="col-sm-2 col-xs-4 listing-thumb" style="position: relative; left: 0px; top: 0px;">
-		<figure class="upload-gallery-thumb">
-			<img width="150" height="150" src="https://www.gigworks.me/wp-content/uploads/2019/12/single-listing-05c-150x150.jpg" class="attachment-thumbnail size-thumbnail" alt="">
-		</figure>
-		<div class="upload-gallery-thumb-buttons">
-			<button type="button" class="icon-featured" data-listing-id="" data-attachment-id=""><i class="fa fa-star"></i></button>
-			<button  type="button" class="icon-delete" data-listing-id="" data-attachment-id=""><i class="fa fa-trash-o"></i></button>
-			<input type="hidden" class="listing-image-id" name="listing_image_ids[]" value="">
-		</div>
-		<span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span>
-	</div> -->
 </div>
 
 	

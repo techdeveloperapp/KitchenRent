@@ -25,7 +25,7 @@
 		@foreach ($facilities_type as $facilities_type)
 		<div class="col-md-4">
 			<input id="f{{ $facilities_type->id }}" value="{{ $facilities_type->id }}" type="checkbox" name="meta[facilities]">
-			<label for="fa{{ $facilities_type->id }}">{{ $facilities_type->name }}</label>
+			<label for="f{{ $facilities_type->id }}">{{ $facilities_type->name }}</label>
 		</div>
 		@endforeach
 	</div>

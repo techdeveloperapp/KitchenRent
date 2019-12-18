@@ -4,11 +4,50 @@
 <div class="add-listing-headline">
 	<h3><i class="sl sl-icon-picture"></i> {{ __('messages.services') }}</h3>
 </div>
-<div class="row with-forms margin-bottom-30">
-	
+<div data-repeater-list="meta[gig_accomodation]">
+	<div data-repeater-item class="row with-forms margin-bottom-20" >
+		<div class="col-md-6">
+			<h5>Service name</h5>
+			<input class="" type="text" name="service_name" placeholder="Ex. Projection Screen" value="" />
+		</div>
+		<div class="col-md-6">
+			<h5> Service Price </h5>
+			<input class="" type="number" min="1" name="service_price" placeholder="Enter the service price" value="" />
+		</div>
+		<div class="col-md-12">
+			<h5>Service description </h5>
+			<textarea class="" rows="3" name="service_des" placeholder="Enter the service description" ></textarea>
+		</div>
+		
+		<div class="col-md-3">
+			<button type="button" data-repeater-delete="" class="button"> <i class="fa fa-trash"></i> Remove this service</button>
+		</div>
+	</div>
+</div>
+<div class="row with-forms margin-bottom-50">
+		<div class="col-md-12">
+			<button type="button" data-repeater-create="" class="button pull-right"> <i class="fa fa-plus"></i> Add another service</button>
+		</div>
 </div>
 
 
 <button onclick="save_draft();" type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
-<button type="button" onclick="Next_Tab(7);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
-<button type="button" onclick="Previous_Tab(5);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>
+<button type="button" onclick="Next_Tab(8);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
+<button type="button" onclick="Previous_Tab(6);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>
+
+<script>
+$(document).ready(function(){
+	jQuery("#services_block").repeater({
+			initEmpty:false,
+			show:function(){
+				jQuery(this).slideDown();
+			},
+			hide:function(deleteElement){
+				 if(confirm('Are you sure you want to delete this?')) {
+						jQuery(this).slideUp(deleteElement);
+				 }
+			},
+			isFirstItemUndeletable: true
+	});
+});
+</script>

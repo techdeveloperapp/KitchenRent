@@ -33,9 +33,11 @@ class ListingController extends Controller
     }
     public function add()
     {
-        $amenities_type = ListingType::getAmenitiesTypes('amenities');
-        $facilities_type = ListingType::getAmenitiesTypes('facilities');
-        return view('Frontadmin.listing.add',compact('amenities_type','facilities_type'));
+        $amenities_type = ListingType::getAllTypes('amenities');
+        $facilities_type = ListingType::getAllTypes('facilities');
+        $room_type = ListingType::getAllTypes('room');
+        $list_type = ListingType::getAllTypes('listing');
+        return view('Frontadmin.listing.add',compact('list_type','room_type','amenities_type','facilities_type'));
     }
 
     public function addListing(Request $request)

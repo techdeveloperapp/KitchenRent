@@ -16,15 +16,10 @@ class ListingType extends Model
         return true;
     }
 
-    public static function getAmenitiesTypes($type)
+    public static function getAllTypes($type)
     {
-    	$type = ListingType::select('id','name')->where(['type'=>$type,'status'=>'1'])->get();
+    	$type = ListingType::where(array('type'=>$type,'status'=>'1'))->get();
         return $type;
     }
 
-    public static function getFacilitiesTypes($type)
-    {
-    	$type = ListingType::select('id','name')->where(['type'=>$type,'status'=>'1'])->get();
-        return $type;
-    }
 }

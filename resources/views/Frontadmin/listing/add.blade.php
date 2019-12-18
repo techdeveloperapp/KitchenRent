@@ -14,7 +14,27 @@ input.error_element {
 label.error {
   display: inline;
 }
+#services-tab textarea,#rules-tab textarea{
+	min-height: 100px !important;
+}
 </style>
+<?php 
+$start_hour = strtotime('1:00');
+$end_hour = strtotime('24:00');
+if(!function_exists('gig_time_format')) {
+    function gig_time_format($time_format=null) {
+        //$time_format = homey_option('gig_time_format');
+        if($time_format == 12) {
+            $format = "g:i a";
+        } elseif($time_format == 24) {
+            $format = "H:i";
+        } else {
+            $format = "g:i a";
+        }
+        return $format;
+    }
+}
+?>
 <!-- Titlebar -->
 		<div id="titlebar">
 			<div class="row">
@@ -46,6 +66,7 @@ label.error {
 									<li><a href="#pictures-tab">{{ __('messages.pictures') }}</a></li>
 									<li><a href="#features-tab">{{ __('messages.features') }}</a></li>
 									<li><a href="#location-tab">{{ __('messages.location') }}</a></li>
+									<li><a href="#bedrooms-tab">{{ __('messages.bedrooms') }}</a></li>
 									<li><a href="#services-tab">{{ __('messages.services') }}</a></li>
 									<li><a href="#rules-tab">{{ __('messages.terms_rules') }}</a></li>
 								</ul>
@@ -77,8 +98,13 @@ label.error {
 											@include('Frontadmin.listing.parts.location')
 										</div>
 									</div>
+									<div class="tab-content" id="bedrooms-tab">
+										<div class="add-listing-section margin-bottom-30" id="bedrooms_block"> 
+											@include('Frontadmin.listing.parts.bedrooms')
+										</div>
+									</div>
 									<div class="tab-content" id="services-tab">
-										<div class="add-listing-section margin-bottom-30"> 
+										<div class="add-listing-section margin-bottom-30"  id="services_block"> 
 											@include('Frontadmin.listing.parts.services')
 										</div>
 									</div>
@@ -97,7 +123,7 @@ label.error {
 		</div>
 	
 <script>
-var tabs = {'1':'Information','2':'Prices','3':'Picture','4':'Feature','5':'Location','6':'General Service','7':'Terma & Rules'};
+var tabs = {'1':'Information','2':'Prices','3':'Picture','4':'Feature','5':'Location','6':'Bedrooms','7':'General Service','8':'Terma & Rules'};
 
 function Next_Tab(tabId=1){
 	$('.error').remove();

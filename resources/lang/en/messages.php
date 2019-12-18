@@ -141,6 +141,7 @@ return [
 	'room_type_listing'				=> 'Room Type',
 	'amenities'						=> 'Amenities',
 	'facilities'					=> 'Facilities',
+	'bedrooms'						=> 'Bedrooms',
 	
 	
 	

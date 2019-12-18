@@ -81,8 +81,8 @@
 				<label for="per_stay">{{ __('messages.per_stay') }} </label>
 			</div>
 		</div>
-		
 	</div>
+	
 	<div class="row with-forms">
 		<div class="col-md-6">
 			<h5>{{ __('messages.security_deposit') }} </h5>
