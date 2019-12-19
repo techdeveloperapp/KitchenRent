@@ -26,6 +26,12 @@
 	</div>
 </div>
 <div class="row with-forms upload-media-gallery margin-bottom-50" id="view_listing_image">
+<input type="hidden" name="meta[featured_image]" id="featured_image" value="{{isset($featured_image) ? $featured_image : '0'}}">
+    @if(isset($listing_image_ids) && !empty($listing_image_ids))
+	@foreach (explode(',',$listing_image_ids) as $image)
+		<div class="col-sm-2 col-xs-4 listing-thumb{{$image}}" style="position: relative; left: 0px; top: 0px;"><figure class="upload-gallery-thumb"><img width="150" height="150" src="{{ ( \Helper::get_attachment_by_id( $image ) )}}" class="attachment-thumbnail size-thumbnail" alt=""></figure><div class="upload-gallery-thumb-buttons"><button type="button" id="feature-{{$image}}" title="Featured" class="tooltip icon-featured {{($featured_image == $image)?'featured':''}}" onclick="featured_images({{$image}});"><i class="fa fa-star"></i></button><button  type="button" title="Delete" class="tooltip icon-delete" data-listing-id="{{$id}}" onclick="deleteListingImage({{$image}})"><i class="fa fa-trash-o"></i></button><input type="hidden" class="listing-image-id" name="meta[listing_image_ids][]" value="{{$image}}"></div><span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span></div>
+	@endforeach
+	@endif
 </div>
 
 	
@@ -68,9 +74,10 @@ $(document).ready(function(){
 				return false;
 			}
 			//console.log(response.id);
-			var html = '<div class="col-sm-2 col-xs-4 listing-thumb'+response.id+'" style="position: relative; left: 0px; top: 0px;"><figure class="upload-gallery-thumb"><img width="150" height="150" src="'+response.path+'" class="attachment-thumbnail size-thumbnail" alt=""></figure><div class="upload-gallery-thumb-buttons"><button type="button" class="icon-featured" data-listing-id="" data-attachment-id=""><i class="fa fa-star"></i></button><button  type="button" class="icon-delete" data-listing-id="'+response.id+'" onclick="deleteListingImage('+response.id+')"><i class="fa fa-trash-o"></i></button><input type="hidden" class="listing-image-id" name="listing_image_ids[]" value="'+response.id+'"></div><span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span></div>';
+			var html = '<div class="col-sm-2 col-xs-4 listing-thumb'+response.id+'" style="position: relative; left: 0px; top: 0px;"><figure class="upload-gallery-thumb"><img width="150" height="150" src="'+response.path+'" class="attachment-thumbnail size-thumbnail" alt=""></figure><div class="upload-gallery-thumb-buttons"><button title="Featured" type="button" id="feature-'+response.id+'" class="icon-featured tooltip" onclick="featured_images('+response.id+')"><i class="fa fa-star"></i></button><button title="Delete" type="button" class="icon-delete tooltip" data-listing-id="'+response.id+'" onclick="deleteListingImage('+response.id+')"><i class="fa fa-trash-o"></i></button><input type="hidden" class="listing-image-id" name="meta[listing_image_ids][]" value="'+response.id+'"></div><span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span></div>';
 			//$('#profile_id').val(response.id);
 			$("#view_listing_image").append(html);
+			$('.tooltip').tipTip();
 			myDropzone.removeFile(file);
 		});
 });
@@ -78,15 +85,14 @@ $(document).ready(function(){
 <script type="text/javascript">
 	function deleteListingImage(id)
 	{
-		swal({
-	    title: "{{ __('messages.are_you_sure_delete') }}",
-	    text: "",
-	    type: "warning",
-	    showCancelButton: true,
-	    confirmButtonClass: "btn btn-warning",
-	    confirmButtonColor: "#DD6B55",
-	    confirmButtonText: "{{ __('messages.yes_proceed') }}",
-	    cancelButtonText: "{{ __('messages.cancel') }}",
+	swal({
+	  title: "{{ __('messages.are_you_sure_delete') }}",
+	  text: "",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	  confirmButtonText: "{{ __('messages.yes_proceed') }}",
+	  cancelButtonText: "{{ __('messages.cancel') }}",
 	    closeOnConfirm: false
 	  }).then(result => {
 	  	console.log(result);
@@ -108,5 +114,10 @@ $(document).ready(function(){
 			});
 	  	}
 	  });
+	}
+	function featured_images(id){
+		$("#featured_image").val(id);
+		$(".icon-featured").removeClass('featured');
+		$("#feature-"+id).addClass('featured');
 	}
 </script>

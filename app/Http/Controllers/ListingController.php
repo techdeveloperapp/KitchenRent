@@ -31,6 +31,9 @@ class ListingController extends Controller
     {
         
     }
+	public function index(){
+		return view('Frontadmin.listing.index');
+	}
     public function add()
     {
         $amenities_type_arr = ListingType::getAllTypes('amenities');
@@ -42,7 +45,7 @@ class ListingController extends Controller
 
     public function addListing(Request $request)
     {
-        //dd($request->all());
+       //dd($request->all);
         if($request->save_as_draft){
             // save as draft
             $listing = new Listing();
@@ -57,17 +60,33 @@ class ListingController extends Controller
             $listing->room_type = $request->input('place_type');
             $listing->instant_booking = $request->input('instant_booking');
             $listing->price = $request->input('price');
-            $listing->amenities = $request->input('amenities');
-            $listing->facilities = $request->input('facilities');
+            $listing->amenities = (!is_null($request->input('amenities')))?implode(',',$request->input('amenities')):'0';
+            $listing->facilities = (!is_null($request->input('facilities')))?implode(',',$request->input('facilities')):'0';
             $listing->added_by = Auth::id();
             $listing->status = '4';
             if($listing->save()){
                 $listing_meta = new ListingMeta();
-                foreach($request->input('meta') as $key=>$value){
+				$timeslot_enable = (array_key_exists('timeslot_enable' ,$request->input('meta')))?'1':'0';
+				$mon_fri_closed = (array_key_exists('mon_fri_closed' ,$request->input('meta')))?'1':'0';
+				$sat_closed		= (array_key_exists('sat_closed' ,$request->input('meta')))?'1':'0';
+				$sun_closed		= (array_key_exists('sun_closed' ,$request->input('meta')))?'1':'0';
+				$meta = $request->input('meta');
+				$meta['timeslot_enable'] = $timeslot_enable;
+				$meta['mon_fri_closed']  = $mon_fri_closed;
+				$meta['sun_closed']      = $sun_closed;
+				//print_r($meta);exit;
+                foreach($meta as $key=>$value){
+					
                     if($key == "timeslot"){
                         $value = json_encode($value);
                     }
+					if($key == "listing_image_ids"){
+                        $value = implode(',',$value);
+                    }
                     if($key == "gig_accomodation"){
+                        $value = json_encode($value);
+                    }
+					if($key == "gig_services"){
                         $value = json_encode($value);
                     }
                     $listing_meta->addUpdate($listing->id,$key,$value);
@@ -76,10 +95,11 @@ class ListingController extends Controller
 
             if($request->input('id')){
                 $msg = __('messages.record_updated');
+				return redirect('user/listing/edit/'.$listing_id)->with('success', $msg);
             }else{
                 $msg = __('messages.record_created');
+				return redirect('user/listing/index')->with('success', $msg);
             }
-            return redirect('user/listing/add')->with('success', $msg);
         }else{
             // save as draft
             // $validator = Validator::make($request->all(), [
@@ -93,7 +113,7 @@ class ListingController extends Controller
     public function uploadListingImage(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'image' => 'mimes:jpeg,jpg,png,gif|required|dimensions:max_width=1440,max_height=900|max:10000',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|dimensions:min_width=1440,min_height=900|max:10000',
         ]);
 
         if ($validator->fails()) 
@@ -129,7 +149,7 @@ class ListingController extends Controller
             $media_file_obj = $media_obj->getMedia($request->id);
             if($media_file_obj){
                 $listing_path = 'upload/media/listing/'.$media_file_obj->file_name;
-                if(File::exists($listing_path)) {
+                if(File::exists($listing_path)){
                     File::delete($listing_path);
                     Media::where('id',$request->id)->delete();//delete from table also
                 }
@@ -141,6 +161,7 @@ class ListingController extends Controller
     public function editListing(Request $request,$id)
     {
         $listing = new Listing();
+		
         $listing = $listing->with('getMeta')->where('id',$id)->first()->toArray();
         $amenities_type = ListingType::getAllTypes('amenities');
         $facilities_type = ListingType::getAllTypes('facilities');
@@ -148,12 +169,14 @@ class ListingController extends Controller
         $list_type = ListingType::getAllTypes('listing');
         foreach ($listing['get_meta'] as $key => $value) {
             if($value['meta_name'] == "timeslot"){
-               // $value['meta_value'] = json_decode($value['meta_value']);
-            }
-            if($value['meta_name'] == "gig_accomodation"){
-                //$value['meta_value'] = json_decode($value['meta_value']);
-            }
-            $listing[$value['meta_name']] = $value['meta_value'];
+                $listing['timeslot'] = json_decode($value['meta_value']);
+            }elseif($value['meta_name'] == "gig_accomodation"){
+                $listing['gig_accomodation'] = json_decode($value['meta_value']);
+            }elseif($value['meta_name'] == "gig_services"){
+                $listing['gig_services'] = json_decode($value['meta_value']);
+            }else{
+				$listing[$value['meta_name']] = $value['meta_value'];
+			}
         }
         unset($listing['get_meta']);
         $listing['list_type_arr'] = $list_type;
@@ -161,6 +184,7 @@ class ListingController extends Controller
         $listing['amenities_type_arr'] = $amenities_type;
         $listing['facilities_type_arr'] = $facilities_type;
         //dd($listing);
+		//print_r($listing);
         return view('Frontadmin.listing.add',$listing);
     }
 }	

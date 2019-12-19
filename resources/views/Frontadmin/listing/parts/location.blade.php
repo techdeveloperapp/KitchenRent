@@ -19,41 +19,41 @@
 <div class="row with-forms margin-bottom-30">
 	<div class="col-md-9">
 		<h5>{{ __('messages.address') }}</h5>
-		<input class="" type="text" name="meta[listing_address]" id="listing_address" placeholder="{{ __('messages.address') }}" value="" />
+		<input class="" type="text" name="meta[listing_address]" id="listing_address" placeholder="{{ __('messages.address') }}" value="{{(isset($listing_address) ? $listing_address : '')}}" />
 	</div>
 	<div class="col-md-3">
 		<h5>{{ __('messages.apt_suite') }} (Optional)  </h5>
-		<input class="" type="text" name="meta[aptSuit]" id="aptSuit" placeholder="Ex. #123" value="" />
+		<input class="" type="text" name="meta[aptSuit]" id="aptSuit" placeholder="Ex. #123" value="{{(isset($aptSuit) ? $aptSuit : '')}}" />
 	</div>
 </div>
 <div class="row with-forms margin-bottom-30">
 	<div class="col-md-4">
 		<h5>{{ __('messages.city') }} </h5>
-		<input class="" type="text" name="meta[city]" id="city" placeholder="{{ __('messages.city') }}" value="" />
+		<input class="" type="text" name="meta[city]" id="city" placeholder="{{ __('messages.city') }}" value="{{(isset($city) ? $city : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5>{{ __('messages.state') }} </h5>
-		<input class="" type="text" name="meta[state]" id="countyState" placeholder="{{ __('messages.state') }}" value="" />
+		<input class="" type="text" name="meta[state]" id="countyState" placeholder="{{ __('messages.state') }}" value="{{(isset($state) ? $state : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5>{{ __('messages.zip') }}</h5>
-		<input class="" type="text" name="meta[zip]" id="zip" placeholder="{{ __('messages.zip') }}" value="" />
+		<input class="" type="text" name="meta[zip]" id="zip" placeholder="{{ __('messages.zip') }}" value="{{(isset($zip) ? $zip : '')}}" />
 	</div>
 </div>
 <div class="row with-forms margin-bottom-30">
 	<div class="col-md-6">
 		<h5>Area </h5>
-		<input class="" type="text" name="meta[neighborhood]" id="city" placeholder="Area" value="" />
+		<input class="" type="text" name="meta[neighborhood]" id="city" placeholder="Area" value="{{(isset($neighborhood) ? $neighborhood : '')}}" />
 	</div>
 	<div class="col-md-6">
 		<h5>{{ __('messages.country') }} </h5>
-		<input class="" type="text" name="meta[country]" id="listing_country" placeholder="{{ __('messages.country') }}" value="" />
+		<input class="" type="text" name="meta[country]" id="listing_country" placeholder="{{ __('messages.country') }}" value="{{(isset($country) ? $country : '')}}" />
 	</div>
 </div>
 <div class="row with-forms margin-bottom-30">
 	<div class="col-md-12" >
 		<h5>Drag and drop the pin on map to find exact location </h5>
-		 <div class="map_canvas" data-add-lat="25.761681" data-add-long="-80.191788" id="map">
+		 <div class="map_canvas" data-add-lat="{{(isset($lat) ? $lat : '25.761681')}}" data-add-long="{{(isset($lng) ? $lng : '-80.191788')}}" id="map">
 		 </div>
 		 <div id="infowindow-content">
 			  <img src="" width="16" height="16" id="place-icon">
@@ -65,11 +65,11 @@
 <div class="row with-forms margin-bottom-50">
 	<div class="col-md-4">
 		<h5>Latitude </h5>
-		<input class="" type="text" name="meta[lat]" id="lat" placeholder="Latitude" value="" />
+		<input class="" type="text" name="meta[lat]" id="lat" placeholder="Latitude" value="{{(isset($lat) ? $lat : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5> Longitude</h5>
-		<input class="" type="text" name="meta[lng]" id="lng" placeholder="Longitude" value="" />
+		<input class="" type="text" name="meta[lng]" id="lng" placeholder="Longitude" value="{{(isset($lng) ? $lng : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5> Find the address on the map </h5>

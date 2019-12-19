@@ -1,5 +1,5 @@
 @extends('layouts.frontadmin.app')
-@section('title', __('messages.add_listing') )
+@section('title', isset($id) ? __('messages.edit_listing') : __('messages.add_listing') )
 @section('content')
 <style>
 .error {
@@ -39,7 +39,9 @@ if(!function_exists('gig_time_format')) {
 		<div id="titlebar">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>{{ __('messages.add_listing') }}</h2>
+					<h2>
+					{{isset($id) ? __('messages.edit_listing') : __('messages.add_listing')}}
+					</h2>
 				</div>
 			</div>
 		</div>
@@ -48,20 +50,20 @@ if(!function_exists('gig_time_format')) {
 			<div class="col-lg-12">
 
 				<div id="add-listing">
+					<!--form -->
+                    <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
 					<!-- This button will show on edit mode only -->
-					<div class="listing-submit-wrap clearfix" style="display:none">
+					<div class="listing-submit-wrap clearfix" <?php if( isset($id) && $status =='4' ){?>style="display:none"<?php } ?> >
 						<a href="#" class="button col-md-5">View</a>
 						<button class="button col-md-5">Update</button>
                     </div>
 					
-					<!--form -->
-                    <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
                     	@csrf
                     	<input type="hidden" value="" name="save_as_draft" id="input_save_as_draft">
                     	<input type="hidden" value="{{isset($id) ? $id : ''}}" name="id" id="input_save_as_draft">
 						<div class="style-1">
 							<!-- Tabs Navigation -->
-								<ul class="tabs-nav" id="listing_tabs" style="display:none">
+								<ul class="tabs-nav" id="listing_tabs" <?php if( isset($id) && $status =='4' ){?>style="display:none"<?php } ?> >
 									<li class="active"><a href="#information-tab">{{ __('messages.information') }}</a></li>
 									<li><a href="#price-tab">{{ __('messages.prices') }}</a></li>
 									<li><a href="#pictures-tab">{{ __('messages.pictures') }}</a></li>
@@ -130,8 +132,11 @@ $(document).ready(function(){
 	<?php 
 	if(isset($id)){
 		?>
-		var $repeater = $('#timeslot-repeater').repeater();
-    	$repeater.setList(<?php echo isset($timeslot) ? $timeslot : []; ?>);
+		$('select.dynamic-select').each(function(k,x){ 
+			var sel = $(this).data('selected');// console.log(sel); 
+			$(this).val(sel); 
+			$(this).trigger("chosen:updated"); 
+		});
 		<?php
 	}
 	?>

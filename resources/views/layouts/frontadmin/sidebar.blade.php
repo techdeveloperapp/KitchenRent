@@ -12,6 +12,7 @@
 			</ul>
 			
 			<ul data-submenu-title="Listings">
+			    <li class="@if( Route::currentRouteName() == 'user.customer.listingAll') active  @endif "><a href="{{url('user/listing/index')}}"><i class="sl sl-icon-layers"></i> {{ __('messages.my_listings') }}</a></li>
 				<!--<li><a><i class="sl sl-icon-layers"></i> My Listings</a>
 					<ul>
 						<li><a href="dashboard-my-listings.html">Active <span class="nav-tag green">6</span></a></li>
@@ -21,7 +22,7 @@
 				</li>-->
 				<!--<li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li>
 				<li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>-->
-				<li class="@if( Route::currentRouteName() == 'user.customer.listingAdd') active  @endif "><a href="{{url('user/listing/add')}}"><i class="sl sl-icon-plus"></i> Add Listing</a></li>
+				<li class="@if( Route::currentRouteName() == 'user.customer.listingAdd') active  @endif "><a href="{{url('user/listing/add')}}"><i class="sl sl-icon-plus"></i> {{ __('messages.add_listing') }}</a></li>
 			</ul>	
 
 			<ul data-submenu-title="Account">

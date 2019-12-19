@@ -5,6 +5,31 @@
 	<h3><i class="sl sl-icon-picture"></i> {{ __('messages.bedrooms') }}</h3>
 </div>
 <div data-repeater-list="meta[gig_accomodation]">
+   @if(isset($id) && !empty($gig_accomodation))
+	@foreach ($gig_accomodation as $gig_accomodation)
+	<div data-repeater-item class="row with-forms margin-bottom-20" >
+		<div class="col-md-6">
+			<h5>Bedroom name</h5>
+			<input class="" type="text" name="acc_bedroom_name" placeholder="Ex. Master Room or Room 1" value="{{$gig_accomodation->acc_bedroom_name}}" />
+		</div>
+		<div class="col-md-6">
+			<h5>Number of persons</h5>
+			<input class="" type="text" name="acc_guests" placeholder="Enter the number of persons for this room" value="{{$gig_accomodation->acc_guests}}" />
+		</div>
+		<div class="col-md-6">
+			<h5>Number of beds</h5>
+			<input class="" type="text" name="acc_no_of_beds" placeholder="Enter the number of beds" value="{{$gig_accomodation->acc_no_of_beds}}" />
+		</div>
+		<div class="col-md-6">
+			<h5>Bed Type</h5>
+			<input class="" type="text" name="acc_bedroom_type" placeholder="Enter the bed type" value="{{$gig_accomodation->acc_bedroom_type}}" />
+		</div>
+		<div class="col-md-3">
+			<button type="button" data-repeater-delete="" class="button"> <i class="fa fa-trash"></i> Remove this room</button>
+		</div>
+	</div>
+	@endforeach
+	@else
 	<div data-repeater-item class="row with-forms margin-bottom-20" >
 		<div class="col-md-6">
 			<h5>Bedroom name</h5>
@@ -26,6 +51,9 @@
 			<button type="button" data-repeater-delete="" class="button"> <i class="fa fa-trash"></i> Remove this room</button>
 		</div>
 	</div>
+	@endif
+	
+	
 </div>
 <div class="row with-forms margin-bottom-50">
 		<div class="col-md-12">

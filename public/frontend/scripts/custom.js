@@ -3,11 +3,12 @@
 "use strict";
 
 $(document).ready(function(){
-
+	
 	/*--------------------------------------------------*/
 	/*  Mobile Menu - mmenu.js
 	/*--------------------------------------------------*/
 	$(function() {
+		$('.tooltip').tipTip();
 		function mmenuInit() {
 			var wi = $(window).width();
 			if(wi <= '1024') {

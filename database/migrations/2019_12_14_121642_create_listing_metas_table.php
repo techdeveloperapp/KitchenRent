@@ -18,7 +18,7 @@ class CreateListingMetasTable extends Migration
             $table->bigInteger('listing_id')->unsigned();
             $table->foreign('listing_id')->references('id')->on('listings')->onDelete('cascade')->onUpdate('cascade');
             $table->string('meta_name');
-            $table->string('meta_value');
+            $table->text('meta_value');// type text not varchar
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });

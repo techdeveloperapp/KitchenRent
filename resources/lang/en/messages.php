@@ -94,6 +94,8 @@ return [
 	'pagination'                    => 'Displaying {{start}} - {{end}} of {{total}} records',
 	//listing
 	'add_listing'					=> 'Add Listing',
+	'edit_listing'					=> 'Edit Listing',
+	'my_listings'					=> 'My Listings',
 	'information'					=> 'Information',
 	'prices'						=> 'Prices',
 	'price'							=> 'Price',

@@ -97,6 +97,8 @@ return [
 	
 	//listing
 	'add_listing'					=> 'lijst toevoegen',
+	'edit_listing'					=> 'Vermelding bewerken',
+	'my_listings'					=> 'Mijn lijsten',
 	'information'					=> 'Information',
 	'prices'						=> 'Prijzen',
 	'price'							=> 'prijs',

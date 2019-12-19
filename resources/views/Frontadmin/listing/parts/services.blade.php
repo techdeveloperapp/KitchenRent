@@ -4,7 +4,29 @@
 <div class="add-listing-headline">
 	<h3><i class="sl sl-icon-picture"></i> {{ __('messages.services') }}</h3>
 </div>
-<div data-repeater-list="meta[gig_accomodation]">
+<div data-repeater-list="meta[gig_services]">
+	 @if(isset($id) && !empty($gig_services))
+	@foreach ($gig_services as $gig_services)
+	<div data-repeater-item class="row with-forms margin-bottom-20" >
+		<div class="col-md-6">
+			<h5>Service name</h5>
+			<input class="" type="text" name="service_name" placeholder="Ex. Projection Screen" value="{{$gig_services->service_name}}" />
+		</div>
+		<div class="col-md-6">
+			<h5> Service Price </h5>
+			<input class="" type="number" min="1" name="service_price" placeholder="Enter the service price" value="{{$gig_services->service_price}}" />
+		</div>
+		<div class="col-md-12">
+			<h5>Service description </h5>
+			<textarea class="" rows="3" name="service_des" placeholder="Enter the service description" >{{$gig_services->service_des}}</textarea>
+		</div>
+		
+		<div class="col-md-3">
+			<button type="button" data-repeater-delete="" class="button"> <i class="fa fa-trash"></i> Remove this service</button>
+		</div>
+	</div>
+	@endforeach
+	@else
 	<div data-repeater-item class="row with-forms margin-bottom-20" >
 		<div class="col-md-6">
 			<h5>Service name</h5>
@@ -23,6 +45,7 @@
 			<button type="button" data-repeater-delete="" class="button"> <i class="fa fa-trash"></i> Remove this service</button>
 		</div>
 	</div>
+	@endif
 </div>
 <div class="row with-forms margin-bottom-50">
 		<div class="col-md-12">

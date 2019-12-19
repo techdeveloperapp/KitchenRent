@@ -10,7 +10,7 @@
 	<div class="checkboxes in-row margin-bottom-20">
 		@foreach ($amenities_type_arr as $amenities_type_list)
 		<div class="col-md-4">
-			<input id="a{{ $amenities_type_list->id }}" value="{{ $amenities_type_list->id }}" type="checkbox" name="meta[amenities]" {{(isset($amenities) && $amenities == $amenities_type_list->id) ? 'checked':''}}>
+			<input id="a{{ $amenities_type_list->id }}" value="{{ $amenities_type_list->id }}" type="checkbox" name="amenities[]" {{(isset($amenities) && in_array( $amenities_type_list->id , explode(',',$amenities))) ? 'checked':''}}>
 			<label for="a{{ $amenities_type_list->id }}">{{ $amenities_type_list->name }}</label>
 		</div>
 		@endforeach
@@ -24,7 +24,7 @@
 	<div class="checkboxes in-row margin-bottom-20">
 		@foreach ($facilities_type_arr as $facilities_type_list)
 		<div class="col-md-4">
-			<input id="f{{ $facilities_type_list->id }}" value="{{ $facilities_type_list->id }}" type="checkbox" name="meta[facilities]" {{(isset($amenities) && $amenities == $amenities_type_list->id) ? 'checked':''}}>
+			<input id="f{{ $facilities_type_list->id }}" value="{{ $facilities_type_list->id }}" type="checkbox" name="facilities[]" {{(isset($facilities) && in_array( $facilities_type_list->id , explode(',',$facilities))) ? 'checked':''}}>
 			<label for="f{{ $facilities_type_list->id }}">{{ $facilities_type_list->name }}</label>
 		</div>
 		@endforeach

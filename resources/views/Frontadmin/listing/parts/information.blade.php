@@ -46,7 +46,7 @@
 		<select class="chosen-select-no-single" name="listing_type">
 			<option value="-1" "{{(isset($listing_type) ? ($listing_type == '-1' ? 'selected' : '') : '')}}">None</option>	
 	        @foreach ($list_type_arr as $list_type_list)
-			<option value="{{ $list_type_list->id }}" "{{(isset($listing_type) ? ($listing_type == $list_type_list->id ? 'selected' : '') : '')}}">{{ $list_type_list->name }}</option>
+			<option value="{{ $list_type_list->id }}" {{(isset($listing_type) ? ($listing_type == $list_type_list->id ? 'selected' : '') : '')}} >{{ $list_type_list->name }}</option>
 			@endforeach
 		</select>
 	</div>
@@ -84,7 +84,7 @@
 	<div class="add-listing-headline">
 		<h3><i class="sl sl-icon-layers"></i> {{ __('messages.timeslots')}}</h3>
 		<!-- Switcher -->
-		<label class="switch"><input value="1" name="meta[timeslot_enable]" type="checkbox" checked id="timeslot_switch" {{(isset($timeslot_enable) && $timeslot_enable == 1) ? 'checked' : ''}}><span class="slider round"></span></label>
+		<label class="switch"><input value="1" name="meta[timeslot_enable]" type="checkbox"  id="timeslot_switch" {{(isset($timeslot_enable) && $timeslot_enable == 1) ? 'checked' : ''}}><span class="slider round"></span></label>
 	</div>
 
 	<!-- Switcher ON-OFF Content -->
@@ -97,12 +97,49 @@
 								<i class="fa fa-plus"></i> Add TimeSlot
 							</button>
 						</div>
-						<div data-repeater-list="meta[timeslot]" id="timeslot-repeater" class="custom-extra-prices">
-
+						<div data-repeater-list="meta[timeslot]" id="timeslot-repeater" class="custom-extra-prices col-md-12">
+						@if(isset($id) && !empty($timeslot))
+							@foreach ($timeslot as $timeslot)
 						<div data-repeater-item class="more_extra_services_wrap clearfix">
 						  <div class="row with-forms">
 							 <div class="col-md-3">
-								
+									<label for="ts_start_hour">Start Hour</label>
+									<select name="ts_start_hour" class="chosen-select ts_start_hour dynamic-select" data-selected="{{$timeslot->ts_start_hour}}">
+										<?php 
+										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
+											echo '<option value="'.date('H:i',$halfhour).'"  >'.date(gig_time_format(),$halfhour).'</option>';
+										}
+										?>
+									</select>
+							</div>
+							<div class="col-md-3">
+								<label for="ts_end_hour">End Hour</label>
+								<select name="ts_end_hour" class="chosen-select ts_end_hour dynamic-select"  data-selected="{{$timeslot->ts_end_hour}}">
+										<?php 
+										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
+											echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
+										}
+										?>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<label for="ts_price">{{ __('messages.price') }}</label>
+								<input type="number" name="ts_price" value="{{$timeslot->ts_price}}" class="form-control" placeholder="{{ __('messages.price') }}">
+							</div>
+							<div class="col-md-3 margin-top-30">
+									<label></label>
+									<button type="button" data-repeater-delete="" class="button button-defualt timeslot-delete">
+											{{ __('messages.delete') }}
+									</button>
+							</div>
+						
+							</div>
+						</div>
+						@endforeach
+						@else
+						<div data-repeater-item class="more_extra_services_wrap clearfix">
+						  <div class="row with-forms">
+							 <div class="col-md-3">
 									<label for="ts_start_hour">Start Hour</label>
 									<select name="ts_start_hour" class="chosen-select" id="ts_start_hour" >
 											<?php 
@@ -111,11 +148,9 @@
 											}
 											?>
 									</select>
-								
 							</div>
-						
 							<div class="col-md-3">
-								<label for="ts_end_hour">Start Hour</label>
+								<label for="ts_end_hour">End Hour</label>
 								<select name="ts_end_hour" class="chosen-select" id="ts_end_hour" >
 										<?php 
 										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
@@ -133,11 +168,11 @@
 									<button type="button" data-repeater-delete="" class="button button-defualt timeslot-delete">
 											{{ __('messages.delete') }}
 									</button>
-								
 							</div>
 						
 							</div>
-						</div>
+						</div>	
+						@endif
 						
 						</div>
 						
@@ -159,7 +194,7 @@
 	</div>
 	
 	<!-- Switcher ON-OFF Content -->
-	<div class="switcher-content">
+	<div class="switcher-content1">
 
 		<!-- Day -->
 		<div class="row opening-day">
@@ -238,12 +273,12 @@
 				</select>
 			</div>
 			<div class="col-md-3">
-				<select class="chosen-select" data-placeholder="Closing Time"  name="meta[sat_close_time]">
+				<select class="chosen-select" data-placeholder="Closing Time"  name="meta[sun_close_time]">
 				<option label="Closing Time"></option>
 					<!-- Hours added via JS (this is only for demo purpose) -->
 					<?php 
 					for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sat_close_time) && $sat_close_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
+						echo '<option value="'.date('H:i',$halfhour).'" '.(isset($sun_close_time) && $sun_close_time == date('H:i',$halfhour) ? "selected" : "").'>'.date(gig_time_format(),$halfhour).'</option>';
 					}
 					?>
 				</select>

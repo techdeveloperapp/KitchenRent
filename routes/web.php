@@ -85,6 +85,7 @@ Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']]
 	Route::get('/listing/add', 'ListingController@add')->name('listingAdd');
 	Route::post('/listing/add', 'ListingController@addListing')->name('Addlisting');
 	Route::get('/listing/edit/{id}', 'ListingController@editListing')->name('Editlisting');
+	Route::get('/listing/index', 'ListingController@index')->name('listingAll');
 });
 /************************************FrontAdmin End*****************************************/
 
