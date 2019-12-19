@@ -294,7 +294,9 @@
 	<!-- Switcher ON-OFF Content / End -->
 
 </div>
+@if(!isset($id) || (isset($status) && $status=='4'))
 <button type="button" onclick="save_draft();" class="button button-defualt">{{ __('messages.save_draft') }}</button>
+@endif
 
 <button type="button" onclick="Next_Tab(2);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
 <!-- Section / End -->

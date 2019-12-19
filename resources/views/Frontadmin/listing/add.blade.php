@@ -53,7 +53,7 @@ if(!function_exists('gig_time_format')) {
 					<!--form -->
                     <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
 					<!-- This button will show on edit mode only -->
-					<div class="listing-submit-wrap clearfix" <?php if( isset($id) && $status =='4' ){?>style="display:none"<?php } ?> >
+					<div class="listing-submit-wrap clearfix" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
 						<a href="#" class="button col-md-5">View</a>
 						<button class="button col-md-5">Update</button>
                     </div>
@@ -63,7 +63,7 @@ if(!function_exists('gig_time_format')) {
                     	<input type="hidden" value="{{isset($id) ? $id : ''}}" name="id" id="input_save_as_draft">
 						<div class="style-1">
 							<!-- Tabs Navigation -->
-								<ul class="tabs-nav" id="listing_tabs" <?php if( isset($id) && $status =='4' ){?>style="display:none"<?php } ?> >
+								<ul class="tabs-nav" id="listing_tabs" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
 									<li class="active"><a href="#information-tab">{{ __('messages.information') }}</a></li>
 									<li><a href="#price-tab">{{ __('messages.prices') }}</a></li>
 									<li><a href="#pictures-tab">{{ __('messages.pictures') }}</a></li>
@@ -220,6 +220,33 @@ function save_draft(){
 	}
 }
 
+function save_publish(){
+	$('.error').remove();
+	$('.error_element').removeClass('error_element');
+	var check1 = TabOneValidation();
+	var check2 = TabTwoValidation();
+	var check5 = TabFiveValidation();
+	if(!check1)
+	{
+		$('ul#listing_tabs li').removeClass('active');
+		$('ul#listing_tabs li:nth-child(1)').click();
+	}
+	else if(!check2)
+	{
+		$('ul#listing_tabs li').removeClass('active');
+		$('ul#listing_tabs li:nth-child(2)').click();
+	}
+	else if(!check5)
+	{
+		$('ul#listing_tabs li').removeClass('active');
+		$('ul#listing_tabs li:nth-child(5)').click();
+	}
+
+	if(check1 && check2 && check5){
+		$('#input_save_as_draft').val('2');
+		$('#listing_form').submit();
+	}
+}
 </script>			
 @endsection	
 

@@ -31,8 +31,32 @@ class ListingController extends Controller
     {
         
     }
-	public function index(){
-		return view('Frontadmin.listing.index');
+	public function index(Request $request){
+        $getAllList = new Listing();
+        $getAllList = $getAllList->with('getMeta')->leftjoin('listing_metas', 'listing_metas.listing_id', '=', 'listings.id')->leftjoin('listing_types', 'listing_types.id', '=', 'listings.listing_type')->select('listings.id as listing_id','listing_metas.*','listings.*','listing_types.name as category_name')->groupBy('listing_metas.listing_id')->paginate(5);
+
+        //echo $getAllList->links(); die;
+
+        foreach($getAllList as $key => $value){
+            if($value->getMeta){
+                foreach($value->getMeta as $k => $v){
+                    if($v->meta_name == "listing_image_ids"){
+                        $getAllList[$key][$v->meta_name] = $v->meta_value;
+                        if(is_array(explode(',',$v->meta_value))){
+                            if(isset(explode(',',$v->meta_value)[0])){
+                                $media = new Media();
+                                $media = $media->getMedia(explode(',',$v->meta_value)[0]);
+                                $getAllList[$key][$v->meta_name] = $media['file_path'];
+                            }
+                        }
+                    }else{
+                        $getAllList[$key][$v->meta_name] = $v->meta_value;   
+                    }
+                }
+            }
+            unset($getAllList[$key]->getMeta);
+        }
+		return view('Frontadmin.listing.index')->with('getAllList', $getAllList);
 	}
     public function add()
     {
@@ -64,6 +88,10 @@ class ListingController extends Controller
             $listing->facilities = (!is_null($request->input('facilities')))?implode(',',$request->input('facilities')):'0';
             $listing->added_by = Auth::id();
             $listing->status = '4';
+            if($request->save_as_draft=='2')
+            {
+                $listing->status = '1';
+            }
             if($listing->save()){
                 $listing_meta = new ListingMeta();
 				$timeslot_enable = (array_key_exists('timeslot_enable' ,$request->input('meta')))?'1':'0';
@@ -153,6 +181,10 @@ class ListingController extends Controller
                     File::delete($listing_path);
                     Media::where('id',$request->id)->delete();//delete from table also
                 }
+            }
+            if($request->listing_id)
+            {
+                ListingMeta::UpdateListingImages($request->listing_id,'listing_image_ids',$request->id);
             }
             return response()->json(['message'=>'deleted successfully']); 
         }

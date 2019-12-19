@@ -1,13 +1,18 @@
 @extends('layouts.frontadmin.app')
 @section('title', __('messages.my_listings') )
 @section('content')
-
+<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <style>
 img.listing-thumb-img{
 	width: 90px;
     height: 60px;
 	border-radius: 4px;
 }
+.pagination span{
+			background-color: #5cb85c !important;
+			color: white !important;
+			border-color: #5cb85c !important;
+		}
 </style>
 <!-- Titlebar -->
 <div id="titlebar">
@@ -37,71 +42,44 @@ img.listing-thumb-img{
 						<tr>
 					</thead>
 					<tbody>
+						@if(!empty($getAllList) && $getAllList->count())
+						@foreach ($getAllList as $lists)
 						<tr>
-							<td>45</td>
+							<td>{{$lists->listing_id}}</td>
 							<td>
-								<a href="#"><img src="https://www.gigworks.me/wp-content/uploads/2019/12/single-listing-05c-450x300.jpg" class="listing-thumb-img img-responsive" alt=""></a>
+								<img src="{{$lists->listing_image_ids}}" class="listing-thumb-img img-responsive" alt="">
 							</td>
 							<td>
 								<a href="#">
-									<strong>My Reserved Listing</strong>
+									<strong>{{$lists->title}}</strong>
 								</a>
-								<address>Lucknow, Uttar Pradesh, India</address>
+								<address>@if(isset($lists['listing_address'])) {{$lists['listing_address']}} @endif</address>
 							</td>
-							<td>Coffee Shop</td>
-							<td><strong>€10/day</strong></td>
-							<td><span class="label label-success">Published</span></td>
+							<td>@if($lists->listing_type!='-1') {{$lists->category_name}} @endif</td>
+							<td><strong>@if($lists->price!='') €{{$lists->price}}/day @endif</strong></td>
+							<td><span class="label label-success">{{Config::get('constants.listing_status')[$lists->status]}}</span></td>
 							<td>
-								<a href="#" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
-								<a href="#" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a>
+								<a href="{{url('user/listing/edit/
+								'. $lists->listing_id)}}" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
+								<!-- <a href="#" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
+								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a> -->
 							</td>
 						</tr>
-						<tr>
-							<td>45</td>
-							<td>
-								<a href="#"><img src="https://www.gigworks.me/wp-content/uploads/2019/12/single-listing-05c-450x300.jpg" class="listing-thumb-img img-responsive" alt=""></a>
-							</td>
-							<td>
-								<a href="#">
-									<strong>My Reserved Listing</strong>
-								</a>
-								<address>Lucknow, Uttar Pradesh, India</address>
-							</td>
-							<td>Coffee Shop</td>
-							<td><strong>€10/day</strong></td>
-							<td><span class="label label-warning">Waiting for approval</span></td>
-							<td>
-								<a href="#" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
-								<a href="#" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a>
-							</td>
-						</tr>
-						<tr>
-							<td>45</td>
-							<td>
-								<a href="#"><img src="https://www.gigworks.me/wp-content/uploads/2019/12/single-listing-05c-450x300.jpg" class="listing-thumb-img img-responsive" alt=""></a>
-							</td>
-							<td>
-								<a href="#">
-									<strong>My Reserved Listing</strong>
-								</a>
-								<address>Lucknow, Uttar Pradesh, India</address>
-							</td>
-							<td>Coffee Shop</td>
-							<td><strong>€10/day</strong></td>
-							<td><span class="label label-default">Draft</span></td>
-							<td>
-								<a href="#" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
-								<a href="#" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a>
-							</td>
-						</tr>
+						@endforeach
+						 @else
+				            <tr>
+				                <td colspan="10">There are no data.</td>
+				            </tr>
+				        @endif
 					</tbody>
 				</table>
 			</div>
 		</div>
+		<div class="col-lg-12 col-md-12">
+		{{ $getAllList->links() }}
+	</div>
 </div>		
 <script>
 </script>	
 @endsection	
+

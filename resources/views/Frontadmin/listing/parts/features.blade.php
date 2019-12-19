@@ -32,6 +32,8 @@
 	
 </div>
 
+@if(!isset($id) || (isset($status) && $status=='4'))
 <button onclick="save_draft();" type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
+@endif
 <button type="button" onclick="Next_Tab(5);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
 <button type="button" onclick="Previous_Tab(3);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>

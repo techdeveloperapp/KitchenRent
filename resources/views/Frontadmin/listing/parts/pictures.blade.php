@@ -24,6 +24,7 @@
 			<h4> Drag and drop the images to customize the gallery order.<br>Click on the star icon to set the featured image<br> <span>(Minimum size 1440 x 900 px)</span></h4>
 		</div>
 	</div>
+	<input type="hidden" name="listing_id" id="listing_id" value="@if(isset($id)){{$id}}@endif">
 </div>
 <div class="row with-forms upload-media-gallery margin-bottom-50" id="view_listing_image">
 <input type="hidden" name="meta[featured_image]" id="featured_image" value="{{isset($featured_image) ? $featured_image : '0'}}">
@@ -34,8 +35,9 @@
 	@endif
 </div>
 
-	
+	@if(!isset($id) || (isset($status) && $status=='4'))
 	<button onclick="save_draft();" type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
+	@endif
 	<button type="button" onclick="Next_Tab(4);" class="button pull-right">{{ __('messages.next') }} <i class="fa fa-arrow-right"></i></button>
 	<button type="button" onclick="Previous_Tab(2);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>
 	
@@ -100,7 +102,7 @@ $(document).ready(function(){
 	  		 $.ajax({
 				method: 'POST',
 				url: "{{url('dropzone/upload/deleteListingImage')}}",
-				data: {'id':id},
+				data: {'id':id,'listing_id':$('#listing_id').val()},
 				headers: {
 				  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 				},
