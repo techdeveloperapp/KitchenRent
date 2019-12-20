@@ -11,11 +11,11 @@
 	</div>
 	<div class="col-md-6">
 		<h5>Minimum days of a booking</h5>
-		<input class="" type="number" name="meta[min_book_days]" placeholder="Enter the minimum days of a booking (Only number)" value="{{(isset($min_book_days) ? $min_book_days : '')}}" />
+		<input class="" data-rule-digits="true" type="text" name="meta[min_book_days]" placeholder="Enter the minimum days of a booking (Only number)" value="{{(isset($min_book_days) ? $min_book_days : '')}}" />
 	</div>
 	<div class="col-md-6">
 		<h5>Maximum days of a booking</h5>
-		<input class="" type="number" name="meta[max_book_days]" placeholder="Enter the maximum days of a booking (Only number)" value="{{(isset($max_book_days) ? $max_book_days : '')}}" />
+		<input class="" data-rule-digits="true" type="text" name="meta[max_book_days]" placeholder="Enter the maximum days of a booking (Only number)" value="{{(isset($max_book_days) ? $max_book_days : '')}}" />
 	</div>
 	<div class="col-md-6">
 		<h5>Check-in After</h5>

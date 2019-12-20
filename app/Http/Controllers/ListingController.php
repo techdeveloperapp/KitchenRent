@@ -33,7 +33,7 @@ class ListingController extends Controller
     }
 	public function index(Request $request){
         $getAllList = new Listing();
-        $getAllList = $getAllList->with('getMeta')->leftjoin('listing_metas', 'listing_metas.listing_id', '=', 'listings.id')->leftjoin('listing_types', 'listing_types.id', '=', 'listings.listing_type')->select('listings.id as listing_id','listing_metas.*','listings.*','listing_types.name as category_name')->groupBy('listing_metas.listing_id')->paginate(5);
+        $getAllList = $getAllList->with('getMeta')->leftjoin('listing_metas', 'listing_metas.listing_id', '=', 'listings.id')->leftjoin('listing_types', 'listing_types.id', '=', 'listings.listing_type')->select('listings.id as listing_id','listing_metas.*','listings.*','listing_types.name as category_name')->orderBy('listings.id', 'desc')->groupBy('listing_metas.listing_id')->paginate(5);
 
         //echo $getAllList->links(); die;
 
@@ -127,7 +127,7 @@ class ListingController extends Controller
 				return redirect('user/listing/edit/'.$listing_id)->with('success', $msg);
             }else{
                 $msg = __('messages.record_created');
-				return redirect('user/listing/index')->with('success', $msg);
+				return redirect('user/listing')->with('success', $msg);
             }
         }else{
             // save as draft

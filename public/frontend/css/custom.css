@@ -78,13 +78,13 @@ li.page-item {
     border: 1px solid #cccc;
 }
 li.page-item.active span {
-    background: #64bc36;
+    background: #74aea1;
     color: #fff !important;
     border-color: #64bc36;
 }
 .pagination span:hover, .pagination a:hover {
     opacity: 0.7;
-    background: #64bc36;
+    background: #74aea1;
     color: #fff !important;
 }	
 .pagination span, .pagination a {

@@ -2,20 +2,14 @@
 @section('title', isset($id) ? __('messages.edit_listing') : __('messages.add_listing') )
 @section('content')
 <style>
-.error {
-  color: #c31b1b;
-  margin-left: 5px;
-}
-input.error_element {
-    margin-bottom: 0 !important;
-    border-color: #c31b1b;
-    background-color: #f6c8c8;
-}
-label.error {
-  display: inline;
-}
+
 #services-tab textarea,#rules-tab textarea{
 	min-height: 100px !important;
+}
+.add-listing-section input.error, .add-listing-section select.error {
+    margin-bottom: 0px !important;
+	border-color: #c31b1b;
+	background-color: #f6c8c8;
 }
 </style>
 <?php 
@@ -54,8 +48,8 @@ if(!function_exists('gig_time_format')) {
                     <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
 					<!-- This button will show on edit mode only -->
 					<div class="listing-submit-wrap clearfix" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
-						<a href="#" class="button col-md-5">View</a>
-						<button type="button" onclick="save_publish();" class="button col-md-5">Update</button>
+						<a href="#" class="button col-md-5">{{ __('messages.view') }}</a>
+						<button type="button" onclick="save_publish();" class="button col-md-5">{{ __('messages.update') }}</button>
                     </div>
 					
                     	@csrf
@@ -144,105 +138,31 @@ $(document).ready(function(){
 });
 
 function Next_Tab(tabId=1){
-	$('.error').remove();
-	$('.error_element').removeClass('error_element');
-	if(tabId==2){
-		if(!TabOneValidation()){
-			return false;
-		}
+	if($('#listing_form').valid()){
+		console.log('valid');
+		$('ul#listing_tabs li').removeClass('active');
+		$('ul#listing_tabs li:nth-child('+tabId+')').click();
 	}
-	if(tabId==3){
-		if(!TabTwoValidation()){
-			return false;
-		}
-	}
-	if(tabId==6){
-		if(!TabFiveValidation()){
-			return false;
-		}
-	}
-	$('ul#listing_tabs li').removeClass('active');
-	$('ul#listing_tabs li:nth-child('+tabId+')').click();
 }
 
 function Previous_Tab(tabId=1){
-	$('ul#listing_tabs li').removeClass('active');
-	$('ul#listing_tabs li:nth-child('+tabId+')').click();
-}
-
-function TabOneValidation(){
-	var listing_title = $.trim($('#listing_title').val());
-	if (listing_title.length < 1) {
-      $('#listing_title').after('<span class="error">This field is required</span>');
-      $('#listing_title').focus();
-      $('#listing_title').addClass('error_element');
-    }
-    if($('.error').length){
-    	return false;
-    }
-    return true;
-}
-
-function TabTwoValidation(){
-    var listing_price = $('#listing_price').val();
-	if (listing_price.length < 1) {
-      $('#listing_price').after('<span class="error">This field is required</span>');
-      $('#listing_price').focus();
-      $('#listing_price').addClass('error_element');
-    }
-    if($('.error').length){
-    	return false;
-    }
-    return true;
-}
-
-function TabFiveValidation(){
-    var location = $('#listing_address').val();
-	if (location.length < 1) {
-      $('#listing_address').after('<span class="error">This field is required</span>');
-      $('#listing_address').focus();
-      $('#listing_address').addClass('error_element');
-    }
-    if($('.error').length){
-    	return false;
-    }
-    return true;
+	if($('#listing_form').valid()){
+		$('ul#listing_tabs li').removeClass('active');
+		$('ul#listing_tabs li:nth-child('+tabId+')').click();
+	}
 }
 
 function save_draft(){
-	$('.error').remove();
-	$('.error_element').removeClass('error_element');
-	var check = TabOneValidation();
-	console.log(check);
-	if(check){
+	if($('#listing_form').valid()){
+		console.log('valid');
 		$('#input_save_as_draft').val('1');
 		$('#listing_form').submit();
 	}
 }
 
 function save_publish(){
-	$('.error').remove();
-	$('.error_element').removeClass('error_element');
-	var check1 = TabOneValidation();
-	var check2 = TabTwoValidation();
-	var check5 = TabFiveValidation();
-	if(!check1)
-	{
-		$('ul#listing_tabs li').removeClass('active');
-		$('ul#listing_tabs li:nth-child(1)').click();
-	}
-	else if(!check2)
-	{
-		$('ul#listing_tabs li').removeClass('active');
-		$('ul#listing_tabs li:nth-child(2)').click();
-	}
-	else if(!check5)
-	{
-		$('ul#listing_tabs li').removeClass('active');
-		$('ul#listing_tabs li:nth-child(5)').click();
-	}
-
-	if(check1 && check2 && check5){
+	if($('#listing_form').valid()){
+		console.log('valid');
 		$('#input_save_as_draft').val('2');
 		$('#listing_form').submit();
 	}

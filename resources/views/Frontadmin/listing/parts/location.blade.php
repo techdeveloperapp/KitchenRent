@@ -19,7 +19,7 @@
 <div class="row with-forms margin-bottom-30">
 	<div class="col-md-9">
 		<h5>{{ __('messages.address') }}</h5>
-		<input class="" type="text" name="meta[listing_address]" id="listing_address" placeholder="{{ __('messages.address') }}" value="{{(isset($listing_address) ? $listing_address : '')}}" />
+		<input class="" data-rule-required="true" type="text" name="meta[listing_address]" id="listing_address" placeholder="{{ __('messages.address') }}" value="{{(isset($listing_address) ? $listing_address : '')}}" />
 	</div>
 	<div class="col-md-3">
 		<h5>{{ __('messages.apt_suite') }} (Optional)  </h5>
@@ -37,7 +37,7 @@
 	</div>
 	<div class="col-md-4">
 		<h5>{{ __('messages.zip') }}</h5>
-		<input class="" type="text" name="meta[zip]" id="zip" placeholder="{{ __('messages.zip') }}" value="{{(isset($zip) ? $zip : '')}}" />
+		<input class="" data-rule-digits="true" type="text" name="meta[zip]" id="zip" placeholder="{{ __('messages.zip') }}" value="{{(isset($zip) ? $zip : '')}}" />
 	</div>
 </div>
 <div class="row with-forms margin-bottom-30">
@@ -65,11 +65,11 @@
 <div class="row with-forms margin-bottom-50">
 	<div class="col-md-4">
 		<h5>Latitude </h5>
-		<input class="" type="text" name="meta[lat]" id="lat" placeholder="Latitude" value="{{(isset($lat) ? $lat : '')}}" />
+		<input class="" data-rule-number="true" type="text" name="meta[lat]" id="lat" placeholder="Latitude" value="{{(isset($lat) ? $lat : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5> Longitude</h5>
-		<input class="" type="text" name="meta[lng]" id="lng" placeholder="Longitude" value="{{(isset($lng) ? $lng : '')}}" />
+		<input class="" data-rule-number="true" type="text" name="meta[lng]" id="lng" placeholder="Longitude" value="{{(isset($lng) ? $lng : '')}}" />
 	</div>
 	<div class="col-md-4">
 		<h5> Find the address on the map </h5>

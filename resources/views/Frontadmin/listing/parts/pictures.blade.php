@@ -21,7 +21,7 @@
 	<div class="dropzone" action="{{ route('dropzone.upload.uploadListingImage') }}" id="my-awesome-dropzone">
 		<div class="dropzone__msg dz-message needsclick">
 			<div class="upload-icon"> <i class="fa fa-picture-o" aria-hidden="true"></i></div>
-			<h4> Drag and drop the images to customize the gallery order.<br>Click on the star icon to set the featured image<br> <span>(Minimum size 1440 x 900 px)</span></h4>
+			<h4> Drag and drop or upload here.<br>Click on the star icon to set the featured image<br> <span>(Minimum size 1440 x 900 px)</span></h4>
 		</div>
 	</div>
 	<input type="hidden" name="listing_id" id="listing_id" value="@if(isset($id)){{$id}}@endif">
@@ -30,7 +30,7 @@
 <input type="hidden" name="meta[featured_image]" id="featured_image" value="{{isset($featured_image) ? $featured_image : '0'}}">
     @if(isset($listing_image_ids) && !empty($listing_image_ids))
 	@foreach (explode(',',$listing_image_ids) as $image)
-		<div class="col-sm-2 col-xs-4 listing-thumb{{$image}}" style="position: relative; left: 0px; top: 0px;"><figure class="upload-gallery-thumb"><img width="150" height="150" src="{{ ( \Helper::get_attachment_by_id( $image ) )}}" class="attachment-thumbnail size-thumbnail" alt=""></figure><div class="upload-gallery-thumb-buttons"><button type="button" id="feature-{{$image}}" title="Featured" class="tooltip icon-featured {{($featured_image == $image)?'featured':''}}" onclick="featured_images({{$image}});"><i class="fa fa-star"></i></button><button  type="button" title="Delete" class="tooltip icon-delete" data-listing-id="{{$id}}" onclick="deleteListingImage({{$image}})"><i class="fa fa-trash-o"></i></button><input type="hidden" class="listing-image-id" name="meta[listing_image_ids][]" value="{{$image}}"></div><span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span></div>
+		<div class="col-sm-2 col-xs-4 listing-thumb{{$image}}" style="position: relative; left: 0px; top: 0px;"><figure class="upload-gallery-thumb"><img width="150" height="150" src="{{ ( \Helper::get_attachment_by_id( $image ) )}}" class="attachment-thumbnail size-thumbnail" alt=""></figure><div class="upload-gallery-thumb-buttons"><button type="button" id="feature-{{$image}}" title="{{ __('messages.featured') }}" class="tooltip icon-featured {{($featured_image == $image)?'featured':''}}" onclick="featured_images({{$image}});"><i class="fa fa-star"></i></button><button  type="button" title="{{ __('messages.delete') }}" class="tooltip icon-delete" data-listing-id="{{$id}}" onclick="deleteListingImage({{$image}})"><i class="fa fa-trash-o"></i></button><input type="hidden" class="listing-image-id" name="meta[listing_image_ids][]" value="{{$image}}"></div><span style="display: none;" class="icon icon-loader"><i class="fa fa-spinner fa-spin"></i></span></div>
 	@endforeach
 	@endif
 </div>

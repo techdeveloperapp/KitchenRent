@@ -12,6 +12,7 @@
 <!-- CSS ================================================== -->
 <link href="{{url('frontend/css/style.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('frontend/css/main-color.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{url('frontend/css/colors/celadon.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{url('frontend/css/custom.css')}}" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/jquery-3.4.1.min.js"></script>
 <!-- CSRF Token -->

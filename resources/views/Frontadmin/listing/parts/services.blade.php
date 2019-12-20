@@ -14,7 +14,7 @@
 		</div>
 		<div class="col-md-6">
 			<h5> Service Price </h5>
-			<input class="" type="number" min="1" name="service_price" placeholder="Enter the service price" value="{{$gig_services->service_price}}" />
+			<input class="" type="text" data-rule-number="true" name="service_price" placeholder="Enter the service price" value="{{$gig_services->service_price}}" />
 		</div>
 		<div class="col-md-12">
 			<h5>Service description </h5>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="col-md-6">
 			<h5> Service Price </h5>
-			<input class="" type="number" min="1" name="service_price" placeholder="Enter the service price" value="" />
+			<input class="" type="text" data-rule-number="true" name="service_price" placeholder="Enter the service price" value="" />
 		</div>
 		<div class="col-md-12">
 			<h5>Service description </h5>

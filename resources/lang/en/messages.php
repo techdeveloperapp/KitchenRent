@@ -18,6 +18,7 @@ return [
     'search'  		    			=> 'Search',
     'edit'  		    			=> 'Edit',
     'delete'  		    			=> 'Delete',
+    'view'  		    			=> 'View',
     'first_name'  		    		=> 'First Name',
     'last_name'  		    		=> 'Last Name',
     'phone'  		    			=> 'Phone',
@@ -144,6 +145,9 @@ return [
 	'amenities'						=> 'Amenities',
 	'facilities'					=> 'Facilities',
 	'bedrooms'						=> 'Bedrooms',
+	'thumbnail'						=> 'Thumbnail',
+	'type'							=> 'Type',
+	'featured'						=> 'Featured',
 	
 	
 	

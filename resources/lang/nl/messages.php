@@ -18,6 +18,7 @@ return [
 	'search'	  		        => 'Zoeken',
 	'edit'  		    		=> 'Bewerk',
 	'delete'  		    		=> 'Delete',
+	'view'  		    		=> 'uitzicht',
 	'first_name'  		    	=> 'Voornaam',
     'last_name'  		    	=> 'Achternaam',
     'phone'  		    		=> 'Telefoon',
@@ -147,6 +148,7 @@ return [
 	'amenities'						=> 'voorzieningen',
 	'facilities'					=> 'uitrusting',
 	'bedrooms'						=> 'slaapkamers',
+	'featured'						=> 'Uitgelicht',
 	
 	
 	

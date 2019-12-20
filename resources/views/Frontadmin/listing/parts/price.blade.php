@@ -13,7 +13,7 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.price_per_hour') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="number" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" />
+		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" data-rule-digits="true" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" data-rule-required="true" />
 		</div>
 	</div>
 </div>
@@ -21,7 +21,7 @@
 	<div class="col-md-6">
 		<h5>{{ __('messages.weekends') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_weekend_price') }} " type="text" name="meta[weekends_price]" value="{{(isset($weekends_price) ? $weekends_price : '')}}" data-unit="EUR" />
+		<input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_weekend_price') }} " type="text" name="meta[weekends_price]" value="{{(isset($weekends_price) ? $weekends_price : '')}}" data-unit="EUR" />
 		</div>
 	</div>
 	<div class="col-md-6">
@@ -55,11 +55,11 @@
 		</div>
 		<div class="col-md-4">
 			<h5>{{ __('messages.extra_guest_price') }} </h5>
-			 <input class="" placeholder="{{ __('messages.enter_extra_guest_price') }} " type="text" name="meta[additional_guests_price]" value="{{(isset($additional_guests_price) ? $additional_guests_price : '')}}" data-unit="EUR" />
+			 <input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_extra_guest_price') }} " type="text" name="meta[additional_guests_price]" value="{{(isset($additional_guests_price) ? $additional_guests_price : '')}}" data-unit="EUR" />
 		</div>
 		<div class="col-md-4">
 			<h5>{{ __('messages.no_of_guests') }} </h5>
-			 <input class="" placeholder="{{ __('messages.enter_no_of_guests') }} " type="text" name="meta[num_additional_guests]" value="{{(isset($num_additional_guests) ? $num_additional_guests : '')}}" />
+			 <input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_no_of_guests') }} " type="text" name="meta[num_additional_guests]" value="{{(isset($num_additional_guests) ? $num_additional_guests : '')}}" />
 		</div>
 	</div>
 	
@@ -67,7 +67,7 @@
 		<div class="col-md-7">
 			<h5>{{ __('messages.cleaning_fees') }} </h5>
 			<div class="fm-input pricing-price">
-				<input class="" placeholder="{{ __('messages.enter_cleaning_fees_price') }} " type="text" name="meta[cleaning_fee]" value="{{(isset($cleaning_fee) ? $cleaning_fee : '')}}" data-unit="EUR" />
+				<input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_cleaning_fees_price') }} " type="text" name="meta[cleaning_fee]" value="{{(isset($cleaning_fee) ? $cleaning_fee : '')}}" data-unit="EUR" />
 			</div>
 		</div>
 		<div class="col-md-5">
@@ -87,7 +87,7 @@
 		<div class="col-md-6">
 			<h5>{{ __('messages.security_deposit') }} </h5>
 			<div class="fm-input pricing-price">
-			 <input class="" placeholder="{{ __('messages.enter_security_deposit') }} " type="text" name="meta[security_deposit]" value="{{(isset($security_deposit) ? $security_deposit : '')}}" />
+			 <input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_security_deposit') }} " type="text" name="meta[security_deposit]" value="{{(isset($security_deposit) ? $security_deposit : '')}}" />
 			</div>
 		</div>
 	</div>

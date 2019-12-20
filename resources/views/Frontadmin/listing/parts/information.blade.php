@@ -30,7 +30,7 @@
 <div class="row with-forms">
 	<div class="col-md-12">
 		<h5>{{ __('messages.title') }} </h5>
-		<input class="" type="text" name="title" id="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" />
+		<input class="" type="text" name="title" id="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" required autofocus />
 	</div>
 </div>
 <div class="row with-forms">
@@ -43,7 +43,7 @@
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5>{{ __('messages.listing_type') }}</h5>
-		<select class="chosen-select-no-single" name="listing_type">
+		<select class="chosen-select-no-single" name="listing_type" >
 			<option value="-1" "{{(isset($listing_type) ? ($listing_type == '-1' ? 'selected' : '') : '')}}">None</option>	
 	        @foreach ($list_type_arr as $list_type_list)
 			<option value="{{ $list_type_list->id }}" {{(isset($listing_type) ? ($listing_type == $list_type_list->id ? 'selected' : '') : '')}} >{{ $list_type_list->name }}</option>
@@ -52,27 +52,27 @@
 	</div>
 	<div class="col-md-6">
 		<h5>Number of individual tables </h5>
-		<input type="number" min="0" name="meta[listing_bedrooms]" placeholder="Enter number of bedrooms" value="{{isset($listing_bedrooms) ? $listing_bedrooms : ''}}">
+		<input type="text" data-rule-digits="true" name="meta[listing_bedrooms]" placeholder="Enter number of bedrooms" value="{{isset($listing_bedrooms) ? $listing_bedrooms : ''}}">
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5>Number of persons </h5>
-		<input type="number" min="0" name="meta[guests]" placeholder="Enter number of persons" value="{{isset($guests) ? $guests : ''}}">
+		<input type="text"  data-rule-digits="true" name="meta[guests]" placeholder="Enter number of persons" value="{{isset($guests) ? $guests : ''}}">
 	</div>
 	<div class="col-md-6">
 		<h5>  Number of Room  </h5>
-		<input type="number" min="0" name="meta[listing_rooms]" placeholder="Enter number of rooms" value="{{isset($listing_rooms) ? $listing_rooms : ''}}">
+		<input type="text" data-rule-digits="true" name="meta[listing_rooms]" placeholder="Enter number of rooms" value="{{isset($listing_rooms) ? $listing_rooms : ''}}">
 	</div>
 </div>
 <div class="row with-forms">
 	<div class="col-md-6">
 		<h5> Size </h5>
-		<input type="number" min="0" name="meta[listing_size]" placeholder="Enter the size" value="{{isset($listing_size) ? $listing_size : ''}}">
+		<input type="text" data-rule-digits="true"  name="meta[listing_size]" placeholder="Enter the size" value="{{isset($listing_size) ? $listing_size : ''}}">
 	</div>
 	<div class="col-md-6">
 		<h5>  Unit of measure  </h5>
-		<input type="text" min="0" name="meta[listing_size_unit]" placeholder="Enter the unit of measure. Ex. SqFt" value="{{isset($listing_size_unit) ? $listing_size_unit : ''}}">
+		<input type="text" name="meta[listing_size_unit]" placeholder="Enter the unit of measure. Ex. SqFt" value="{{isset($listing_size_unit) ? $listing_size_unit : ''}}">
 	</div>
 </div>
 
@@ -92,90 +92,7 @@
 		<!-- Availablity Slots -->
 			<!-- Set data-clock-type="24hr" to enable 24 hours clock type -->
 			<div class="availability-slots" data-clock-type="24hr" id="timeslot_block">
-						<div class="form-group row col-md-12 margin-bottom-15">
-							<button type="button" data-repeater-create="" class="button add-slot-btn">
-								<i class="fa fa-plus"></i> Add TimeSlot
-							</button>
-						</div>
-						<div data-repeater-list="meta[timeslot]" id="timeslot-repeater" class="custom-extra-prices col-md-12">
-						@if(isset($id) && !empty($timeslot))
-							@foreach ($timeslot as $timeslot)
-						<div data-repeater-item class="more_extra_services_wrap clearfix">
-						  <div class="row with-forms">
-							 <div class="col-md-3">
-									<label for="ts_start_hour">Start Hour</label>
-									<select name="ts_start_hour" class="chosen-select ts_start_hour dynamic-select" data-selected="{{$timeslot->ts_start_hour}}">
-										<?php 
-										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-											echo '<option value="'.date('H:i',$halfhour).'"  >'.date(gig_time_format(),$halfhour).'</option>';
-										}
-										?>
-									</select>
-							</div>
-							<div class="col-md-3">
-								<label for="ts_end_hour">End Hour</label>
-								<select name="ts_end_hour" class="chosen-select ts_end_hour dynamic-select"  data-selected="{{$timeslot->ts_end_hour}}">
-										<?php 
-										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-											echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
-										}
-										?>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<label for="ts_price">{{ __('messages.price') }}</label>
-								<input type="number" name="ts_price" value="{{$timeslot->ts_price}}" class="form-control" placeholder="{{ __('messages.price') }}">
-							</div>
-							<div class="col-md-3 margin-top-30">
-									<label></label>
-									<button type="button" data-repeater-delete="" class="button button-defualt timeslot-delete">
-											{{ __('messages.delete') }}
-									</button>
-							</div>
-						
-							</div>
-						</div>
-						@endforeach
-						@else
-						<div data-repeater-item class="more_extra_services_wrap clearfix">
-						  <div class="row with-forms">
-							 <div class="col-md-3">
-									<label for="ts_start_hour">Start Hour</label>
-									<select name="ts_start_hour" class="chosen-select" id="ts_start_hour" >
-											<?php 
-											for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-												echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
-											}
-											?>
-									</select>
-							</div>
-							<div class="col-md-3">
-								<label for="ts_end_hour">End Hour</label>
-								<select name="ts_end_hour" class="chosen-select" id="ts_end_hour" >
-										<?php 
-										for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
-											echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
-										}
-										?>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<label for="ts_price">{{ __('messages.price') }}</label>
-								<input type="number" name="ts_price" value="" class="form-control" placeholder="{{ __('messages.price') }}">
-							</div>
-							<div class="col-md-3 margin-top-30">
-									<label></label>
-									<button type="button" data-repeater-delete="" class="button button-defualt timeslot-delete">
-											{{ __('messages.delete') }}
-									</button>
-							</div>
-						
-							</div>
-						</div>	
-						@endif
-						
-						</div>
-						
+				@include('Frontadmin.listing.parts.timeslots')	
 			</div>
 
 	</div>
@@ -303,19 +220,6 @@
 <script src="{{url('frontend/')}}/scripts/jquery.repeater.min.js"></script>
 <script>
 $(document).ready(function(){
-	jQuery("#timeslot_block").repeater({
-			initEmpty:false,
-			show:function(){
-				jQuery(this).slideDown();
-				jQuery(".chosen-select").chosen();
-			},
-			hide:function(deleteElement){
-				 if(confirm('Are you sure you want to delete this slot?')) {
-						jQuery(this).slideUp(deleteElement);
-				 }
-			},
-			isFirstItemUndeletable: true
-	});
 });
 ClassicEditor
 		.create( document.querySelector( '#description' ),{

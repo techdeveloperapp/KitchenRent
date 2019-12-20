@@ -15,19 +15,22 @@
 		<!-- Listings -->
 		<div class="col-lg-12 col-md-12">
 			<div class="dashboard-list-box margin-top-0 margin-bottom-50">
+				<div>
+					
+				</div>
 				<div class="pull-right margin-top-10">
 					<input type='text' class="" placeholder="Search">
 				</div>
-				<table class="table table-bordered table-dark">
+				<table class="basic-table">
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Thumbnail</th>
-							<th>Address</th>
-							<th>Type</th>
-							<th>Price</th>
-							<th>Status</th>
-							<th>Actions</th>
+							<th>{{ __('messages.thumbnail') }}</th>
+							<th>{{ __('messages.address') }}</th>
+							<th>{{ __('messages.type') }}</th>
+							<th>{{ __('messages.price') }}</th>
+							<th>{{ __('messages.status') }}</th>
+							<th>{{ __('messages.actions') }}</th>
 						<tr>
 					</thead>
 					<tbody>
@@ -49,9 +52,9 @@
 							<td><span class="label label-@if($lists->status=='1')success @elseif($lists->status=='2')warning @elseif($lists->status=='3')danger @elseif($lists->status=='4')default @endif">{{Config::get('constants.listing_status')[$lists->status]}}</span></td>
 							<td>
 								<a href="{{url('user/listing/edit/
-								'. $lists->listing_id)}}" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
-								<a href="javascript:void(0)" onclick="delete_listing({{$lists->listing_id}});" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a>
+								'. $lists->listing_id)}}" class="button gray tooltip" title="{{ __('messages.edit') }}"><i class="sl sl-icon-note"></i> </a>
+								<a href="javascript:void(0)" onclick="delete_listing({{$lists->listing_id}});" class="button gray tooltip" title="{{ __('messages.delete') }}"><i class="sl sl-icon-close"></i> </a>
+								<a href="#" class="button gray tooltip" title="{{ __('messages.view') }}"><i class="sl sl-icon-arrow-right-circle"></i> </a>
 							</td>
 						</tr>
 						@endforeach
