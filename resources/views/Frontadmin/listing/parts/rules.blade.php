@@ -20,6 +20,7 @@
 	<div class="col-md-6">
 		<h5>Check-in After</h5>
 		<select name="meta[checkin_before]" class="chosen-select dynamic-select" id="checkin_before" data-selected="{{(isset($checkin_before) ? $checkin_before : '')}}">
+		<option value="-1" "{{(isset($checkin_before) ? ($checkin_before == '-1' ? 'selected' : '') : '')}}">Select</option>	
 			<?php 
 			for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
 				echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';
@@ -30,6 +31,7 @@
 	<div class="col-md-6">
 		<h5>Check-out After</h5>
 		<select name="meta[checkout_before]" class="chosen-select dynamic-select" id="checkout_before" data-selected="{{(isset($checkout_before) ? $checkout_before : '')}}">
+		<option value="-1" "{{(isset($checkout_before) ? ($checkout_before == '-1' ? 'selected' : '') : '')}}">Select</option>
 			<?php 
 			for ($halfhour = $start_hour;$halfhour <= $end_hour; $halfhour = $halfhour+30*60) {
 				echo '<option value="'.date('H:i',$halfhour).'">'.date(gig_time_format(),$halfhour).'</option>';

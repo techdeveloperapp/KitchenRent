@@ -55,7 +55,7 @@ if(!function_exists('gig_time_format')) {
 					<!-- This button will show on edit mode only -->
 					<div class="listing-submit-wrap clearfix" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
 						<a href="#" class="button col-md-5">View</a>
-						<button class="button col-md-5">Update</button>
+						<button type="button" onclick="save_publish();" class="button col-md-5">Update</button>
                     </div>
 					
                     	@csrf
@@ -81,13 +81,13 @@ if(!function_exists('gig_time_format')) {
 										</div>
 									</div>
 									<div class="tab-content" id="price-tab">
-										<div class="add-listing-section margin-bottom-20"> 
+										<div class="add-listing-section margin-bottom-30"> 
 											@include('Frontadmin.listing.parts.price')
 										</div>
 									</div>
 									
 									<div class="tab-content" id="pictures-tab">
-										<div class="add-listing-section margin-bottom-20"> 
+										<div class="add-listing-section margin-bottom-30"> 
 											@include('Frontadmin.listing.parts.pictures')
 										</div>
 									</div>

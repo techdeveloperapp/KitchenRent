@@ -1,18 +1,7 @@
 @extends('layouts.frontadmin.app')
 @section('title', __('messages.my_listings') )
 @section('content')
-<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <style>
-img.listing-thumb-img{
-	width: 90px;
-    height: 60px;
-	border-radius: 4px;
-}
-.pagination span{
-			background-color: #5cb85c !important;
-			color: white !important;
-			border-color: #5cb85c !important;
-		}
 </style>
 <!-- Titlebar -->
 <div id="titlebar">
@@ -25,7 +14,7 @@ img.listing-thumb-img{
 <div class="row">
 		<!-- Listings -->
 		<div class="col-lg-12 col-md-12">
-			<div class="dashboard-list-box margin-top-0">
+			<div class="dashboard-list-box margin-top-0 margin-bottom-50">
 				<div class="pull-right margin-top-10">
 					<input type='text' class="" placeholder="Search">
 				</div>
@@ -47,7 +36,7 @@ img.listing-thumb-img{
 						<tr>
 							<td>{{$lists->listing_id}}</td>
 							<td>
-								<img src="{{$lists->listing_image_ids}}" class="listing-thumb-img img-responsive" alt="">
+								<img src="{{ (isset($lists->listing_image_ids))?$lists->listing_image_ids:'http://placehold.it/90x60?text=NA'}}" class="listing-thumb-img img-responsive" alt="">
 							</td>
 							<td>
 								<a href="#">
@@ -57,18 +46,18 @@ img.listing-thumb-img{
 							</td>
 							<td>@if($lists->listing_type!='-1') {{$lists->category_name}} @endif</td>
 							<td><strong>@if($lists->price!='') €{{$lists->price}}/day @endif</strong></td>
-							<td><span class="label label-success">{{Config::get('constants.listing_status')[$lists->status]}}</span></td>
+							<td><span class="label label-@if($lists->status=='1')success @elseif($lists->status=='2')warning @elseif($lists->status=='3')danger @elseif($lists->status=='4')default @endif">{{Config::get('constants.listing_status')[$lists->status]}}</span></td>
 							<td>
 								<a href="{{url('user/listing/edit/
 								'. $lists->listing_id)}}" class="button gray tooltip" title="Edit"><i class="sl sl-icon-note"></i> </a>
-								<!-- <a href="#" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a> -->
+								<a href="javascript:void(0)" onclick="delete_listing({{$lists->listing_id}});" class="button gray tooltip" title="Delete"><i class="sl sl-icon-close"></i> </a>
+								<a href="#" class="button gray tooltip" title="View"><i class="sl sl-icon-arrow-right-circle"></i> </a>
 							</td>
 						</tr>
 						@endforeach
 						 @else
 				            <tr>
-				                <td colspan="10">There are no data.</td>
+				                <td colspan="7" align="center">{{ __('messages.no_records') }}</td>
 				            </tr>
 				        @endif
 					</tbody>
@@ -80,6 +69,38 @@ img.listing-thumb-img{
 	</div>
 </div>		
 <script>
+function delete_listing(id){
+	swal({
+	  title: "{{ __('messages.are_you_sure_delete') }}",
+	  text: "",
+	  icon: "warning",
+	  buttons: true,
+	  dangerMode: true,
+	  confirmButtonText: "{{ __('messages.yes_proceed') }}",
+	  cancelButtonText: "{{ __('messages.cancel') }}",
+	    closeOnConfirm: false
+	  }).then(result => {
+	  	console.log(result);
+	  	if(result){
+	  		 $.ajax({
+				method: 'POST',
+				url: "{{url('user/listing/deleteListing')}}",
+				data: {'listing_id':id,},
+				headers: {
+				  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				success: function(data){
+					//console.log(data);
+					swal(data.message,'','success');
+					location.reload();
+				},
+				error: function(data){
+					swal('Error',data,'error');
+				}
+			});
+	  	}
+	  });
+}
 </script>	
 @endsection	
 

@@ -79,7 +79,7 @@ $(document).ready(function(){
 						jQuery(this).slideUp(deleteElement);
 				 }
 			},
-			isFirstItemUndeletable: true
+			isFirstItemUndeletable: false
 	});
 });
 </script>

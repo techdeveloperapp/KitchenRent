@@ -6,8 +6,8 @@ return [
         'customer' 	=> '3',
     ],
     'listing_status' => [
-        '1' 	=> 'Pending',
-        '2' 	=> 'Publish',
+        '1' 	=> 'Publish',
+        '2' 	=> 'Pending',
         '3' 	=> 'Disabled',
         '4' 	=> 'Draft',
     ]

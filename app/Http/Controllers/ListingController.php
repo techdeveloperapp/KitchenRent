@@ -90,7 +90,7 @@ class ListingController extends Controller
             $listing->status = '4';
             if($request->save_as_draft=='2')
             {
-                $listing->status = '1';
+                $listing->status = '2';//pending
             }
             if($listing->save()){
                 $listing_meta = new ListingMeta();
@@ -101,6 +101,7 @@ class ListingController extends Controller
 				$meta = $request->input('meta');
 				$meta['timeslot_enable'] = $timeslot_enable;
 				$meta['mon_fri_closed']  = $mon_fri_closed;
+				$meta['sat_closed']      = $sat_closed;
 				$meta['sun_closed']      = $sun_closed;
 				//print_r($meta);exit;
                 foreach($meta as $key=>$value){
@@ -186,7 +187,8 @@ class ListingController extends Controller
             {
                 ListingMeta::UpdateListingImages($request->listing_id,'listing_image_ids',$request->id);
             }
-            return response()->json(['message'=>'deleted successfully']); 
+			$msg = __('messages.record_deleted');
+            return response()->json(['status'=>"success",'message'=> $msg]);
         }
     }
 
@@ -219,4 +221,12 @@ class ListingController extends Controller
 		//print_r($listing);
         return view('Frontadmin.listing.add',$listing);
     }
+	public function deleteListing(Request $request){
+		if($request->listing_id){
+			$listing = new Listing();
+			$listing->deleteListing($request->listing_id);
+			$msg = __('messages.record_deleted');
+			return response()->json(['status'=>"success",'message'=> $msg  ]); 
+		}
+	}
 }	

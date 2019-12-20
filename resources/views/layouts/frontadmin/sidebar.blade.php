@@ -12,7 +12,7 @@
 			</ul>
 			
 			<ul data-submenu-title="Listings">
-			    <li class="@if( Route::currentRouteName() == 'user.customer.listingAll') active  @endif "><a href="{{url('user/listing/index')}}"><i class="sl sl-icon-layers"></i> {{ __('messages.my_listings') }}</a></li>
+			    <li class="@if( Route::currentRouteName() == 'user.customer.listingAll') active  @endif "><a href="{{url('user/listing')}}"><i class="sl sl-icon-layers"></i> {{ __('messages.my_listings') }}</a></li>
 				<!--<li><a><i class="sl sl-icon-layers"></i> My Listings</a>
 					<ul>
 						<li><a href="dashboard-my-listings.html">Active <span class="nav-tag green">6</span></a></li>

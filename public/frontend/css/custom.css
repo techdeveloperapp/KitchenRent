@@ -61,3 +61,37 @@ label.error {
     background-color: #d53824;
     border-color: #d53824;
 }
+img.listing-thumb-img{
+	width: 90px;
+    height: 60px;
+	border-radius: 4px;
+}
+.pagination{
+	display: flex;
+    padding-left: 0;
+    list-style: none;
+    border-radius: .25rem;
+    margin-bottom: 20px;
+}
+li.page-item {
+    margin-left: 10px;
+    border: 1px solid #cccc;
+}
+li.page-item.active span {
+    background: #64bc36;
+    color: #fff !important;
+    border-color: #64bc36;
+}
+.pagination span:hover, .pagination a:hover {
+    opacity: 0.7;
+    background: #64bc36;
+    color: #fff !important;
+}	
+.pagination span, .pagination a {
+    color: #2a2a2a !important;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 1rem;
+    font-size: 16px;
+    padding-left: 1rem;
+}
