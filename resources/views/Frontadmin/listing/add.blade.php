@@ -63,7 +63,7 @@ if(!function_exists('gig_time_format')) {
 									<li><a href="#pictures-tab">{{ __('messages.pictures') }}</a></li>
 									<li><a href="#features-tab">{{ __('messages.features') }}</a></li>
 									<li><a href="#location-tab">{{ __('messages.location') }}</a></li>
-									<li><a href="#bedrooms-tab">{{ __('messages.bedrooms') }}</a></li>
+									<!--<li><a href="#bedrooms-tab">{{ __('messages.bedrooms') }}</a></li>-->
 									<li><a href="#services-tab">{{ __('messages.services') }}</a></li>
 									<li><a href="#rules-tab">{{ __('messages.terms_rules') }}</a></li>
 								</ul>
@@ -95,11 +95,11 @@ if(!function_exists('gig_time_format')) {
 											@include('Frontadmin.listing.parts.location')
 										</div>
 									</div>
-									<div class="tab-content" id="bedrooms-tab">
-										<div class="add-listing-section margin-bottom-30" id="bedrooms_block"> 
-											@include('Frontadmin.listing.parts.bedrooms')
-										</div>
-									</div>
+									<!--<div class="tab-content" id="bedrooms-tab">
+										<div class="add-listing-section margin-bottom-30" id="bedrooms_block"> -->
+											{{--@include('Frontadmin.listing.parts.bedrooms')--}}
+										<!--</div>
+									</div>-->
 									<div class="tab-content" id="services-tab">
 										<div class="add-listing-section margin-bottom-30"  id="services_block"> 
 											@include('Frontadmin.listing.parts.services')
@@ -143,6 +143,7 @@ function Next_Tab(tabId=1){
 		$('ul#listing_tabs li').removeClass('active');
 		$('ul#listing_tabs li:nth-child('+tabId+')').click();
 	}
+	var i = $("#listing_tabs"); scrollTo(i, 200)
 }
 
 function Previous_Tab(tabId=1){
@@ -150,6 +151,7 @@ function Previous_Tab(tabId=1){
 		$('ul#listing_tabs li').removeClass('active');
 		$('ul#listing_tabs li:nth-child('+tabId+')').click();
 	}
+	var i = $("#listing_tabs"); scrollTo(i, 200)
 }
 
 function save_draft(){

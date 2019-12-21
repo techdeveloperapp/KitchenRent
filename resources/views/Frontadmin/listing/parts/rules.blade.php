@@ -106,4 +106,4 @@
 <button onclick="save_draft();" type="button" class="button button-defualt">{{ __('messages.save_draft') }}</button>
 @endif
 <button onclick="save_publish();" type="button"  class="button pull-right">{{ __('messages.submit') }} <i class="fa fa-save"></i></button>
-<button type="button" onclick="Previous_Tab(7);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>
+<button type="button" onclick="Previous_Tab(6);" class="button pull-right"><i class="fa fa-arrow-left"></i>{{ __('messages.previous') }}</button>

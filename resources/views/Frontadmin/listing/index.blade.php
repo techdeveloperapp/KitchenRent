@@ -15,9 +15,6 @@
 		<!-- Listings -->
 		<div class="col-lg-12 col-md-12">
 			<div class="dashboard-list-box margin-top-0 margin-bottom-50">
-				<div>
-					
-				</div>
 				<div class="pull-right margin-top-10">
 					<input type='text' class="" placeholder="Search">
 				</div>
