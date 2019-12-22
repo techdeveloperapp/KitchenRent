@@ -81,30 +81,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -206,30 +182,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -305,30 +257,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -428,30 +356,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -552,30 +456,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -676,30 +556,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
@@ -806,30 +662,6 @@ margin-bottom: 10px;
 			<?php
 			}
 			?>
-			@else
-			<!-- Single Slot -->
-			<!-- <div class="single-slot">
-				<div class="single-slot-left">
-					<div class="single-slot-time"><span class="start">8:30</span> <i class="am-pm">am</i> - <span class="end">9:00</span> <i class="am-pm">am</i></div>
-					<button type="button"  class="remove-slot"><i class="fa fa-close"></i></button>
-				</div>
-
-				<div class="single-slot-right">
-					<strong>Slots:</strong>
-					<div class="plusminus horiz">
-						<button type="button" ></button>
-						<input type="number" name="slot-qty" value="1" min="1" max="99">
-						<button type="button" ></button> 
-					</div>
-					
-				</div>
-				<div class="single-slot-left">
-					<strong>{{ __('messages.price') }}:</strong>
-					<input type="text" value="" class="price-input" placeholder="{{ __('messages.price') }}">
-				</div>
-				
-			</div> -->
-			<!-- Single Slot -->
 			@endif
 			
 		</div>
