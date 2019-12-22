@@ -157,6 +157,7 @@ function Previous_Tab(tabId=1){
 function save_draft(){
 	if($('#listing_form').valid()){
 		console.log('valid');
+		get_timesloat();
 		$('#input_save_as_draft').val('1');
 		$('#listing_form').submit();
 	}
@@ -165,8 +166,33 @@ function save_draft(){
 function save_publish(){
 	if($('#listing_form').valid()){
 		console.log('valid');
+		get_timesloat();
 		$('#input_save_as_draft').val('2');
 		$('#listing_form').submit();
+	}
+}
+
+function get_timesloat(){
+	var time = {'mon':[],'tue':[],'wed':[],'thu':[],'fri':[],'sat':[],'sun':[]};
+	var array = ['mon','tue','wed','thu','fri','sat','sun'];
+	for(let i=0;i<=6;i++){
+		$('#timeslot_block .day-slots').eq(i).find('.slots-container').each(function(){
+			$(this).find('.single-slot').each(function(){
+			  let start = $(this).find('.start').text();
+			  let end = $(this).find('.end').text();
+			  let qty = $(this).find('.plusminus input').val();
+			  let price = $(this).find('.price-input').val();
+			  if(start && end && price){
+			  	  let obj = {'start_time':start,'end_time':end,'qty':qty,'price':price}
+				  time[array[i]].push(obj);
+				  console.log(start,end,qty,price);
+				  console.log(time);
+			  }
+			})
+		});
+	}
+	for(let i=0;i<=6;i++){
+       $('#time_'+array[i]+'_meta_slot').val(JSON.stringify(time[array[i]]));
 	}
 }
 </script>			

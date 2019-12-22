@@ -69,7 +69,7 @@ class ListingController extends Controller
 
     public function addListing(Request $request)
     {
-       //dd($request->all);
+        //dd($request->all());
         if($request->save_as_draft){
             // save as draft
             $listing = new Listing();
@@ -98,11 +98,28 @@ class ListingController extends Controller
 				$mon_fri_closed = (array_key_exists('mon_fri_closed' ,$request->input('meta')))?'1':'0';
 				$sat_closed		= (array_key_exists('sat_closed' ,$request->input('meta')))?'1':'0';
 				$sun_closed		= (array_key_exists('sun_closed' ,$request->input('meta')))?'1':'0';
+
+                $mon_closed_slot     = (array_key_exists('mon_closed_slot' ,$request->input('meta')))?'1':'0';
+                $tue_closed_slot     = (array_key_exists('tue_closed_slot' ,$request->input('meta')))?'1':'0';
+                $wed_closed_slot     = (array_key_exists('wed_closed_slot' ,$request->input('meta')))?'1':'0';
+                $thu_closed_slot     = (array_key_exists('thu_closed_slot' ,$request->input('meta')))?'1':'0';
+                $fri_closed_slot     = (array_key_exists('fri_closed_slot' ,$request->input('meta')))?'1':'0';
+                $sat_closed_slot     = (array_key_exists('sat_closed_slot' ,$request->input('meta')))?'1':'0';
+                $sun_closed_slot     = (array_key_exists('sun_closed_slot' ,$request->input('meta')))?'1':'0';
+
 				$meta = $request->input('meta');
 				$meta['timeslot_enable'] = $timeslot_enable;
 				$meta['mon_fri_closed']  = $mon_fri_closed;
 				$meta['sat_closed']      = $sat_closed;
 				$meta['sun_closed']      = $sun_closed;
+
+                $meta['mon_closed_slot']      = $mon_closed_slot;
+                $meta['tue_closed_slot']      = $tue_closed_slot;
+                $meta['wed_closed_slot']      = $wed_closed_slot;
+                $meta['thu_closed_slot']      = $thu_closed_slot;
+                $meta['fri_closed_slot']      = $fri_closed_slot;
+                $meta['sat_closed_slot']      = $sat_closed_slot;
+                $meta['sun_closed_slot']      = $sun_closed_slot;                
 				//print_r($meta);exit;
                 foreach($meta as $key=>$value){
 					

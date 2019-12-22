@@ -985,9 +985,9 @@ $(document).ready(function(){
 				    var $twelve_hr = $('.add-slot-inputs select.twelve-hr');
 
 				    if ( $twelve_hr.length){
-				        newTimeSlot.find('.single-slot-time').html(slotTime_Start + ' ' + '<i class="am-pm">'+slotTimePM_AM_Start+'</i>' + ' - '+ slotTime_End + ' ' + '<i class="am-pm">'+slotTimePM_AM_End+'</i>');
+				        newTimeSlot.find('.single-slot-time').html('<span class="start">'+ slotTime_Start + '</span> ' + '<i class="am-pm">'+slotTimePM_AM_Start+'</i>' + ' - <span class="end">'+ slotTime_End + '</span> ' + '<i class="am-pm">'+slotTimePM_AM_End+'</i>');
 				    } else {
-				    	newTimeSlot.find('.single-slot-time').html(''+ slotTime_Start + ' - ' + slotTime_End);
+				    	newTimeSlot.find('.single-slot-time').html('<span class="start">'+ slotTime_Start + '</span> - <span class="end">' + slotTime_End + '</span>');
 				    }
 
 				    // Appending new slot
