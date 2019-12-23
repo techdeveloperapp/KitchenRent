@@ -49,7 +49,7 @@ if(!function_exists('gig_time_format')) {
 					<!-- This button will show on edit mode only -->
 					<div class="listing-submit-wrap clearfix" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
 						<a target="_blannk" href="{{url('listing/
-								'. $slug)}}" class="button col-md-5">{{ __('messages.view') }}</a>
+								'. (isset($slug) ? $slug:''))}}" class="button col-md-5">{{ __('messages.view') }}</a>
 						<button type="button" onclick="save_publish();" class="button col-md-5">{{ __('messages.update') }}</button>
                     </div>
 					
@@ -136,6 +136,19 @@ $(document).ready(function(){
 	}
 	?>
     
+    // For Default Check
+    $('.checked-checking').each(function(){
+	  var Check = false;
+	  $(this).find('input[type="radio"]').each(function(){
+	     if($(this).prop('checked')){
+	        Check = true;
+	     }
+	  });
+	  if(!Check){
+	    $(this).find('input[type="radio"]:first').attr('checked',true);
+	  }
+	});
+
 });
 
 function generate_slug(title){

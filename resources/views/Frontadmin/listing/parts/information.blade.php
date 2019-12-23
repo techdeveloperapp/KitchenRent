@@ -16,7 +16,7 @@
 <div class="add-listing-headline">
 	<h3><i class="sl sl-icon-doc"></i> {{ __('messages.information') }}</h3>
 </div>
-<div class="row with-forms">
+<div class="row with-forms checked-checking">
 	<div class="col-md-12">
 		<h5>{{ __('messages.room_type') }} </h5>
 		@foreach ($room_type_arr as $room_type_list)

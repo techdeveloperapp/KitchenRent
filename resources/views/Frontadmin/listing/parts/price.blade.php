@@ -64,7 +64,7 @@
 	</div>
 	
 	<div class="row with-forms">
-		<div class="col-md-4">
+		<div class="col-md-4 checked-checking">
 			<h5>{{ __('messages.allow_extra_guests') }} </h5>
 			<div class="payment-tab-trigger">
 				<input id="yes_guest" name="meta[allow_additional_guests]" type="radio" value="yes" {{(isset($allow_additional_guests) && $allow_additional_guests == 'yes') ? 'checked' : ''}}>
@@ -92,7 +92,7 @@
 				<input class="" data-rule-digits="true" placeholder="{{ __('messages.enter_cleaning_fees_price') }} " type="text" name="meta[cleaning_fee]" value="{{(isset($cleaning_fee) ? $cleaning_fee : '')}}" data-unit="EUR" />
 			</div>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-5 checked-checking">
 			<h5>{{ __('messages.cleaning_fee_type') }}</h5>
 			 <div class="payment-tab-trigger">
 				<input id="daily" name="meta[cleaning_fee_type]" type="radio" value="daily" {{(isset($cleaning_fee_type) ? ($cleaning_fee_type == 'daily' ? 'checked' : '') : '')}}>

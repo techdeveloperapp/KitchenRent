@@ -233,8 +233,12 @@ class ListingController extends Controller
     public function editListing(Request $request,$id)
     {
         $listing = new Listing();
-		
-        $listing = $listing->with('getMeta')->where('id',$id)->first()->toArray();
+        $listing = $listing->with('getMeta')->where('id',$id)->first();
+        if($listing){
+            $listing = $listing->toArray();
+        }else{
+            return view('errors.404');
+        }
         $amenities_type = ListingType::getAllTypes('amenities');
         $facilities_type = ListingType::getAllTypes('facilities');
         $room_type = ListingType::getAllTypes('room');

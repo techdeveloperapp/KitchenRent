@@ -587,9 +587,9 @@ margin-bottom: 10px;
 		<div class="no-slots">No slots added</div>
 
 		<!-- Slots Container -->
-		<div class="slots-container">
+		<!-- <div class="slots-container">
 			
-		</div>
+		</div> -->
 		<!-- Slots Container / End -->
 
 
@@ -693,9 +693,9 @@ margin-bottom: 10px;
 		<div class="no-slots">No slots added</div>
 
 		<!-- Slots Container -->
-		<div class="slots-container">
+		<!-- <div class="slots-container">
 			
-		</div>
+		</div> -->
 		<!-- Slots Container / End -->
 
 
