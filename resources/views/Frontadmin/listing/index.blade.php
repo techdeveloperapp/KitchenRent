@@ -39,7 +39,8 @@
 								<img src="{{ (isset($lists->listing_image_ids))?$lists->listing_image_ids:'http://placehold.it/90x60?text=NA'}}" class="listing-thumb-img img-responsive" alt="">
 							</td>
 							<td>
-								<a href="#">
+								<a target="_blannk" href="{{url('listing/
+								'. $lists->slug)}}" >
 									<strong>{{$lists->title}}</strong>
 								</a>
 								<address>@if(isset($lists['listing_address'])) {{$lists['listing_address']}} @endif</address>
@@ -51,7 +52,8 @@
 								<a href="{{url('user/listing/edit/
 								'. $lists->listing_id)}}" class="button gray tooltip" title="{{ __('messages.edit') }}"><i class="sl sl-icon-note"></i> </a>
 								<a href="javascript:void(0)" onclick="delete_listing({{$lists->listing_id}});" class="button gray tooltip" title="{{ __('messages.delete') }}"><i class="sl sl-icon-close"></i> </a>
-								<a href="#" class="button gray tooltip" title="{{ __('messages.view') }}"><i class="sl sl-icon-arrow-right-circle"></i> </a>
+								<a target="_blannk" href="{{url('listing/
+								'. $lists->slug)}}" class="button gray tooltip" title="{{ __('messages.view') }}"><i class="sl sl-icon-arrow-right-circle"></i> </a>
 							</td>
 						</tr>
 						@endforeach

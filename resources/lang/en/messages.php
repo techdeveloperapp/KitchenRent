@@ -106,7 +106,9 @@ return [
 	'location'						=> 'Location',
 	'terms_rules'					=> 'Terms & rules',
 	'title'							=> 'Title',
+	'slug'							=> 'Slug',
 	'enter_listing_title'			=> 'Enter the Listing title',
+	'enter_listing_slug'			=> 'Enter the Listing slug',
 	'description'					=> 'Description',
 	'listing_type'					=> 'Listing Type',
 	'keywords'						=> 'Keywords',
@@ -118,7 +120,9 @@ return [
 	'direct_booking'				=> 'Direct booking',
 	'do_you_direct_booking_possible'=> 'Do you want to make direct booking possible?',
 	'price_per_hour'				=> 'Price Per Hour',
-	'enter_price_per_hour'				=> 'Enter price for 1 hour',
+	'enter_price_per_hour'			=> 'Enter price for 1 hour',
+	'price_per_day'					=> 'Price Per day',
+	'enter_price_per_day'			=> 'Enter price for 1 day',
 	'weekends'						=> 'Weekends',
 	'enter_weekend_price'			=> 'Enter per hour price for weekends',
 	'select_days_of_weekend'		=> 'Select the days to apply weekend pricing',
@@ -148,6 +152,9 @@ return [
 	'thumbnail'						=> 'Thumbnail',
 	'type'							=> 'Type',
 	'featured'						=> 'Featured',
+	'long_term_pricing'				=> 'Long term pricing',
+	'weekly'						=> 'Weekly- 7+ nights',
+	'monthly'						=> 'Monthly- 30+ nights',
 	
 	
 	

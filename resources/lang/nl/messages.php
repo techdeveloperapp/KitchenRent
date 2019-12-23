@@ -109,7 +109,9 @@ return [
 	'location'						=> 'Locatie',
 	'terms_rules'					=> 'Algemene voorwaarden',
 	'title'							=> 'Titel',
+	'slug'							=> 'Slug',
 	'enter_listing_title'			=> 'Voer de titel van de vermelding in',
+	'enter_listing_slug'			=> 'Enter the Listing slug',
 	'description'					=> 'Omschrijving',
 	'listing_type'					=> 'Soort vermelding',
 	'keywords'						=> 'trefwoorden',
@@ -121,7 +123,9 @@ return [
 	'direct_booking'				=> 'Direct boeken',
 	'do_you_direct_booking_possible'=> 'Wilt u direct boeken mogelijk maken?',
 	'price_per_hour'				=> 'Prijs per uur',
-	'enter_price_per_hour'				=> 'Voer prijs in voor 1 uur',
+	'enter_price_per_hour'			=> 'Voer prijs in voor 1 uur',
+	'price_per_day'					=> 'Prijs per dag',
+	'enter_price_per_day'			=> 'Voer prijs in voor 1 dag',
 	'weekends'						=> 'Weekends',
 	'enter_weekend_price'			=> 'Voer per uur prijs in voor weekends',
 	'select_days_of_weekend'		=> 'Selecteer de dagen om weekendprijzen toe te passen',
@@ -149,7 +153,9 @@ return [
 	'facilities'					=> 'uitrusting',
 	'bedrooms'						=> 'slaapkamers',
 	'featured'						=> 'Uitgelicht',
-	
+	'long_term_pricing'				=> 'Lange termijn prijzen',
+	'weekly'						=> 'Wekelijks - 7+ nachten',
+	'monthly'						=> 'Maandelijks- 30+ nachten',
 	
 	
 	

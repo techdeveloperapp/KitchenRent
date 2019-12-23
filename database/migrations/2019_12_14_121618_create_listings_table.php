@@ -16,6 +16,7 @@ class CreateListingsTable extends Migration
         Schema::create('listings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('listing_type')->comment('category')->nullable();
             $table->string('room_type')->nullable();

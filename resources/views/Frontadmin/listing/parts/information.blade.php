@@ -28,9 +28,13 @@
 	</div>
 </div>
 <div class="row with-forms">
-	<div class="col-md-12">
+	<div class="col-md-6">
 		<h5>{{ __('messages.title') }} </h5>
-		<input class="" type="text" name="title" id="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" value="{{isset($title) ? $title : ''}}" required autofocus />
+		<input class="" type="text" name="title" id="listing_title" placeholder="{{ __('messages.enter_listing_title') }}" onblur="generate_slug(this.value);" value="{{isset($title) ? $title : ''}}" required />
+	</div>
+	<div class="col-md-6 slug-div">
+		<h5>{{ __('messages.slug') }} <i class="tip" data-tip-content="Slug will be generated automatically based on title"></i></h5>
+		<input class="" type="text" name="slug" id="slug" placeholder="{{ __('messages.enter_listing_slug') }}" value="{{isset($slug) ? $slug : ''}}" required />
 	</div>
 </div>
 <div class="row with-forms">

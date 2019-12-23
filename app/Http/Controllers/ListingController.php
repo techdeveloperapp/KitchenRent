@@ -69,6 +69,22 @@ class ListingController extends Controller
 
     public function addListing(Request $request)
     {
+
+		$validator = Validator::make($request->all(), [
+			'title' => 'required',
+			'slug'  => 'required|unique:listings',
+			//'price' => 'required|numeric',
+		]);
+		if ($validator->fails()) {
+			if($request->input('id')){
+				return redirect('user/listing/edit/'.$request->input('id'))
+                        ->withErrors($validator)
+                        ->withInput();
+			}
+            return redirect('user/listing/add')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         //dd($request->all());
         if($request->save_as_draft){
             // save as draft
@@ -79,6 +95,11 @@ class ListingController extends Controller
                 $listing = Listing::find($listing_id);
             }
             $listing->title = $request->input('title');
+			$slug = $request->input('slug');
+			if( !isset($slug) || $slug == '' ){
+				$slug = $this->slugify($listing->title);
+			}
+            $listing->slug  = $slug;
             $listing->description = $request->input('description');
             $listing->listing_type = $request->input('listing_type');
             $listing->room_type = $request->input('place_type');
@@ -219,11 +240,7 @@ class ListingController extends Controller
         $room_type = ListingType::getAllTypes('room');
         $list_type = ListingType::getAllTypes('listing');
         foreach ($listing['get_meta'] as $key => $value) {
-            if($value['meta_name'] == "timeslot"){
-                $listing['timeslot'] = json_decode($value['meta_value']);
-            }elseif($value['meta_name'] == "gig_accomodation"){
-                $listing['gig_accomodation'] = json_decode($value['meta_value']);
-            }elseif($value['meta_name'] == "gig_services"){
+            if($value['meta_name'] == "gig_services"){
                 $listing['gig_services'] = json_decode($value['meta_value']);
             }else{
 				$listing[$value['meta_name']] = $value['meta_value'];
@@ -245,5 +262,41 @@ class ListingController extends Controller
 			$msg = __('messages.record_deleted');
 			return response()->json(['status'=>"success",'message'=> $msg  ]); 
 		}
+	}
+	public function listingSlug(Request $request){
+		$slug =  $this->slugify($request->title);
+		return response()->json(['status'=>"success",'slug'=> $slug ]); 
+	}
+	public function view(Request $request,$slug){
+		$listing = new Listing();
+        $listing = $listing->with('getMeta')->where('slug',$slug)->first()->toArray();
+		//print_r($listing);
+		return view('Frontend.listing.view',$listing);
+	}
+	private function slugify($text)
+	{
+	  // replace non letter or digits by -
+	  $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+	  // transliterate
+	  $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+	  // remove unwanted characters
+	  $text = preg_replace('~[^-\w]+~', '', $text);
+
+	  // trim
+	  $text = trim($text, '-');
+
+	  // remove duplicate -
+	  $text = preg_replace('~-+~', '-', $text);
+
+	  // lowercase
+	  $text = strtolower($text);
+
+	  if (empty($text)) {
+		return 'n-a';
+	  }
+
+	  return $text;
 	}
 }	

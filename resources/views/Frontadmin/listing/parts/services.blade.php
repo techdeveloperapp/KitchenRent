@@ -7,7 +7,7 @@
 <div data-repeater-list="meta[gig_services]">
 	 @if(isset($id) && !empty($gig_services))
 	@foreach ($gig_services as $gig_services)
-	<div data-repeater-item class="row with-forms margin-bottom-20" >
+	<div data-repeater-item class="row with-forms margin-bottom-20" edit>
 		<div class="col-md-6">
 			<h5>Service name</h5>
 			<input class="" type="text" name="service_name" placeholder="Ex. Projection Screen" value="{{$gig_services->service_name}}" />
@@ -27,7 +27,7 @@
 	</div>
 	@endforeach
 	@else
-	<div data-repeater-item class="row with-forms margin-bottom-20" >
+	<div data-repeater-item class="row with-forms margin-bottom-20" new>
 		<div class="col-md-6">
 			<h5>Service name</h5>
 			<input class="" type="text" name="service_name" placeholder="Ex. Projection Screen" value="" />

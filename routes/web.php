@@ -87,8 +87,15 @@ Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']]
 	Route::get('/listing/edit/{id}', 'ListingController@editListing')->name('Editlisting');
 	Route::get('/listing', 'ListingController@index')->name('listingAll');
 	Route::post('/listing/deleteListing', 'ListingController@deleteListing')->name('deleteListingById');
+	Route::post('/listing/generate_slug', 'ListingController@listingSlug')->name('generateSlug');
 });
 /************************************FrontAdmin End*****************************************/
+
+/************************************Front-End Start*****************************************/
+Route::group(['prefix'=>'listing/','as'=>'user.customer.'], function () {
+	Route::get('/{slug}', 'ListingController@view')->name('listing');
+});	
+/************************************Front-End End*****************************************/
 
 Auth::routes();
 

@@ -11,9 +11,9 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		<h5>{{ __('messages.price_per_hour') }} </h5>
+		<h5>{{ __('messages.price_per_day') }} </h5>
 		<div class="fm-input pricing-price">
-		<input class="" placeholder="{{ __('messages.enter_price_per_hour') }} " type="text" data-rule-digits="true" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" data-rule-required="true" />
+		<input class="" placeholder="{{ __('messages.enter_price_per_day') }} " type="text" data-rule-digits="true" name="price" id="listing_price" value="{{(isset($price) ? $price : '')}}" data-unit="EUR" data-rule-required="true" />
 		</div>
 	</div>
 </div>
@@ -33,6 +33,28 @@
 		 </select>
 	</div>
 </div>
+
+<div class="add-listing-section">
+	
+	<!-- Headline -->
+	<div class="add-listing-headline">
+		<h3>{{ __('messages.long_term_pricing') }}</h3>
+	</div>
+	<div class="row with-forms">
+		<div class="col-md-6">
+			<h5>{{ __('messages.weekly') }}</h5>
+			<div class="fm-input pricing-price">
+			<input class="" data-rule-digits="true" placeholder="Enter the unit price for a single day " type="text" name="meta[priceWeek]" value="{{(isset($priceWeek) ? $priceWeek : '')}}" data-unit="EUR" />
+			</div>
+		</div>
+		<div class="col-md-6">
+			<h5>{{ __('messages.monthly') }} </h5>
+			<div class="fm-input pricing-price">
+			<input class="" data-rule-digits="true" placeholder="Enter the unit price for a single day " type="text" name="meta[priceMonthly]" value="{{(isset($priceMonthly) ? $priceMonthly : '')}}" data-unit="EUR" />
+			</div>
+		</div>
+	</div>	
+</div>	
 
 <div class="add-listing-section margin-top-25 margin-bottom-50">
 	

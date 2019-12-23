@@ -48,7 +48,8 @@ if(!function_exists('gig_time_format')) {
                     <form method="POST" action="{{url('user/listing/add')}}" id="listing_form">
 					<!-- This button will show on edit mode only -->
 					<div class="listing-submit-wrap clearfix" @if(!isset($id) || (isset($status) && $status=='4')) style="display:none" @endif >
-						<a href="#" class="button col-md-5">{{ __('messages.view') }}</a>
+						<a target="_blannk" href="{{url('listing/
+								'. $slug)}}" class="button col-md-5">{{ __('messages.view') }}</a>
 						<button type="button" onclick="save_publish();" class="button col-md-5">{{ __('messages.update') }}</button>
                     </div>
 					
@@ -136,6 +137,28 @@ $(document).ready(function(){
 	?>
     
 });
+
+function generate_slug(title){
+	console.log(title);
+	if($("#slug").val() ==''){
+		$.ajax({
+			method: 'POST',
+			url: "{{url('user/listing/generate_slug')}}",
+			data: {'title':title,},
+			headers: {
+			  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			success: function(data){
+				//console.log(data);
+				$(".slug-div").addClass('changed');
+				$("#slug").val(data.slug);
+			},
+			error: function(data){
+				swal('Error',data,'error');
+			}
+		});
+	}
+}
 
 function Next_Tab(tabId=1){
 	if($('#listing_form').valid()){
