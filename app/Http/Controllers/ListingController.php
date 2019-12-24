@@ -72,7 +72,7 @@ class ListingController extends Controller
 
 		$validator = Validator::make($request->all(), [
 			'title' => 'required',
-			'slug'  => 'required|unique:listings',
+			'slug'  => 'required',
 			//'price' => 'required|numeric',
 		]);
 		if ($validator->fails()) {
@@ -273,7 +273,12 @@ class ListingController extends Controller
 	}
 	public function view(Request $request,$slug){
 		$listing = new Listing();
-        $listing = $listing->with('getMeta')->where('slug',$slug)->first()->toArray();
+        $listing = $listing->with('getMeta')->where('slug',$slug)->first();
+		if($listing){
+            $listing = $listing->toArray();
+        }else{
+            return view('errors.404');
+        }
 		//print_r($listing);
 		return view('Frontend.listing.view',$listing);
 	}
