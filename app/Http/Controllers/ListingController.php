@@ -272,13 +272,15 @@ class ListingController extends Controller
 		return response()->json(['status'=>"success",'slug'=> $slug ]); 
 	}
 	public function view(Request $request,$slug){
-		$listing = new Listing();
-        $listing = $listing->with('getMeta')->where('slug',$slug)->first();
+		$listingObj = new Listing();
+        $listing = $listingObj->with('getMeta')->where('slug',$slug)->first();
 		if($listing){
-            $listing = $listing->toArray();
+			$meta_list = $listingObj->getListing($listing->id);
+            $listing =  array_merge( $meta_list, $listing->toArray());
         }else{
             return view('errors.404');
         }
+		unset($listing['get_meta']);
 		//print_r($listing);
 		return view('Frontend.listing.view',$listing);
 	}

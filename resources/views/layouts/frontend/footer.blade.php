@@ -66,7 +66,7 @@
 ================================================== -->
 @include('layouts.common.footer-assets')
 <!-- Maps -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyAFuQRfezm1WrOejFHVhy74NbmX8pkCQqw&language=en"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyAFuQRfezm1WrOejFHVhy74NbmX8pkCQqw&language=en&callback=initAutocomplete"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/infobox.min.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/markerclusterer.js"></script>
 <script type="text/javascript" src="{{url('frontend/')}}/scripts/maps.js"></script>	
@@ -91,4 +91,3 @@
     }
 }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"></script>

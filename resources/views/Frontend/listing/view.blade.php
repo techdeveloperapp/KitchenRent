@@ -24,15 +24,15 @@
 			<!-- Titlebar -->
 			<div id="titlebar" class="listing-titlebar">
 				<div class="listing-titlebar-title">
-					<h2>Burger House <span class="listing-tag">Eat & Drink</span></h2>
+					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">Eat & Drink</span></h2>
 					<span>
 						<a href="#listing-location" class="listing-address">
 							<i class="fa fa-map-marker"></i>
-							2726 Shinn Street, New York
+							{{ (isset($listing_address))?$listing_address:'' }}
 						</a>
 					</span>
-					<div class="star-rating" data-rating="5">
-						<div class="rating-counter"><a href="#listing-reviews">(31 reviews)</a></div>
+					<div class="star-rating" data-rating="">
+						<div class="rating-counter"><a href="#listing-reviews">(0 reviews)</a></div>
 					</div>
 				</div>
 			</div>
@@ -52,15 +52,7 @@
 			<div id="listing-overview" class="listing-section">
 
 				<!-- Description -->
-
-				<p>
-					Ut euismod ultricies sollicitudin. Curabitur sed dapibus nulla. Nulla eget iaculis lectus. Mauris ac maximus neque. Nam in mauris quis libero sodales eleifend. Morbi varius, nulla sit amet rutrum elementum, est elit finibus tellus, ut tristique elit risus at metus.
-				</p>
-
-				<p>
-					 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra.
-				</p>
-				
+				{!! (isset($description))?$description:'' !!}
 				
 				<!-- Listing Contacts -->
 				<div class="listing-links-container">
@@ -163,7 +155,7 @@
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
 
 				<div id="singleListingMap-container">
-					<div id="singleListingMap" data-latitude="25.761681" data-longitude="-80.191788" data-map-icon="im im-icon-Hamburger"></div>
+					<div id="singleListingMap" data-latitude="{{$lat}}" data-longitude="{{$lng}}" data-map-icon="im im-icon-Hamburger"></div>
 					<a href="#" id="streetView">Street View</a>
 				</div>
 			</div>
