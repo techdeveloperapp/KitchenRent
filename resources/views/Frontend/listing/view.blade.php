@@ -24,15 +24,19 @@
 			<!-- Titlebar -->
 			<div id="titlebar" class="listing-titlebar">
 				<div class="listing-titlebar-title">
+<<<<<<< HEAD
 					<h2>{{(isset($title) ? $title : '')}} <span class="listing-tag">Eat & Drink</span></h2>
+=======
+					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">Eat & Drink</span></h2>
+>>>>>>> fa81dfd2eed767851746012767d51b8e219f1d50
 					<span>
 						<a href="#listing-location" class="listing-address">
 							<i class="fa fa-map-marker"></i>
-							2726 Shinn Street, New York
+							{{ (isset($listing_address))?$listing_address:'' }}
 						</a>
 					</span>
-					<div class="star-rating" data-rating="5">
-						<div class="rating-counter"><a href="#listing-reviews">(31 reviews)</a></div>
+					<div class="star-rating" data-rating="">
+						<div class="rating-counter"><a href="#listing-reviews">(0 reviews)</a></div>
 					</div>
 				</div>
 			</div>
@@ -52,10 +56,14 @@
 			<div id="listing-overview" class="listing-section">
 
 				<!-- Description -->
+<<<<<<< HEAD
 				<?php
 				echo (isset($description) ? $description : '');
 				?>
 				
+=======
+				{!! (isset($description))?$description:'' !!}
+>>>>>>> fa81dfd2eed767851746012767d51b8e219f1d50
 				
 				<!-- Listing Contacts -->
 				<div class="listing-links-container">
@@ -158,7 +166,7 @@
 				<h3 class="listing-desc-headline margin-top-60 margin-bottom-30">Location</h3>
 
 				<div id="singleListingMap-container">
-					<div id="singleListingMap" data-latitude="25.761681" data-longitude="-80.191788" data-map-icon="im im-icon-Hamburger"></div>
+					<div id="singleListingMap" data-latitude="{{$lat}}" data-longitude="{{$lng}}" data-map-icon="im im-icon-Hamburger"></div>
 					<a href="#" id="streetView">Street View</a>
 				</div>
 			</div>

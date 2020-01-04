@@ -283,7 +283,6 @@ class ListingController extends Controller
             $facilities_type = ListingType::getAllTypes('facilities');
             $room_type = ListingType::getAllTypes('room');
             $list_type = ListingType::getAllTypes('listing');
-            dd($facilities_type);
             unset($listing['get_meta']);
         }else{
             return view('errors.404');
