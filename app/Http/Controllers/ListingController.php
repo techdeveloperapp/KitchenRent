@@ -287,6 +287,7 @@ class ListingController extends Controller
         }else{
             return view('errors.404');
         }
+        
 		return view('Frontend.listing.view',$listing);
 	}
 	private function slugify($text)
