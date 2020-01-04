@@ -272,14 +272,22 @@ class ListingController extends Controller
 		return response()->json(['status'=>"success",'slug'=> $slug ]); 
 	}
 	public function view(Request $request,$slug){
-		$listing = new Listing();
-        $listing = $listing->with('getMeta')->where('slug',$slug)->first();
+		$listingObj = new Listing();
+        $listing = $listingObj->with('getMeta')->where('slug',$slug)->first();
 		if($listing){
-            $listing = $listing->toArray();
+            $listingMeta = $listingObj->getListing($listing->id);
+            $listing = array_merge($listing->toArray(),$listingMeta);
+
+            $amenities_type = ListingType::getAllTypes('amenities');
+            
+            $facilities_type = ListingType::getAllTypes('facilities');
+            $room_type = ListingType::getAllTypes('room');
+            $list_type = ListingType::getAllTypes('listing');
+            dd($facilities_type);
+            unset($listing['get_meta']);
         }else{
             return view('errors.404');
         }
-		//print_r($listing);
 		return view('Frontend.listing.view',$listing);
 	}
 	private function slugify($text)
