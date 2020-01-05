@@ -24,11 +24,7 @@
 			<!-- Titlebar -->
 			<div id="titlebar" class="listing-titlebar">
 				<div class="listing-titlebar-title">
-<<<<<<< HEAD
-					<h2>{{(isset($title) ? $title : '')}} <span class="listing-tag">Eat & Drink</span></h2>
-=======
 					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">Eat & Drink</span></h2>
->>>>>>> fa81dfd2eed767851746012767d51b8e219f1d50
 					<span>
 						<a href="#listing-location" class="listing-address">
 							<i class="fa fa-map-marker"></i>
@@ -56,14 +52,9 @@
 			<div id="listing-overview" class="listing-section">
 
 				<!-- Description -->
-<<<<<<< HEAD
 				<?php
 				echo (isset($description) ? $description : '');
 				?>
-				
-=======
-				{!! (isset($description))?$description:'' !!}
->>>>>>> fa81dfd2eed767851746012767d51b8e219f1d50
 				
 				<!-- Listing Contacts -->
 				<div class="listing-links-container">
