@@ -26,4 +26,20 @@ class Media extends Model
     	}
     	return true;
     }
+    public static function getAllImages($media_ids)
+    {
+        if($media_ids!='')
+        {
+            $images = Media::select('id','file_name','file_path')->whereIn('id', explode(',', $media_ids))->get();
+            if($images->count()>0)
+            {
+                return $images;
+            }
+            else
+            {
+                return array();
+            }
+        }
+        return array();
+    }
 }

@@ -282,11 +282,17 @@ class ListingController extends Controller
             $listing['facilities_type'] = ListingType::getAllAmenities($listing['facilities']);
             $listing['room_type'] = ListingType::getAllAmenities($listing['room_type']);
             $listing['list_type'] = ListingType::getAllAmenities($listing['listing_type']);
-            $listing['services'] = array();
+            $listing['services'] = $listing['images'] = array();
             if(isset($listing['gig_services']) && $listing['gig_services']!='')
             {
                 $listing['services'] = json_decode($listing['gig_services'],true);
             }
+            if(isset($listing['listing_image_ids']) && $listing['listing_image_ids']!='')
+            {
+                $listing['images'] = Media::getAllImages($listing['listing_image_ids']);
+            }
+
+            //print_r($listing); die;
 
             unset($listing['get_meta']);
         }else{

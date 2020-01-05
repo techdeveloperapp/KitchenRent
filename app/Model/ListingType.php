@@ -27,7 +27,14 @@ class ListingType extends Model
         if($amenities!='')
         {
             $type = ListingType::select('id','name')->whereIn('id', explode(',', $amenities))->get();
-            return $type;
+            if($type->count()>0)
+            {
+                return $type;
+            }
+            else
+            {
+                return array();
+            }
         }
         return array();
     }

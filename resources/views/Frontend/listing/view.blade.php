@@ -9,10 +9,16 @@
 <!-- Slider
 ================================================== -->
 <div class="listing-slider mfp-gallery-container margin-bottom-0">
+	@if(isset($images) && !empty($images))
+	@foreach($images as $images)
+	<a href="{{$images['file_path']}}" data-background-image="{{$images['file_path']}}" class="item mfp-gallery" alt="gallery_images"></a>
+	@endforeach
+	@else
 	<a href="{{url('frontend/')}}/images/single-listing-01.jpg" data-background-image="{{url('frontend/')}}/images/single-listing-01.jpg" class="item mfp-gallery" title="Title 1"></a>
 	<a href="{{url('frontend/')}}/images/single-listing-02.jpg" data-background-image="{{url('frontend/')}}/images/single-listing-02.jpg" class="item mfp-gallery" title="Title 3"></a>
 	<a href="{{url('frontend/')}}/images/single-listing-03.jpg" data-background-image="{{url('frontend/')}}/images/single-listing-03.jpg" class="item mfp-gallery" title="Title 2"></a>
 	<a href="{{url('frontend/')}}/images/single-listing-04.jpg" data-background-image="{{url('frontend/')}}/images/single-listing-04.jpg" class="item mfp-gallery" title="Title 4"></a>
+	@endif
 </div>
 
 <!-- Content
