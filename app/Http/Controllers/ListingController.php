@@ -278,15 +278,16 @@ class ListingController extends Controller
             $listingMeta = $listingObj->getListing($listing->id);
             $listing = array_merge($listing->toArray(),$listingMeta);
 
-            $amenities_type = ListingType::getAllTypes('amenities');
-            
-            $facilities_type = ListingType::getAllTypes('facilities');
-            $room_type = ListingType::getAllTypes('room');
-            $list_type = ListingType::getAllTypes('listing');
+            $listing['amenities_type'] = ListingType::getAllAmenities($listing['amenities']);
+            $listing['facilities_type'] = ListingType::getAllAmenities($listing['facilities']);
+            $listing['room_type'] = ListingType::getAllAmenities($listing['room_type']);
+            $listing['list_type'] = ListingType::getAllAmenities($listing['listing_type']);
             unset($listing['get_meta']);
         }else{
             return view('errors.404');
         }
+
+        //print_r($listing['amenities_type']); die;
         
 		return view('Frontend.listing.view',$listing);
 	}

@@ -24,7 +24,7 @@
 			<!-- Titlebar -->
 			<div id="titlebar" class="listing-titlebar">
 				<div class="listing-titlebar-title">
-					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">Eat & Drink</span></h2>
+					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">{{isset($room_type[0])?$room_type[0]['name']:""}}</span></h2>
 					<span>
 						<a href="#listing-location" class="listing-address">
 							<i class="fa fa-map-marker"></i>
@@ -82,12 +82,11 @@
 				<!-- Amenities -->
 				<h3 class="listing-desc-headline">Amenities</h3>
 				<ul class="listing-features checkboxes margin-top-0">
-					<li>Elevator in building</li>
-					<li>Friendly workspace</li>
-					<li>Instant Book</li>
-					<li>Wireless Internet</li>
-					<li>Free parking on premises</li>
-					<li>Free parking on street</li>
+					@if(isset($amenities_type) && !empty($amenities_type))
+					@foreach($amenities_type as $amenities_type)
+					<li>{{$amenities_type['name']}}</li>
+					@endforeach
+					@endif
 				</ul>
 			</div>
 

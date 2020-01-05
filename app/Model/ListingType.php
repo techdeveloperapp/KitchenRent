@@ -22,4 +22,14 @@ class ListingType extends Model
         return $type;
     }
 
+    public static function getAllAmenities($amenities)
+    {
+        if($amenities!='')
+        {
+            $type = ListingType::select('id','name')->whereIn('id', explode(',', $amenities))->get();
+            return $type;
+        }
+        return array();
+    }
+
 }
