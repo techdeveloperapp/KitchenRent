@@ -2,6 +2,13 @@
 @section('title', $title.' - gigworks')
 @section('content')
 
+<style>
+.listing-links li a{
+	font-size: 16px;
+}.listing-links li a strong{
+	color: #74aea1;
+}
+</style>
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 
@@ -30,7 +37,7 @@
 			<!-- Titlebar -->
 			<div id="titlebar" class="listing-titlebar">
 				<div class="listing-titlebar-title">
-					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">{{isset($room_type[0])?$room_type[0]['name']:""}}</span></h2>
+					<h2>{{ (isset($title))?$title:'' }} <span class="listing-tag">{{isset($list_type[0])?$list_type[0]['name']:""}}</span></h2>
 					<span>
 						<a href="#listing-location" class="listing-address">
 							<i class="fa fa-map-marker"></i>
@@ -48,6 +55,7 @@
 				<ul class="listing-nav">
 					<li><a href="#listing-overview" class="active">Overview</a></li>
 					<li><a href="#listing-pricing-list">Pricing</a></li>
+					<li><a href="#listing-service-list">Services</a></li>
 					<li><a href="#listing-location">Location</a></li>
 					<li><a href="#listing-reviews">Reviews</a></li>
 					<li><a href="#add-review">Add Review</a></li>
@@ -94,33 +102,55 @@
 					@endforeach
 					@endif
 				</ul>
+				<!-- Facilities -->
+				<h3 class="listing-desc-headline">Facilities</h3>
+				<ul class="listing-features checkboxes margin-top-0">
+					@if(isset($facilities_type) && !empty($facilities_type))
+					@foreach($facilities_type as $facilities_type)
+					<li>{{$facilities_type['name']}}</li>
+					@endforeach
+					@endif
+				</ul>
+				
+				
 			</div>
 
 
 			<!-- Food Menu -->
 			<div id="listing-pricing-list" class="listing-section">
-				<h3 class="listing-desc-headline margin-top-70 margin-bottom-30">Pricing</h3>
-
+				<h3 class="listing-desc-headline margin-top-70 margin-bottom-30">Prices</h3>
+				<ul class="listing-links contact-links">
+					<li><a href="javascript:;"> Daily: <strong>€{{$price}}</strong> </a></li>
+					@if(isset($priceMonthly))<li><a href="javascript:;"> Monthly: <strong>(30d+): €{{$priceMonthly}}</strong></a></li>@endif
+					@if(isset($priceWeek))<li><a href="javascript:;"> Weekly: <strong>(7d+): €{{$priceWeek}}</strong></a></li>@endif
+				</ul>
+				
+			</div>
+			<!-- Food Menu / End -->
+			
+			<!---service start-->
+			<div id="listing-service-list" class="listing-section">
+				<h3 class="listing-desc-headline margin-top-70 margin-bottom-30">Services</h3>
+				
 				<div class="show-more">
 					<div class="pricing-list-container">
 						<ul>
-							@if(!empty($services))
+						   @if(!empty($services))
 							@foreach($services as $services)
 							<li>
 								<h5>{{$services['service_name']}}</h5>
 								<p>{{$services['service_des']}}</p>
-								<span>$ {{$services['service_price']}}</span>
+								<span>{{(!is_null($services['service_price']))?'€'.$services['service_price']:''}}</span>
 							</li>
 							@endforeach
 							@endif
 						</ul>
-
 					</div>
 				</div>
+				
 				<a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-down"></i></a>
 			</div>
-			<!-- Food Menu / End -->
-
+			<!---service end-->
 		
 			<!-- Location -->
 			<div id="listing-location" class="listing-section">
@@ -537,52 +567,33 @@
 
 		
 			<!-- Opening Hours -->
-			@if(isset($timeslot_enable) && $timeslot_enable)
 				<div class="boxed-widget opening-hours margin-top-35">
+				    <?php if( $mon_fri_closed=='0' || $sat_open_time =='0' || $sun_closed =='0'  ){?>
 					<div class="listing-badge now-open">Now Open</div>
-					<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
+					<?php }else{ ?>
+					<div class="listing-badge now-closed">Closed</div>
+					<?php } ?>
+					
+					<h3><i class="sl sl-icon-clock"></i> Gigworks Hours</h3>
 					<ul>
-						@if(isset($time_mon_meta_slot) && $time_mon_meta_slot && $time_mon_meta_slot != "[]" && $mon_closed_slot != 1)
-						<li>Monday <span> <?php echo json_decode($time_mon_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_mon_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Monday<span>Closed</span></li>
-						@endif
-						@if(isset($time_tue_meta_slot) && $time_tue_meta_slot && $time_tue_meta_slot != "[]" && $tue_closed_slot != 1)
-						<li>Tuesday <span> <?php echo json_decode($time_tue_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_tue_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Tuesday<span>Closed</span></li>
-						@endif
-						@if(isset($time_wed_meta_slot) && $time_wed_meta_slot && $time_wed_meta_slot != "[]" && $wed_closed_slot != 1)
-						<li>Wednesday <span> <?php echo json_decode($time_wed_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_wed_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Wednesday<span>Closed</span></li>
-						@endif
-						@if(isset($time_thu_meta_slot) && $time_thu_meta_slot && $time_thu_meta_slot != "[]" && $thu_closed_slot != 1)
-						<li>Thursday <span> <?php echo json_decode($time_thu_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_thu_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Thursday<span>Closed</span></li>
-						@endif
-						@if(isset($time_fri_meta_slot) && $time_fri_meta_slot && $time_fri_meta_slot != "[]" && $fri_closed_slot != 1)
-						<li>Friday <span> <?php echo json_decode($time_fri_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_fri_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Friday<span>Closed</span></li>
-						@endif
-						@if(isset($time_sat_meta_slot) && $time_sat_meta_slot && $time_sat_meta_slot != "[]" && $sat_closed != 1)
-						<li>Saturday <span> <?php echo json_decode($time_sat_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_sat_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Saturday<span>Closed</span></li>
-						@endif
-						@if(isset($time_sun_meta_slot) && $time_sun_meta_slot && $time_sun_meta_slot != "[]" && $sun_closed != 1)
-						<li>Sunday <span> <?php echo json_decode($time_sun_meta_slot,true)[0]['start_time']; ?> - <?php echo json_decode($time_sun_meta_slot,true)[0]['end_time']; ?></span></li>
-						@else
-						<li>Sunday<span>Closed</span></li>
-						@endif
-
-
-						
+						<?php if( isset($mon_fri_open_time) && isset($mon_fri_close_time) ){ ?>
+						<li>Monday - Friday <span> 
+							<?php echo ($mon_fri_closed=='0')? date('g:i A', strtotime($mon_fri_open_time)).' - '.date('g:i A',strtotime($mon_fri_close_time)) : 'Closed'; ?>
+							</span>
+						</li>
+						<?php } if( isset($sat_open_time) && isset($sat_close_time) ){ ?>
+						<li>Saturday <span> 
+							<?php echo ($sat_closed=='0')? date('g:i A', strtotime($sat_open_time)).' - '.date('g:i A',strtotime($sat_close_time)) : 'Closed'; ?>
+							</span>
+						</li>
+						<?php } if( isset($sun_open_time) && isset($sun_close_time) ){ ?>
+						<li>Sunday <span> 
+							<?php echo ($sun_closed=='0')? date('g:i A', strtotime($sun_open_time)).' - '.date('g:i A',strtotime($sun_close_time)) : 'Closed'; ?>
+							</span>
+						</li>
+						<?php } ?>
 					</ul>
 				</div>
-			@endif
 			<!-- Opening Hours / End -->
 
 
