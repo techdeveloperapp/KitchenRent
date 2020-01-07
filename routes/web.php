@@ -30,6 +30,9 @@ Route::post('admin/logout', 'CommonController@adminLogOut')->name('admin.logout'
 /************************************ADMIN START*****************************************/
 Route::group(['prefix'=>'admin/','as'=>'admin.','middleware' => ['auth']], function () {
 	Route::get('dashboard', 'Admin\DashboardController@index')->name('dashboard');
+	
+	Route::get('/messages', 'MessagesController@lists')->name('userMessages');
+	Route::get('/message/{userName}', 'MessagesController@view')->name('userViewMessage');
 });
 /************************************ADMIN START*****************************************/
 
@@ -88,6 +91,9 @@ Route::group(['prefix'=>'user/','as'=>'user.customer.','middleware' => ['auth']]
 	Route::get('/listing', 'ListingController@index')->name('listingAll');
 	Route::post('/listing/deleteListing', 'ListingController@deleteListing')->name('deleteListingById');
 	Route::post('/listing/generate_slug', 'ListingController@listingSlug')->name('generateSlug');
+	
+	Route::get('/messages', 'MessagesController@lists')->name('userMessages');
+	Route::get('/message/{userName}', 'MessagesController@view')->name('userViewMessage');
 });
 /************************************FrontAdmin End*****************************************/
 

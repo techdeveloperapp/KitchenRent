@@ -155,6 +155,8 @@ return [
 	'long_term_pricing'				=> 'Long term pricing',
 	'weekly'						=> 'Weekly- 7+ nights',
 	'monthly'						=> 'Monthly- 30+ nights',
+	'messages'						=> 'Messages',
+	'inbox'							=> 'Inbox',
 	
 	
 	

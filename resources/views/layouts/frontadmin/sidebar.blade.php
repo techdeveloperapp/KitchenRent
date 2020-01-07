@@ -6,8 +6,8 @@
 
 			<ul data-submenu-title="Main">
 				<li class="@if( Route::currentRouteName() == 'user.customer.userDashboard') active  @endif "><a href="{{url('user/dashboard')}}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-				<!--<li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span></a></li>
-				<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
+				<li class="@if( Route::currentRouteName() == 'user.customer.userMessages' || Route::currentRouteName() == 'user.customer.userViewMessage') active  @endif "><a href="{{url('user/messages')}}"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">2</span></a>
+				<!--<li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
 				<li><a href="dashboard-wallet.html"><i class="sl sl-icon-wallet"></i> Wallet</a></li>-->
 			</ul>
 			

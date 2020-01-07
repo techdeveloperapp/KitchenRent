@@ -156,6 +156,8 @@ return [
 	'long_term_pricing'				=> 'Lange termijn prijzen',
 	'weekly'						=> 'Wekelijks - 7+ nachten',
 	'monthly'						=> 'Maandelijks- 30+ nachten',
+	'messages'						=> 'berichten',
+	'inbox'							=> 'Postvak IN',
 	
 	
 	
